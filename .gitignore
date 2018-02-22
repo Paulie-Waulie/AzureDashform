@@ -3,3 +3,5 @@
 ################################################################################
 
 /Source/ManicStreetCoder.AzureDashform/bin/Debug
+/Source/ManicStreetCoder.AzureDashform/obj/Debug
+*.user
