@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:ManicStreetCoder.AzureDashform"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="{x:Type Control}" x:Key="BaseStyle">
+            <Setter Property="FontSize" Value="26" />
+        </Style>
+        <Style TargetType="{x:Type Label}" BasedOn="{StaticResource BaseStyle}"></Style>
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}"></Style>
     </Application.Resources>
 </Application>
