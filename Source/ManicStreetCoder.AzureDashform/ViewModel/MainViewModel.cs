@@ -21,14 +21,9 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
         /// </summary>
         public MainViewModel()
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+            this.SourceFilePath = @"C:\Temp\Summmit.json";
         }
+
+        public string SourceFilePath { get; set; }
     }
 }

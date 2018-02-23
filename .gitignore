@@ -10,3 +10,5 @@
 /Source/ManicStreetCoder.AzureDashform/.vs/ManicStreetCoder.AzureDashform/v14
 /Source/ManicStreetCoder.AzureDashform/packages/Mvvm.1.0.4
 /Source/ManicStreetCoder.AzureDashform/packages/*
+*.suo
+/Source/ManicStreetCoder.AzureDashform/.vs/ManicStreetCoder.AzureDashform/v15/.suo
