@@ -15,7 +15,7 @@
 using CommonServiceLocator;
  using GalaSoft.MvvmLight.Ioc;
 
-namespace ManicStreetCoder.AzureDashform.ViewModel.Windows.UI
+namespace ManicStreetCoder.AzureDashform.ViewModel.Windows.UI.ViewModel
 {
     /// <summary>
     /// This class contains static references to all the view models in the

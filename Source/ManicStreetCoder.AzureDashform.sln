@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManicStreetCoder.AzureDashform.Windows.UI", "ManicStreetCoder.AzureDashform.Windows.UI.csproj", "{4452E42A-BF30-4230-A221-068BB6D15835}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManicStreetCoder.AzureDashform.Windows.UI", "ManicStreetCoder.AzureDashform.Windows.UI\ManicStreetCoder.AzureDashform.Windows.UI.csproj", "{4452E42A-BF30-4230-A221-068BB6D15835}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManicStreetCoder.AzureDashform.Windows.UI.Tests", "..\ManicStreetCoder.AzureDashform.Tests\ManicStreetCoder.AzureDashform.Windows.UI.Tests.csproj", "{789B6D74-4DB8-4CDA-95AC-9442D7FF151F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManicStreetCoder.AzureDashform.Windows.UI.Tests", "ManicStreetCoder.AzureDashform.Windows.UI.Tests\ManicStreetCoder.AzureDashform.Windows.UI.Tests.csproj", "{789B6D74-4DB8-4CDA-95AC-9442D7FF151F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

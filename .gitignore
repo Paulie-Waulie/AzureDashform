@@ -2,13 +2,10 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/Source/ManicStreetCoder.AzureDashform/bin/*
-/Source/ManicStreetCoder.AzureDashform.Tests/obj/*
-/Source/ManicStreetCoder.AzureDashform.Tests/bin/*
-/Source/ManicStreetCoder.AzureDashform/obj/*
+/Source/ManicStreetCoder.AzureDashform.Windows.UI/bin/*
+/Source/ManicStreetCoder.AzureDashform.Windows.UI.Tests/obj/*
+/Source/ManicStreetCoder.AzureDashform.Windows.UI.Tests/bin/*
+/Source/ManicStreetCoder.AzureDashform.Windows.UI/obj/*
 *.user
-/Source/ManicStreetCoder.AzureDashform/.vs/ManicStreetCoder.AzureDashform/v14
-/Source/ManicStreetCoder.AzureDashform/packages/Mvvm.1.0.4
-/Source/ManicStreetCoder.AzureDashform/packages/*
+/Source/packages/*
 *.suo
-/Source/ManicStreetCoder.AzureDashform/.vs/ManicStreetCoder.AzureDashform/v15/.suo

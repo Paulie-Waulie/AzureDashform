@@ -12,7 +12,5 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
         public string SourceFilePath { get; set; }
 
         public string OutputFilePath { get; set; }
-
-        private void CreateOutputFile
     }
 }
