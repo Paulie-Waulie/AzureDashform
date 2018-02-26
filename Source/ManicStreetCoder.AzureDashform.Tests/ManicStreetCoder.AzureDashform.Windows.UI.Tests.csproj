@@ -7,8 +7,8 @@
     <ProjectGuid>{789B6D74-4DB8-4CDA-95AC-9442D7FF151F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ManicStreetCoder.AzureDashform.Tests</RootNamespace>
-    <AssemblyName>ManicStreetCoder.AzureDashform.Tests</AssemblyName>
+    <RootNamespace>ManicStreetCoder.AzureDashform.Windows.UI.Tests</RootNamespace>
+    <AssemblyName>ManicStreetCoder.AzureDashform.Windows.UI.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

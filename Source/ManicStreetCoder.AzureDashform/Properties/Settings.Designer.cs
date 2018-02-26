@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ManicStreetCoder.AzureDashform.Properties {
+namespace ManicStreetCoder.AzureDashform.Windows.UI.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
