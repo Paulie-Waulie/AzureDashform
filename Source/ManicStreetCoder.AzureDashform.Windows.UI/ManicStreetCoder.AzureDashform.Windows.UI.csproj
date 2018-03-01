@@ -76,7 +76,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\DashboardArmTemplate.cs" />
+    <Compile Include="Model\InputDashboardArmTemplate.cs" />
+    <Compile Include="Model\OutputDashboardArmTemplate.cs" />
     <Compile Include="Model\TransformationDetails.cs" />
+    <Compile Include="Service\ITransformationFileService.cs" />
+    <Compile Include="Service\TransformationFileService.cs" />
+    <Compile Include="Service\ITransformationService.cs" />
     <Compile Include="Service\TransformationService.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />

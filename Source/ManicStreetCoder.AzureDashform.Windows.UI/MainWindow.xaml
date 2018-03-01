@@ -24,7 +24,7 @@
             <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">Output ARM Template File</Label>
             <TextBox Name="OutputFile" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Text="{Binding Details.OutputFilePath}"></TextBox>
 
-            <Button Grid.ColumnSpan="2" Grid.Row="2" Name="DoDashform">Dashform It</Button>
+            <Button Grid.ColumnSpan="2" Grid.Row="2" Name="DoDashform" Command="{Binding TransformCommand}">Dashform It</Button>
         </Grid>
     </Grid>
 </Window>

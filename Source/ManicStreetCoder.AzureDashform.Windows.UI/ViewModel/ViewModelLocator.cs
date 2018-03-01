@@ -17,6 +17,8 @@ using CommonServiceLocator;
 
 namespace ManicStreetCoder.AzureDashform.ViewModel.Windows.UI.ViewModel
 {
+    using AzureDashform.Windows.UI.Service;
+
     /// <summary>
     /// This class contains static references to all the view models in the
     /// application and provides an entry point for the bindings.
@@ -30,17 +32,8 @@ namespace ManicStreetCoder.AzureDashform.ViewModel.Windows.UI.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            ////if (ViewModelBase.IsInDesignModeStatic)
-            ////{
-            ////    // Create design time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-            ////}
-            ////else
-            ////{
-            ////    // Create run time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DataService>();
-            ////}
-
+            SimpleIoc.Default.Register<ITransformationService, TransformationService>();
+            SimpleIoc.Default.Register<ITransformationFileService, TransformationFileService>();
             SimpleIoc.Default.Register<MainViewModel>();
         }
 
