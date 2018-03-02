@@ -6,7 +6,7 @@
     {
         public InputDashboardArmTemplate GetInputDashboardArmTemplate(TransformationDetails transformationDetails)
         {
-            throw new System.NotImplementedException();
+            return new InputDashboardArmTemplate("Some JSON");
         }
 
         public void SaveOutputDashboardArmTemplate(OutputDashboardArmTemplate outputDashboardArmTemplate)

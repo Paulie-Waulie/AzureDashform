@@ -24,7 +24,10 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
 
         private void Transform()
         {
-            MessageBox.Show("Transforming Baby");
+            var inputTemplate = this.transformationFileService.GetInputDashboardArmTemplate(this.Details);
+            var outputTemplate = this.transformationService.Transform(inputTemplate);
+
+            this.transformationFileService.SaveOutputDashboardArmTemplate(outputTemplate);
         }
     }
 }

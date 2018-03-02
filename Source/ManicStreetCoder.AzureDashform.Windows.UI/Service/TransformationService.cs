@@ -7,7 +7,7 @@
     {
         public OutputDashboardArmTemplate Transform(InputDashboardArmTemplate inputTemplate)
         {
-            throw new NotImplementedException();
+            return new OutputDashboardArmTemplate("Some output JSON");
         }
     }
 }
