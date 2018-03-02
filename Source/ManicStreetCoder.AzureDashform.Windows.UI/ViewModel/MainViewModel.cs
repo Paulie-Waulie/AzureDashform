@@ -1,6 +1,5 @@
 namespace ManicStreetCoder.AzureDashform.ViewModel
 {
-    using System.Windows;
     using AzureDashform.Windows.UI.Model;
     using AzureDashform.Windows.UI.Service;
     using GalaSoft.MvvmLight;

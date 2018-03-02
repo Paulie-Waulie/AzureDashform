@@ -5,25 +5,53 @@
     using Model;
     using NUnit.Framework;
     using Service;
+    using TestStack.BDDfy;
 
     [TestFixture]
     public class MainViewModelTests
     {
-        [Test]
-        public void Given_A_Valid_Input_File_Then_The_Output_Is_Saved()
+        private ITransformationFileService fileService;
+        private MainViewModel mainViewModel;
+        private InputDashboardArmTemplate inputTemplate;
+        private OutputDashboardArmTemplate outputTemplate;
+
+        [SetUp]
+        public void Setup()
         {
-            var input = new InputDashboardArmTemplate("SomeJson");
-            var output = new OutputDashboardArmTemplate("SomeOutputJson");
-            var fileService = A.Fake<ITransformationFileService>();
+            this.inputTemplate = new InputDashboardArmTemplate("SomeJson");
+            this.outputTemplate = new OutputDashboardArmTemplate("SomeOutputJson");
+
+            this.fileService = A.Fake<ITransformationFileService>();
             var transformationService = A.Fake<ITransformationService>();
-            var viewModel = new MainViewModel(fileService, transformationService);
+            mainViewModel = new MainViewModel(this.fileService, transformationService);
 
-            A.CallTo(() => fileService.GetInputDashboardArmTemplate(viewModel.Details)).Returns(input);
-            A.CallTo(() => transformationService.Transform(input)).Returns(output);
+            A.CallTo(() => transformationService.Transform(this.inputTemplate)).Returns(outputTemplate);
+        }
 
-            viewModel.TransformCommand.Execute(null);
+        [Test]
+        public void ValidInputFile()
+        {
+            this.Given(_ => _.AValidInputFile())
+                .When(_ => _.TrasformingTheInputFile())
+                .Then(_ => _.TheOutputIsSaved())
+                .BDDfy();
+        }
 
-            A.CallTo(() => fileService.SaveOutputDashboardArmTemplate(output)).MustHaveHappenedOnceExactly();
+        private void AValidInputFile()
+        {
+            A.CallTo(() => this.fileService.GetInputDashboardArmTemplate(this.mainViewModel.Details))
+                .Returns(this.inputTemplate);
+        }
+
+        private void TrasformingTheInputFile()
+        {
+            this.mainViewModel.TransformCommand.Execute(null);
+        }
+
+        private void TheOutputIsSaved()
+        {
+            A.CallTo(() => this.fileService.SaveOutputDashboardArmTemplate(this.outputTemplate))
+                     .MustHaveHappenedOnceExactly();
         }
     }
 }
