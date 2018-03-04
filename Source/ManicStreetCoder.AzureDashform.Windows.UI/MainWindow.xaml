@@ -25,7 +25,7 @@
             <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">Output ARM Template File</Label>
             <TextBox Name="OutputFile" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Text="{Binding Details.OutputFilePath}"></TextBox>
 
-            <ItemsControl Grid.Row="2" Grid.ColumnSpan="2" ItemsSource="{Binding ValidationErrors}">
+            <ItemsControl Grid.Row="2" Grid.Column="1" ItemsSource="{Binding ValidationErrors}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Foreground="Red"  Text="{Binding}"/>
