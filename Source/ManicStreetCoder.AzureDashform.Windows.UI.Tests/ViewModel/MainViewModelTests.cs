@@ -9,6 +9,7 @@
     using NUnit.Framework;
     using Service;
     using TestStack.BDDfy;
+    using UI.ViewModel.Validation;
 
     [TestFixture]
     public class MainViewModelTests
@@ -49,7 +50,7 @@
         {
             this.Given(_ => _.AnInvalidInputFileSourcePath())
                 .When(_ => _.TrasformingTheInputFile())
-                .Then(_ => _.TheValidationErrorIsRaised(InvalidInputSourceFilePathErrorMessage))
+                .Then(_ => _.TheValidationErrorIsRaised(new ValidationError(InvalidInputSourceFilePathErrorMessage)))
                 .And(_ => _.TheOutputIsNotSaved())
                 .BDDfy();
         }
@@ -59,7 +60,7 @@
         {
             this.Given(_ => _.AnInvalidOutputFileSourcePath())
                 .When(_ => _.TrasformingTheInputFile())
-                .Then(_ => _.TheValidationErrorIsRaised(InvalidOutputSourceFilePathErrorMessage))
+                .Then(_ => _.TheValidationErrorIsRaised(new ValidationError(InvalidOutputSourceFilePathErrorMessage)))
                 .And(_ => _.TheOutputIsNotSaved())
                 .BDDfy();
         }
@@ -67,7 +68,11 @@
         [Test]
         public void InValidInputAndOutputFilePaths()
         {
-            var errors = new[] { InvalidInputSourceFilePathErrorMessage, InvalidOutputSourceFilePathErrorMessage };
+            var errors = new[]
+            {
+                new ValidationError(InvalidInputSourceFilePathErrorMessage),
+                new ValidationError(InvalidOutputSourceFilePathErrorMessage) 
+            };
 
             this.Given(_ => _.AnInvalidInputFileSourcePath())
                 .And(_ => _.AnInvalidOutputFileSourcePath())
@@ -104,12 +109,12 @@
                      .MustHaveHappenedOnceExactly();
         }
 
-        private void TheValidationErrorIsRaised(string expectedError)
+        private void TheValidationErrorIsRaised(ValidationError expectedError)
         {
-            this.mainViewModel.ValidationErrors.Should().ContainSingle(expectedError);
+            this.mainViewModel.ValidationErrors.Should().Contain(expectedError);
         }
 
-        private void TheValidationErrorsAreRaised(IEnumerable<string> expectedErrors)
+        private void TheValidationErrorsAreRaised(IEnumerable<ValidationError> expectedErrors)
         {
             this.mainViewModel.ValidationErrors.Should().Contain(expectedErrors);
         }

@@ -28,7 +28,7 @@
             <ItemsControl Grid.Row="2" Grid.Column="1" ItemsSource="{Binding ValidationErrors}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Foreground="Red"  Text="{Binding}"/>
+                        <TextBlock Foreground="Red"  Text="{Binding ValidationMessage}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

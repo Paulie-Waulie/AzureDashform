@@ -4,6 +4,7 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
     using System.Linq;
     using AzureDashform.Windows.UI.Model;
     using AzureDashform.Windows.UI.Service;
+    using AzureDashform.Windows.UI.ViewModel.Validation;
     using GalaSoft.MvvmLight;
     using GalaSoft.MvvmLight.Command;
 
@@ -16,7 +17,7 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
         public MainViewModel(ITransformationFileService fileService, ITransformationService transformationService)
         {
             this.details = new TransformationDetails(@"C:\Folder\Filee.json");
-            this.ValidationErrors = new ObservableCollection<string>();
+            this.ValidationErrors = new ObservableCollection<ValidationError>();
             this.transformationFileService = fileService;
             this.transformationService = transformationService;
         }
@@ -25,7 +26,7 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
 
         public TransformationDetails Details => details;
 
-        public ObservableCollection<string> ValidationErrors { get; }
+        public ObservableCollection<ValidationError> ValidationErrors { get; }
 
         private void Transform()
         {
@@ -44,14 +45,15 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
             this.ValidationErrors.Clear();
             this.RaisePropertyChanged(nameof(ValidationErrors));
 
+
             if (string.IsNullOrWhiteSpace(this.details.SourceFilePath))
             {
-                this.ValidationErrors.Add("Please provide a valid input source file path.");
+                this.ValidationErrors.Add(new ValidationError("Please provide a valid input source file path."));
             }
 
             if (string.IsNullOrWhiteSpace(this.details.OutputFilePath))
             {
-                this.ValidationErrors.Add("Please provide a valid output file path.");
+                this.ValidationErrors.Add(new ValidationError("Please provide a valid output file path."));
             }
 
             return !this.ValidationErrors.Any();
