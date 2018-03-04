@@ -98,7 +98,6 @@
     <Compile Include="Service\TransformationFileService.cs" />
     <Compile Include="Service\ITransformationService.cs" />
     <Compile Include="Service\TransformationService.cs" />
-    <Compile Include="Validation\ValidatorFactory.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">

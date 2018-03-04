@@ -49,6 +49,12 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
                 return false;
             }
 
+            if (string.IsNullOrWhiteSpace(this.details.OutputFilePath))
+            {
+                this.ValidationErrors.Add("Please provide a valid output file path.");
+                return false;
+            }
+
             return true;
         }
     }

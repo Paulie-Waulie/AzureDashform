@@ -26,6 +26,8 @@
             this.fileService = A.Fake<ITransformationFileService>();
             var transformationService = A.Fake<ITransformationService>();
             mainViewModel = new MainViewModel(this.fileService, transformationService);
+            mainViewModel.Details.SourceFilePath = @"C:\Input.json";
+            mainViewModel.Details.OutputFilePath = @"C:\Output.json";
 
             A.CallTo(() => transformationService.Transform(this.inputTemplate)).Returns(outputTemplate);
         }
@@ -44,7 +46,17 @@
         {
             this.Given(_ => _.AnInvalidInputFileSourcePath())
                 .When(_ => _.TrasformingTheInputFile())
-                .Then(_ => _.TheValidationErrorIsRaised())
+                .Then(_ => _.TheValidationErrorIsRaised("Please provide a valid input source file path."))
+                .And(_ => _.TheOutputIsNotSaved())
+                .BDDfy();
+        }
+
+        [Test]
+        public void InValidOutputFilePath()
+        {
+            this.Given(_ => _.AnInvalidOutputFileSourcePath())
+                .When(_ => _.TrasformingTheInputFile())
+                .Then(_ => _.TheValidationErrorIsRaised("Please provide a valid output file path."))
                 .And(_ => _.TheOutputIsNotSaved())
                 .BDDfy();
         }
@@ -57,7 +69,12 @@
 
         private void AnInvalidInputFileSourcePath()
         {
-            this.mainViewModel.Details.SourceFilePath = String.Empty;
+            this.mainViewModel.Details.SourceFilePath = string.Empty;
+        }
+
+        private void AnInvalidOutputFileSourcePath()
+        {
+            this.mainViewModel.Details.OutputFilePath = string.Empty;
         }
 
         private void TrasformingTheInputFile()
@@ -71,9 +88,9 @@
                      .MustHaveHappenedOnceExactly();
         }
 
-        private void TheValidationErrorIsRaised()
+        private void TheValidationErrorIsRaised(string expectedError)
         {
-            this.mainViewModel.ValidationErrors.Should().ContainSingle("Please provide a valid input source file path.");
+            this.mainViewModel.ValidationErrors.Should().ContainSingle(expectedError);
         }
 
         private void TheOutputIsNotSaved()
