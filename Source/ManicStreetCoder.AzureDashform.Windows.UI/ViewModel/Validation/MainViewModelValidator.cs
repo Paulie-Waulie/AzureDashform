@@ -1,6 +1,8 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.ViewModel.Validation
 {
+    using System;
     using System.Collections.Generic;
+    using System.IO;
     using AzureDashform.ViewModel;
 
     public class MainViewModelValidator
@@ -24,7 +26,16 @@
 
         private static bool IsFilePathInvalid(string filePath)
         {
-            return string.IsNullOrWhiteSpace(filePath) || !filePath.EndsWith(".json");
+            try
+            {
+                return string.IsNullOrWhiteSpace(filePath) ||
+                    !filePath.EndsWith(".json") ||
+                    !Path.IsPathRooted(filePath);
+            }
+            catch (ArgumentException)
+            {
+                return true;
+            }
         }
     }
 }
