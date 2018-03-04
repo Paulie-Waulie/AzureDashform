@@ -1,6 +1,5 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.ViewModel
 {
-    using System;
     using System.Collections.Generic;
     using AzureDashform.ViewModel;
     using FakeItEasy;
@@ -54,12 +53,7 @@
                 .When(_ => _.TrasformingTheInputFile())
                 .Then(_ => _.TheValidationErrorIsRaised(new ValidationError(InvalidInputSourceFilePathErrorMessage)))
                 .And(_ => _.TheOutputIsNotSaved())
-                .WithExamples(new ExampleTable("value")
-                {
-                    string.Empty,
-                    (string)null,
-                    " "
-                })
+                .WithExamples(InvalidFilePathExamples())
                 .BDDfy();
         }
 
@@ -72,12 +66,7 @@
                 .When(_ => _.TrasformingTheInputFile())
                 .Then(_ => _.TheValidationErrorIsRaised(new ValidationError(InvalidOutputSourceFilePathErrorMessage)))
                 .And(_ => _.TheOutputIsNotSaved())
-                .WithExamples(new ExampleTable("value")
-                {
-                    string.Empty,
-                    (string)null,
-                    " "
-                })
+                .WithExamples(InvalidFilePathExamples())
                 .BDDfy();
         }
 
@@ -140,6 +129,16 @@
             A.CallTo(() => this.fileService.SaveOutputDashboardArmTemplate(null))
                 .WithAnyArguments()
                 .MustNotHaveHappened();
+        }
+
+        private static ExampleTable InvalidFilePathExamples()
+        {
+            return new ExampleTable("value")
+            {
+                string.Empty,
+                (string)null,
+                " "
+            };
         }
     }
 }
