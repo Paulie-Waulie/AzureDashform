@@ -1,6 +1,5 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service
 {
-    using System;
     using Model;
 
     public class TransformationService : ITransformationService

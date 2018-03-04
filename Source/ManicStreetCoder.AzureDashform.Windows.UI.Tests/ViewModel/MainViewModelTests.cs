@@ -1,7 +1,9 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.ViewModel
 {
+    using System;
     using AzureDashform.ViewModel;
     using FakeItEasy;
+    using FluentAssertions;
     using Model;
     using NUnit.Framework;
     using Service;
@@ -37,10 +39,25 @@
                 .BDDfy();
         }
 
+        [Test]
+        public void InValidSourceFilePath()
+        {
+            this.Given(_ => _.AnInvalidInputFileSourcePath())
+                .When(_ => _.TrasformingTheInputFile())
+                .Then(_ => _.TheValidationErrorIsRaised())
+                .And(_ => _.TheOutputIsNotSaved())
+                .BDDfy();
+        }
+
         private void AValidInputFile()
         {
             A.CallTo(() => this.fileService.GetInputDashboardArmTemplate(this.mainViewModel.Details))
                 .Returns(this.inputTemplate);
+        }
+
+        private void AnInvalidInputFileSourcePath()
+        {
+            this.mainViewModel.Details.SourceFilePath = String.Empty;
         }
 
         private void TrasformingTheInputFile()
@@ -52,6 +69,18 @@
         {
             A.CallTo(() => this.fileService.SaveOutputDashboardArmTemplate(this.outputTemplate))
                      .MustHaveHappenedOnceExactly();
+        }
+
+        private void TheValidationErrorIsRaised()
+        {
+            this.mainViewModel.ValidationErrors.Should().ContainSingle("Please provide a valid input source file path.");
+        }
+
+        private void TheOutputIsNotSaved()
+        {
+            A.CallTo(() => this.fileService.SaveOutputDashboardArmTemplate(null))
+                .WithAnyArguments()
+                .MustNotHaveHappened();
         }
     }
 }
