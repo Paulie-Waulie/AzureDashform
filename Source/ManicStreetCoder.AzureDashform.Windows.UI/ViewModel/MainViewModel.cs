@@ -41,6 +41,7 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
         private bool IsValid()
         {
             this.ValidationErrors.Clear();
+            this.RaisePropertyChanged(nameof(ValidationErrors));
 
             if (string.IsNullOrWhiteSpace(this.details.SourceFilePath))
             {
