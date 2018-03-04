@@ -137,7 +137,8 @@
             {
                 string.Empty,
                 (string)null,
-                " "
+                " ",
+                @"C:\File"
             };
         }
     }
