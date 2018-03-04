@@ -1,6 +1,7 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.ViewModel
 {
     using System;
+    using System.Collections.Generic;
     using AzureDashform.ViewModel;
     using FakeItEasy;
     using FluentAssertions;
@@ -12,6 +13,8 @@
     [TestFixture]
     public class MainViewModelTests
     {
+        private const string InvalidInputSourceFilePathErrorMessage = "Please provide a valid input source file path.";
+        private const string InvalidOutputSourceFilePathErrorMessage = "Please provide a valid output file path.";
         private ITransformationFileService fileService;
         private MainViewModel mainViewModel;
         private InputDashboardArmTemplate inputTemplate;
@@ -46,7 +49,7 @@
         {
             this.Given(_ => _.AnInvalidInputFileSourcePath())
                 .When(_ => _.TrasformingTheInputFile())
-                .Then(_ => _.TheValidationErrorIsRaised("Please provide a valid input source file path."))
+                .Then(_ => _.TheValidationErrorIsRaised(InvalidInputSourceFilePathErrorMessage))
                 .And(_ => _.TheOutputIsNotSaved())
                 .BDDfy();
         }
@@ -56,7 +59,20 @@
         {
             this.Given(_ => _.AnInvalidOutputFileSourcePath())
                 .When(_ => _.TrasformingTheInputFile())
-                .Then(_ => _.TheValidationErrorIsRaised("Please provide a valid output file path."))
+                .Then(_ => _.TheValidationErrorIsRaised(InvalidOutputSourceFilePathErrorMessage))
+                .And(_ => _.TheOutputIsNotSaved())
+                .BDDfy();
+        }
+
+        [Test]
+        public void InValidInputAndOutputFilePaths()
+        {
+            var errors = new[] { InvalidInputSourceFilePathErrorMessage, InvalidOutputSourceFilePathErrorMessage };
+
+            this.Given(_ => _.AnInvalidInputFileSourcePath())
+                .And(_ => _.AnInvalidOutputFileSourcePath())
+                .When(_ => _.TrasformingTheInputFile())
+                .Then(_ => _.TheValidationErrorsAreRaised(errors))
                 .And(_ => _.TheOutputIsNotSaved())
                 .BDDfy();
         }
@@ -91,6 +107,11 @@
         private void TheValidationErrorIsRaised(string expectedError)
         {
             this.mainViewModel.ValidationErrors.Should().ContainSingle(expectedError);
+        }
+
+        private void TheValidationErrorsAreRaised(IEnumerable<string> expectedErrors)
+        {
+            this.mainViewModel.ValidationErrors.Should().Contain(expectedErrors);
         }
 
         private void TheOutputIsNotSaved()

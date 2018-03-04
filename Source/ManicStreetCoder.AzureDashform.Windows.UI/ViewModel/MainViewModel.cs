@@ -1,6 +1,7 @@
 namespace ManicStreetCoder.AzureDashform.ViewModel
 {
     using System.Collections.ObjectModel;
+    using System.Linq;
     using AzureDashform.Windows.UI.Model;
     using AzureDashform.Windows.UI.Service;
     using GalaSoft.MvvmLight;
@@ -46,16 +47,14 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
             if (string.IsNullOrWhiteSpace(this.details.SourceFilePath))
             {
                 this.ValidationErrors.Add("Please provide a valid input source file path.");
-                return false;
             }
 
             if (string.IsNullOrWhiteSpace(this.details.OutputFilePath))
             {
                 this.ValidationErrors.Add("Please provide a valid output file path.");
-                return false;
             }
 
-            return true;
+            return !this.ValidationErrors.Any();
         }
     }
 }
