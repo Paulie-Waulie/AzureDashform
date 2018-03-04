@@ -26,7 +26,7 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
 
         public TransformationDetails Details => details;
 
-        public ObservableCollection<ValidationError> ValidationErrors { get; }
+        public ObservableCollection<ValidationError> ValidationErrors { get; private set; }
 
         private void Transform()
         {
@@ -42,21 +42,11 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
 
         private bool IsValid()
         {
-            this.ValidationErrors.Clear();
+            var result = new MainViewModelValidator().Validate(this);
+            this.ValidationErrors = new ObservableCollection<ValidationError>(result.ValidationErrors);
             this.RaisePropertyChanged(nameof(ValidationErrors));
 
-
-            if (string.IsNullOrWhiteSpace(this.details.SourceFilePath))
-            {
-                this.ValidationErrors.Add(new ValidationError("Please provide a valid input source file path."));
-            }
-
-            if (string.IsNullOrWhiteSpace(this.details.OutputFilePath))
-            {
-                this.ValidationErrors.Add(new ValidationError("Please provide a valid output file path."));
-            }
-
-            return !this.ValidationErrors.Any();
+            return result.IsValid;
         }
     }
 }
