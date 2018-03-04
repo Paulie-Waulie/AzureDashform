@@ -48,20 +48,36 @@
         [Test]
         public void InValidSourceFilePath()
         {
-            this.Given(_ => _.AnInvalidInputFileSourcePath())
+            var value = default(string);
+
+            this.Given(_ => _.AnInvalidInputFileSourcePath(value))
                 .When(_ => _.TrasformingTheInputFile())
                 .Then(_ => _.TheValidationErrorIsRaised(new ValidationError(InvalidInputSourceFilePathErrorMessage)))
                 .And(_ => _.TheOutputIsNotSaved())
+                .WithExamples(new ExampleTable("value")
+                {
+                    string.Empty,
+                    (string)null,
+                    " "
+                })
                 .BDDfy();
         }
 
         [Test]
         public void InValidOutputFilePath()
         {
-            this.Given(_ => _.AnInvalidOutputFileSourcePath())
+            var value = default(string);
+
+            this.Given(_ => _.AnInvalidOutputFileSourcePath(value))
                 .When(_ => _.TrasformingTheInputFile())
                 .Then(_ => _.TheValidationErrorIsRaised(new ValidationError(InvalidOutputSourceFilePathErrorMessage)))
                 .And(_ => _.TheOutputIsNotSaved())
+                .WithExamples(new ExampleTable("value")
+                {
+                    string.Empty,
+                    (string)null,
+                    " "
+                })
                 .BDDfy();
         }
 
@@ -74,8 +90,8 @@
                 new ValidationError(InvalidOutputSourceFilePathErrorMessage) 
             };
 
-            this.Given(_ => _.AnInvalidInputFileSourcePath())
-                .And(_ => _.AnInvalidOutputFileSourcePath())
+            this.Given(_ => _.AnInvalidInputFileSourcePath(string.Empty))
+                .And(_ => _.AnInvalidOutputFileSourcePath(string.Empty))
                 .When(_ => _.TrasformingTheInputFile())
                 .Then(_ => _.TheValidationErrorsAreRaised(errors))
                 .And(_ => _.TheOutputIsNotSaved())
@@ -88,14 +104,14 @@
                 .Returns(this.inputTemplate);
         }
 
-        private void AnInvalidInputFileSourcePath()
+        private void AnInvalidInputFileSourcePath(string value)
         {
-            this.mainViewModel.Details.SourceFilePath = string.Empty;
+            this.mainViewModel.Details.SourceFilePath = value;
         }
 
-        private void AnInvalidOutputFileSourcePath()
+        private void AnInvalidOutputFileSourcePath(string value)
         {
-            this.mainViewModel.Details.OutputFilePath = string.Empty;
+            this.mainViewModel.Details.OutputFilePath = value;
         }
 
         private void TrasformingTheInputFile()
