@@ -1,7 +1,6 @@
 namespace ManicStreetCoder.AzureDashform.ViewModel
 {
     using System.Collections.ObjectModel;
-    using System.Linq;
     using AzureDashform.Windows.UI.Model;
     using AzureDashform.Windows.UI.Service;
     using AzureDashform.Windows.UI.ViewModel.Validation;
