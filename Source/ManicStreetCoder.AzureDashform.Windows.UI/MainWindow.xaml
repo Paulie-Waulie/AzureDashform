@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ManicStreetCoder.AzureDashform"
         mc:Ignorable="d"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
-        Title="MainWindow" Height="400" Width="900">
+        Title="Azure Dashform" Height="400" Width="900">
     <Grid Margin="10">
         <Grid>
             <Grid.ColumnDefinitions>
