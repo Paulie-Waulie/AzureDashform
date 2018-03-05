@@ -6,9 +6,9 @@
         {
         }
 
-        public TransformationDetails(string sourceFilePath)
+        public TransformationDetails(string outputFilePath)
         {
-            this.SourceFilePath = sourceFilePath;
+            this.OutputFilePath = outputFilePath;
         }
 
         public string SourceFilePath { get; set; }

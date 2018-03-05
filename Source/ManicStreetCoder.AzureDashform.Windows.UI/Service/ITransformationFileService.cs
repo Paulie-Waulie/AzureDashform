@@ -4,8 +4,8 @@ namespace ManicStreetCoder.AzureDashform.Windows.UI.Service
 
     public interface ITransformationFileService
     {
-        InputDashboardArmTemplate GetInputDashboardArmTemplate(TransformationDetails transformationDetails);
+        InputDashboardArmTemplate GetInputDashboardArmTemplate(string sourceInputFilePath);
 
-        void SaveOutputDashboardArmTemplate(OutputDashboardArmTemplate outputDashboardArmTemplate);
+        void SaveOutputDashboardArmTemplate(OutputDashboardArmTemplate outputDashboardArmTemplate, string outputFilePath);
     }
 }

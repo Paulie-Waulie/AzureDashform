@@ -11,12 +11,12 @@
         {
             var errors = new List<ValidationError>();
 
-            if (IsFilePathInvalid(viewModel.Details.SourceFilePath))
+            if (IsFilePathInvalid(viewModel.SourceFilePath))
             {
                 errors.Add(new ValidationError("Please provide a valid input source file path."));
             }
 
-            if (IsFilePathInvalid(viewModel.Details.OutputFilePath))
+            if (IsFilePathInvalid(viewModel.OutputFilePath))
             {
                 errors.Add(new ValidationError("Please provide a valid output file path."));
             }

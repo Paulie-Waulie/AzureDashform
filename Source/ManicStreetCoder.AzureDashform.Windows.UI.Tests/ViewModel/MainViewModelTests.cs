@@ -29,8 +29,8 @@
             this.fileService = A.Fake<ITransformationFileService>();
             var transformationService = A.Fake<ITransformationService>();
             mainViewModel = new MainViewModel(this.fileService, transformationService);
-            mainViewModel.Details.SourceFilePath = @"C:\Input.json";
-            mainViewModel.Details.OutputFilePath = @"C:\Output.json";
+            mainViewModel.SourceFilePath = @"C:\Input.json";
+            mainViewModel.OutputFilePath = @"C:\Output.json";
 
             A.CallTo(() => transformationService.Transform(this.inputTemplate)).Returns(outputTemplate);
         }
@@ -89,18 +89,18 @@
 
         private void AValidInputFile()
         {
-            A.CallTo(() => this.fileService.GetInputDashboardArmTemplate(this.mainViewModel.Details))
+            A.CallTo(() => this.fileService.GetInputDashboardArmTemplate(this.mainViewModel.SourceFilePath))
                 .Returns(this.inputTemplate);
         }
 
         private void AnInvalidInputFileSourcePath(string value)
         {
-            this.mainViewModel.Details.SourceFilePath = value;
+            this.mainViewModel.SourceFilePath = value;
         }
 
         private void AnInvalidOutputFileSourcePath(string value)
         {
-            this.mainViewModel.Details.OutputFilePath = value;
+            this.mainViewModel.OutputFilePath = value;
         }
 
         private void TrasformingTheInputFile()
@@ -110,7 +110,7 @@
 
         private void TheOutputIsSaved()
         {
-            A.CallTo(() => this.fileService.SaveOutputDashboardArmTemplate(this.outputTemplate))
+            A.CallTo(() => this.fileService.SaveOutputDashboardArmTemplate(this.outputTemplate, this.mainViewModel.OutputFilePath))
                      .MustHaveHappenedOnceExactly();
         }
 
@@ -126,7 +126,7 @@
 
         private void TheOutputIsNotSaved()
         {
-            A.CallTo(() => this.fileService.SaveOutputDashboardArmTemplate(null))
+            A.CallTo(() => this.fileService.SaveOutputDashboardArmTemplate(null, null))
                 .WithAnyArguments()
                 .MustNotHaveHappened();
         }

@@ -6,6 +6,7 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
     using AzureDashform.Windows.UI.ViewModel.Validation;
     using GalaSoft.MvvmLight;
     using GalaSoft.MvvmLight.Command;
+    using GalaSoft.MvvmLight.Views;
 
     public class MainViewModel : ViewModelBase
     {
@@ -15,7 +16,7 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
 
         public MainViewModel(ITransformationFileService fileService, ITransformationService transformationService)
         {
-            this.details = new TransformationDetails(@"C:\Folder\Filee.json");
+            this.details = new TransformationDetails(@"C:\Dashboard.json");
             this.ValidationErrors = new ObservableCollection<ValidationError>();
             this.transformationFileService = fileService;
             this.transformationService = transformationService;
@@ -23,7 +24,25 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
 
         public RelayCommand TransformCommand => new RelayCommand(this.Transform);
 
-        public TransformationDetails Details => details;
+        public string SourceFilePath
+        {
+            get { return this.details.SourceFilePath; }
+            set
+            {
+                this.details.SourceFilePath = value;
+                this.RaisePropertyChanged(nameof(SourceFilePath));
+            }
+        }
+
+        public string OutputFilePath
+        {
+            get { return this.details.OutputFilePath; }
+            set
+            {
+                this.details.OutputFilePath = value;
+                this.RaisePropertyChanged(nameof(OutputFilePath));
+            }
+        }
 
         public ObservableCollection<ValidationError> ValidationErrors { get; private set; }
 
@@ -32,10 +51,10 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
             if (this.IsValid())
             {
 
-                var inputTemplate = this.transformationFileService.GetInputDashboardArmTemplate(this.Details);
+                var inputTemplate = this.transformationFileService.GetInputDashboardArmTemplate(this.SourceFilePath);
                 var outputTemplate = this.transformationService.Transform(inputTemplate);
 
-                this.transformationFileService.SaveOutputDashboardArmTemplate(outputTemplate);
+                this.transformationFileService.SaveOutputDashboardArmTemplate(outputTemplate, this.OutputFilePath);
             }
         }
 

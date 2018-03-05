@@ -4,12 +4,12 @@
 
     public class TransformationFileService : ITransformationFileService
     {
-        public InputDashboardArmTemplate GetInputDashboardArmTemplate(TransformationDetails transformationDetails)
+        public InputDashboardArmTemplate GetInputDashboardArmTemplate(string sourceInputFilePath)
         {
             return new InputDashboardArmTemplate("Some JSON");
         }
 
-        public void SaveOutputDashboardArmTemplate(OutputDashboardArmTemplate outputDashboardArmTemplate)
+        public void SaveOutputDashboardArmTemplate(OutputDashboardArmTemplate outputDashboardArmTemplate, string outputFilePath)
         {
             
         }
