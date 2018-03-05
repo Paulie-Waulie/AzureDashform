@@ -27,6 +27,7 @@
             
             <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">Output ARM Template</Label>
             <TextBox Name="OutputFile" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Text="{Binding OutputFilePath}"></TextBox>
+            <Button Name="OutputFileDialog" Grid.Column="3" Grid.Row="1" Click="OutputFileDialog_OnClick">...</Button>
 
             <ItemsControl Grid.Row="2" Grid.Column="1" ItemsSource="{Binding ValidationErrors}">
                 <ItemsControl.ItemTemplate>

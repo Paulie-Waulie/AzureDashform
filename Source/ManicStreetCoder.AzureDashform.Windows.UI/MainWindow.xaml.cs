@@ -9,17 +9,30 @@
     /// </summary>
     public partial class MainWindow : Window
     {
+        private const string FileFilter = "JSON Files (*.json)|*.json";
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        private MainViewModel ViewModel => (MainViewModel) this.DataContext;
+
         private void InputFileDialog_OnClick(object sender, RoutedEventArgs e)
         {
-            var dialog = new OpenFileDialog { Filter = "JSON Files (*.json)|*.json" };
+            var dialog = new OpenFileDialog { Filter = FileFilter };
             if (dialog.ShowDialog() ?? false)
             {
-                ((MainViewModel) this.DataContext).SourceFilePath = dialog.FileName;
+                ViewModel.SourceFilePath = dialog.FileName;
+            }
+        }
+
+        private void OutputFileDialog_OnClick(object sender, RoutedEventArgs e)
+        {
+            var dialog = new SaveFileDialog { Filter = FileFilter };
+            if (dialog.ShowDialog() ?? false)
+            {
+                ViewModel.OutputFilePath = dialog.FileName;
             }
         }
     }
