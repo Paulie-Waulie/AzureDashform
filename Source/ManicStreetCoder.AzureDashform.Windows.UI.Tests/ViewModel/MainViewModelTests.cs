@@ -6,8 +6,8 @@
     using FluentAssertions;
     using Model;
     using NUnit.Framework;
-    using Service;
     using TestStack.BDDfy;
+    using UI.Service;
     using UI.ViewModel.Validation;
 
     [TestFixture]

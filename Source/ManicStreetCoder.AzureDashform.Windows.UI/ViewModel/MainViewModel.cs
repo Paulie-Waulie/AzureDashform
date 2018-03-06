@@ -6,7 +6,6 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
     using AzureDashform.Windows.UI.ViewModel.Validation;
     using GalaSoft.MvvmLight;
     using GalaSoft.MvvmLight.Command;
-    using GalaSoft.MvvmLight.Views;
 
     public class MainViewModel : ViewModelBase
     {
@@ -50,7 +49,6 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
         {
             if (this.IsValid())
             {
-
                 var inputTemplate = this.transformationFileService.GetInputDashboardArmTemplate(this.SourceFilePath);
                 var outputTemplate = this.transformationService.Transform(inputTemplate);
 
