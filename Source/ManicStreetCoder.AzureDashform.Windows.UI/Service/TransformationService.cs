@@ -1,7 +1,6 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service
 {
     using System.IO;
-    using System.Linq;
     using System.Text;
     using Exceptions;
     using Model;
@@ -19,20 +18,7 @@
 
                 ReplaceValuesWithParameters(inputJson);
                 AddDocumetHeader(inputJson);
-
-                StringBuilder sb = new StringBuilder();
-                using (StringWriter sw = new StringWriter(sb))
-                {
-                    using (JsonTextWriter writer = new JsonTextWriter(sw))
-                    {
-                        writer.Indentation = 4;
-                        writer.Formatting = Formatting.Indented;
-                        writer.IndentChar = ' ';
-                        JsonSerializer serializer = new JsonSerializer();
-                        serializer.Serialize(writer, inputJson);
-                        outputJson = sb.ToString();
-                    }
-                }
+                outputJson = WriteOutputJsonWithFormatting(inputJson);
             }
             catch (JsonReaderException e)
             {
@@ -40,6 +26,23 @@
             }
 
             return new OutputDashboardArmTemplate(outputJson);
+        }
+
+        private static string WriteOutputJsonWithFormatting(JObject inputJson)
+        {
+            StringBuilder sb = new StringBuilder();
+            using (StringWriter sw = new StringWriter(sb))
+            {
+                using (JsonTextWriter writer = new JsonTextWriter(sw))
+                {
+                    writer.Indentation = 4;
+                    writer.Formatting = Formatting.Indented;
+                    writer.IndentChar = ' ';
+                    JsonSerializer serializer = new JsonSerializer();
+                    serializer.Serialize(writer, inputJson);
+                    return sb.ToString();
+                }
+            }
         }
 
         private static void AddDocumetHeader(JObject inputJson)
@@ -60,6 +63,40 @@
                 throw new InvalidInputTemplateException($"Could not find parts proprty with path {jsonPartsPath} in Json file.");
             }
 
+            UpdateParts(parts);
+            UpdateTemplateMetadata(inputJson);
+        }
+
+        private static void UpdateTemplateMetadata(JObject inputJson)
+        {
+            RemoveTemplateId(inputJson);
+
+            var name = inputJson.GetArmValueTokenValue("name");
+            name.UpdateValueTokenValue("[parameters(\'dashboardName\')]");
+
+            AddEmptyMetadataProperty(name);
+            AddArmApiVersion(inputJson);
+
+            inputJson.GetArmValueTokenValue("tags.hidden-title").UpdateValueTokenValue("[parameters(\'dashboardDisplayName\')]");
+        }
+
+        private static void AddEmptyMetadataProperty(JValue name)
+        {
+            name.Parent.AddBeforeSelf(new JProperty("metadata", new JObject()));
+        }
+
+        private static void AddArmApiVersion(JObject inputJson)
+        {
+            inputJson.SelectToken("type").Parent.AddAfterSelf(new JProperty("apiVersion", "2015-08-01-preview"));
+        }
+
+        private static void RemoveTemplateId(JObject inputJson)
+        {
+            inputJson.SelectToken("id").Parent.Remove();
+        }
+
+        private static void UpdateParts(JToken parts)
+        {
             int partNumber = 0;
             bool partExists = true;
 
@@ -69,19 +106,10 @@
                 if (part != null)
                 {
                     var inputs = part.SelectToken("metadata.inputs").AsJEnumerable();
-                    var componentIdInput = inputs.Single(x => ((JValue)x.SelectToken("name")).Value<string>().Equals("ComponentId")).SelectToken("value");
-                    ((JValue)componentIdInput.SelectToken("SubscriptionId")).Value = "[parameters(\'subscriptionId\')]";
-                    ((JValue)componentIdInput.SelectToken("ResourceGroup")).Value = "[parameters(\'resourceGroupName\')]";
-                    ((JValue)componentIdInput.SelectToken("Name")).Value = "[parameters(\'appinsightsName\')]";
 
-                    var partSubtitle = inputs.SingleOrDefault(x => ((JValue) x.SelectToken("name")).Value<string>().Equals("PartSubTitle"));
-                    if (partSubtitle != null)
-                    {
-                        ((JValue) partSubtitle.SelectToken("value")).Value = "[parameters('appinsightsName')]";
-                    }
-
-                    var dashboardId = inputs.SingleOrDefault(x => ((JValue)x.SelectToken("name")).Value<string>().Equals("DashboardId"));
-                    dashboardId?.Remove();
+                    UpdateComponentIds(inputs);
+                    UpdatePartSubTitle(inputs);
+                    RemoveDashboardId(inputs);
                 }
                 else
                 {
@@ -90,13 +118,24 @@
 
                 partNumber++;
             }
+        }
 
-            inputJson.SelectToken("id").Parent.Remove();
-            var name = (JValue)inputJson.SelectToken("name");
-            name.Value = "[parameters(\'dashboardName\')]";
-            name.Parent.AddBeforeSelf(new JProperty("metadata", new JObject()));
-            inputJson.SelectToken("type").Parent.AddAfterSelf(new JProperty("apiVersion", "2015-08-01-preview"));
-            ((JValue)inputJson.SelectToken("tags.hidden-title")).Value = "[parameters(\'dashboardDisplayName\')]";
+        private static void RemoveDashboardId(IJEnumerable<JToken> inputs)
+        {
+            inputs.GetObjectByName("DashboardId")?.Remove();
+        }
+
+        private static void UpdatePartSubTitle(IJEnumerable<JToken> inputs)
+        {
+            inputs.GetObjectByName("PartSubTitle")?.GetArmValueTokenValue()?.UpdateValueTokenValue("[parameters('appinsightsName')]");
+        }
+
+        private static void UpdateComponentIds(IJEnumerable<JToken> inputs)
+        {
+            var componentIdInput = inputs.GetObjectByName("ComponentId").GetArmValueTokenObject();
+            componentIdInput.UpdatePropertyValue("SubscriptionId", "[parameters(\'subscriptionId\')]");
+            componentIdInput.UpdatePropertyValue("ResourceGroup", "[parameters(\'resourceGroupName\')]");
+            componentIdInput.UpdatePropertyValue("Name", "[parameters(\'appinsightsName\')]");
         }
 
         private static JProperty BuildParameters()
