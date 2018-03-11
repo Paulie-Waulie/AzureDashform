@@ -93,9 +93,6 @@ namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.Properties {
         ///        &quot;appinsightsName&quot;: {
         ///            &quot;type&quot;: &quot;string&quot;
         ///        },
-        ///        &quot;dashboardId&quot;: {
-        ///            &quot;type&quot;: &quot;string&quot;
-        ///        },
         ///        &quot;dashboardName&quot;: {
         ///            &quot;type&quot;: &quot;string&quot;
         ///        },
@@ -104,7 +101,10 @@ namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.Properties {
         ///        },
         ///        &quot;resourceGroupName&quot;: {
         ///            &quot;type&quot;: &quot;string&quot;
-        ///       [rest of string was truncated]&quot;;.
+        ///        },
+        ///        &quot;subscriptionId&quot;: {
+        ///            &quot;type&quot;: &quot;string&quot;
+        ///    [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string GoldenMasterOutputTemplate1 {
             get {

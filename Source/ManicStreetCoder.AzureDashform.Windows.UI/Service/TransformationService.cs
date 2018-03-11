@@ -28,30 +28,11 @@
             return new OutputDashboardArmTemplate(outputJson);
         }
 
-        private static string WriteOutputJsonWithFormatting(JObject inputJson)
-        {
-            StringBuilder sb = new StringBuilder();
-            using (StringWriter sw = new StringWriter(sb))
-            {
-                using (JsonTextWriter writer = new JsonTextWriter(sw))
-                {
-                    writer.Indentation = 4;
-                    writer.Formatting = Formatting.Indented;
-                    writer.IndentChar = ' ';
-                    JsonSerializer serializer = new JsonSerializer();
-                    serializer.Serialize(writer, inputJson);
-                    return sb.ToString();
-                }
-            }
-        }
-
         private static void AddDocumetHeader(JObject inputJson)
         {
-            var schema = new JProperty("$schema", "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#");
-            var contentVersion = new JProperty("contentVersion", "1.0.0.0");
-            inputJson.First.AddBeforeSelf(schema);
-            schema.AddAfterSelf(contentVersion);
-            contentVersion.AddAfterSelf(BuildParameters());
+            inputJson.AddFirst(BuildParameters());
+            inputJson.AddFirst(new JProperty("contentVersion", "1.0.0.0"));
+            inputJson.AddFirst(new JProperty("$schema", "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#"));
         }
 
         private static void ReplaceValuesWithParameters(JObject inputJson)
@@ -71,18 +52,17 @@
         {
             RemoveTemplateId(inputJson);
 
-            var name = inputJson.GetArmValueTokenValue("name");
-            name.UpdateValueTokenValue("[parameters(\'dashboardName\')]");
+            inputJson.ReplacePropertyValueWithParameter(ArmPropertyParameter.DashboardName);
 
-            AddEmptyMetadataProperty(name);
+            AddEmptyMetadataProperty(inputJson);
             AddArmApiVersion(inputJson);
 
-            inputJson.GetArmValueTokenValue("tags.hidden-title").UpdateValueTokenValue("[parameters(\'dashboardDisplayName\')]");
+            inputJson.GetObject("tags").ReplacePropertyValueWithParameter(ArmPropertyParameter.DashboardDisplayName);
         }
 
-        private static void AddEmptyMetadataProperty(JValue name)
+        private static void AddEmptyMetadataProperty(JObject inputJson)
         {
-            name.Parent.AddBeforeSelf(new JProperty("metadata", new JObject()));
+            inputJson.GetProperty("name").AddBeforeSelf(new JProperty("metadata", new JObject()));
         }
 
         private static void AddArmApiVersion(JObject inputJson)
@@ -127,32 +107,48 @@
 
         private static void UpdatePartSubTitle(IJEnumerable<JToken> inputs)
         {
-            inputs.GetObjectByName("PartSubTitle")?.GetArmValueTokenValue()?.UpdateValueTokenValue("[parameters('appinsightsName')]");
+            inputs.GetObjectByName("PartSubTitle")?.ReplacePropertyValueWithParameter("value", ArmPropertyParameter.AppinsightsName);
         }
 
         private static void UpdateComponentIds(IJEnumerable<JToken> inputs)
         {
-            var componentIdInput = inputs.GetObjectByName("ComponentId").GetArmValueTokenObject();
-            componentIdInput.UpdatePropertyValue("SubscriptionId", "[parameters(\'subscriptionId\')]");
-            componentIdInput.UpdatePropertyValue("ResourceGroup", "[parameters(\'resourceGroupName\')]");
-            componentIdInput.UpdatePropertyValue("Name", "[parameters(\'appinsightsName\')]");
+            var componentIdInput = inputs.GetObjectByName("ComponentId").GetObject("value");
+            componentIdInput.ReplacePropertyValueWithParameter(ArmPropertyParameter.SubscriptionId);
+            componentIdInput.ReplacePropertyValueWithParameter(ArmPropertyParameter.ResourceGroupName);
+            componentIdInput.ReplacePropertyValueWithParameter(ArmPropertyParameter.AppinsightsName);
         }
 
         private static JProperty BuildParameters()
         {
             return new JProperty("parameters", new JObject(
-                GetParameterProperty("appinsightsName"),
-                GetParameterProperty("dashboardId"),
-                GetParameterProperty("dashboardName"),
-                GetParameterProperty("dashboardDisplayName"),
-                GetParameterProperty("resourceGroupName"),
-                GetParameterProperty("subscriptionId")
+                CreateParameterProperty(ArmParameterNames.AppinsightsName),
+                CreateParameterProperty(ArmParameterNames.DashboardName),
+                CreateParameterProperty(ArmParameterNames.DashboardDisplayName),
+                CreateParameterProperty(ArmParameterNames.ResourceGroupName),
+                CreateParameterProperty(ArmParameterNames.SubscriptionId)
             ));
         }
 
-        private static JProperty GetParameterProperty(string parameterName)
+        private static JProperty CreateParameterProperty(string parameterName)
         {
             return new JProperty(parameterName, new JObject(new JProperty("type", "string")));
+        }
+
+        private static string WriteOutputJsonWithFormatting(JObject inputJson)
+        {
+            StringBuilder sb = new StringBuilder();
+            using (StringWriter sw = new StringWriter(sb))
+            {
+                using (JsonTextWriter writer = new JsonTextWriter(sw))
+                {
+                    writer.Indentation = 4;
+                    writer.Formatting = Formatting.Indented;
+                    writer.IndentChar = ' ';
+                    JsonSerializer serializer = new JsonSerializer();
+                    serializer.Serialize(writer, inputJson);
+                    return sb.ToString();
+                }
+            }
         }
     }
 }

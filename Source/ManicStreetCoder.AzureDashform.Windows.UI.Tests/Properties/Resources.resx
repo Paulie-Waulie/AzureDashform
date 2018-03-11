@@ -771,9 +771,6 @@
         "appinsightsName": {
             "type": "string"
         },
-        "dashboardId": {
-            "type": "string"
-        },
         "dashboardName": {
             "type": "string"
         },

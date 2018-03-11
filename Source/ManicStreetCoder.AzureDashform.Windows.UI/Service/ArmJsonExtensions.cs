@@ -10,39 +10,34 @@
             return (JObject)objects.SingleOrDefault(x => ((JValue)x.SelectToken("name")).Value<string>().Equals(name));
         }
 
-        public static JToken GetArmValueToken(this JObject armObject, string tokenName)
+        public static JProperty GetProperty(this JObject jObject, string propertyName)
         {
-            return armObject.SelectToken(tokenName);
+            return jObject.Property(propertyName);
         }
 
-        public static JToken GetArmValueToken(this JObject armObject)
+        public static JObject GetObject(this JObject armObject, string tokenName)
         {
-            return armObject.GetArmValueToken("value");
-        }
-
-        public static JValue GetArmValueTokenValue(this JObject armObject, string tokenName)
-        {
-            return (JValue)armObject.GetArmValueToken(tokenName);
-        }
-
-        public static JValue GetArmValueTokenValue(this JObject armObject)
-        {
-            return (JValue)armObject.GetArmValueToken();
-        }
-
-        public static JObject GetArmValueTokenObject(this JObject armObject)
-        {
-            return (JObject)armObject.GetArmValueToken();
+            return (JObject)armObject.SelectToken(tokenName);
         }
 
         public static void UpdatePropertyValue(this JObject jObject, string propertyName, string value)
         {
-            jObject.Property(propertyName).Value = value;
+            var property = jObject.GetProperty(propertyName);
+            if (property != null)
+            {
+                property.Value = value;
+            }
         }
 
-        public static void UpdateValueTokenValue(this JValue jValue, string value)
+        public static void ReplacePropertyValueWithParameter(this JObject jObject, ArmPropertyParameter armPropertyParameter)
         {
-            jValue.Value = value;
+            jObject.ReplacePropertyValueWithParameter(armPropertyParameter.ArmTemplatePropertyName, armPropertyParameter);
+        }
+
+        public static void ReplacePropertyValueWithParameter(this JObject jObject, string propertyName, ArmPropertyParameter armPropertyParameter)
+        {
+            var paramterString = $"[parameters(\'{armPropertyParameter.ParameterName}\')]";
+            jObject.UpdatePropertyValue(propertyName, paramterString);
         }
     }
 }
