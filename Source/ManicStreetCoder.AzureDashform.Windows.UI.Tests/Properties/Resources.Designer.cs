@@ -87,24 +87,32 @@ namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to {
-        ///    &quot;$schema&quot;: &quot;https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#&quot;,
-        ///    &quot;contentVersion&quot;: &quot;1.0.0.0&quot;,
-        ///    &quot;parameters&quot;: {
-        ///        &quot;appinsightsName&quot;: {
-        ///            &quot;type&quot;: &quot;string&quot;
-        ///        },
-        ///        &quot;dashboardName&quot;: {
-        ///            &quot;type&quot;: &quot;string&quot;
-        ///        },
-        ///        &quot;dashboardDisplayName&quot;: {
-        ///            &quot;type&quot;: &quot;string&quot;
-        ///        },
-        ///        &quot;resourceGroupName&quot;: {
-        ///            &quot;type&quot;: &quot;string&quot;
-        ///        },
-        ///        &quot;subscriptionId&quot;: {
-        ///            &quot;type&quot;: &quot;string&quot;
-        ///    [rest of string was truncated]&quot;;.
+        ///	&quot;$schema&quot;: &quot;https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#&quot;,
+        ///	&quot;contentVersion&quot;: &quot;1.0.0.0&quot;,
+        ///	&quot;parameters&quot;: {
+        ///		&quot;appinsightsName&quot;: {
+        ///			&quot;type&quot;: &quot;string&quot;
+        ///		},
+        ///		&quot;dashboardName&quot;: {
+        ///			&quot;type&quot;: &quot;string&quot;
+        ///		},
+        ///		&quot;dashboardDisplayName&quot;: {
+        ///			&quot;type&quot;: &quot;string&quot;
+        ///		},
+        ///		&quot;resourceGroupName&quot;: {
+        ///			&quot;type&quot;: &quot;string&quot;
+        ///		},
+        ///		&quot;subscriptionId&quot;: {
+        ///			&quot;type&quot;: &quot;string&quot;
+        ///		}
+        ///	},
+        ///	&quot;variables&quot;: {},
+        ///	&quot;resources&quot;: [
+        ///		{
+        ///			&quot;properties&quot;: {
+        ///				&quot;lenses&quot;: {
+        ///					&quot;0&quot;: {
+        ///						&quot;ord [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string GoldenMasterOutputTemplate1 {
             get {

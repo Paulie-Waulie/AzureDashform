@@ -15,7 +15,7 @@
             try
             {
                 var inputJson = JObject.Parse(inputTemplate.TemplateJson);
-
+                inputJson = WrapPropertiesNodeInResourcesNode(inputJson);
                 ReplaceValuesWithParameters(inputJson);
                 AddDocumetHeader(inputJson);
                 outputJson = WriteOutputJsonWithFormatting(inputJson);
@@ -30,49 +30,33 @@
 
         private static void AddDocumetHeader(JObject inputJson)
         {
+            inputJson.AddFirst(new JProperty("variables", new JObject()));
             inputJson.AddFirst(BuildParameters());
             inputJson.AddFirst(new JProperty("contentVersion", "1.0.0.0"));
             inputJson.AddFirst(new JProperty("$schema", "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#"));
         }
 
-        private static void ReplaceValuesWithParameters(JObject inputJson)
+        private static JObject WrapPropertiesNodeInResourcesNode(JObject inputJson)
         {
-            string jsonPartsPath = "properties.lenses.0.parts";
-            var parts = inputJson.SelectToken(jsonPartsPath);
-            if (parts == null)
+            var resources = new JArray();
+            var properties = inputJson.Properties();
+            var resourcesObject = new JObject();
+            foreach (var property in properties)
             {
-                throw new InvalidInputTemplateException($"Could not find parts proprty with path {jsonPartsPath} in Json file.");
+                resourcesObject.Add(property);
             }
 
+            resources.Add(resourcesObject);
+            return new JObject(new JProperty("resources", resources));
+        }
+
+        private static void ReplaceValuesWithParameters(JObject inputJson)
+        {
+            JObject resource = inputJson.GetObject("resources[0]");
+            var parts = resource.SelectToken("properties.lenses.0.parts");
+
             UpdateParts(parts);
-            UpdateTemplateMetadata(inputJson);
-        }
-
-        private static void UpdateTemplateMetadata(JObject inputJson)
-        {
-            RemoveTemplateId(inputJson);
-
-            inputJson.ReplacePropertyValueWithParameter(ArmPropertyParameter.DashboardName);
-
-            AddEmptyMetadataProperty(inputJson);
-            AddArmApiVersion(inputJson);
-
-            inputJson.GetObject("tags").ReplacePropertyValueWithParameter(ArmPropertyParameter.DashboardDisplayName);
-        }
-
-        private static void AddEmptyMetadataProperty(JObject inputJson)
-        {
-            inputJson.GetProperty("name").AddBeforeSelf(new JProperty("metadata", new JObject()));
-        }
-
-        private static void AddArmApiVersion(JObject inputJson)
-        {
-            inputJson.SelectToken("type").Parent.AddAfterSelf(new JProperty("apiVersion", "2015-08-01-preview"));
-        }
-
-        private static void RemoveTemplateId(JObject inputJson)
-        {
-            inputJson.SelectToken("id").Parent.Remove();
+            UpdateTemplateMetadata(resource);
         }
 
         private static void UpdateParts(JToken parts)
@@ -98,6 +82,33 @@
 
                 partNumber++;
             }
+        }
+
+        private static void UpdateTemplateMetadata(JObject properties)
+        {
+            RemoveTemplateId(properties);
+
+            properties.ReplacePropertyValueWithParameter(ArmPropertyParameter.DashboardName);
+
+            AddEmptyMetadataProperty(properties);
+            AddArmApiVersion(properties);
+
+            properties.GetObject("tags").ReplacePropertyValueWithParameter(ArmPropertyParameter.DashboardDisplayName);
+        }
+
+        private static void AddEmptyMetadataProperty(JObject inputJson)
+        {
+            inputJson.GetProperty("name").AddBeforeSelf(new JProperty("metadata", new JObject()));
+        }
+
+        private static void AddArmApiVersion(JObject inputJson)
+        {
+            inputJson.GetProperty("type").AddAfterSelf(new JProperty("apiVersion", "2015-08-01-preview"));
+        }
+
+        private static void RemoveTemplateId(JObject inputJson)
+        {
+            inputJson.GetProperty("id").Remove();
         }
 
         private static void RemoveDashboardId(IJEnumerable<JToken> inputs)
@@ -141,9 +152,9 @@
             {
                 using (JsonTextWriter writer = new JsonTextWriter(sw))
                 {
-                    writer.Indentation = 4;
+                    writer.Indentation = 1;
                     writer.Formatting = Formatting.Indented;
-                    writer.IndentChar = ' ';
+                    writer.IndentChar = '\t';
                     JsonSerializer serializer = new JsonSerializer();
                     serializer.Serialize(writer, inputJson);
                     return sb.ToString();

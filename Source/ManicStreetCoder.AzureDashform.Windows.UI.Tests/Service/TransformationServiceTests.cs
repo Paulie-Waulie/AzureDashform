@@ -1,8 +1,6 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.Service
 {
     using System;
-    using System.IO;
-    using System.Linq;
     using FluentAssertions;
     using Model;
     using NUnit.Framework;
