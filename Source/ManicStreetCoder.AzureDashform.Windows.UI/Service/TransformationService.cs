@@ -123,17 +123,17 @@
         private static JProperty BuildTemplateParameters()
         {
             return new JProperty("parameters", new JObject(
-                CreateParameterProperty(ArmParameterNames.AppinsightsName),
-                CreateParameterProperty(ArmParameterNames.DashboardName),
-                CreateParameterProperty(ArmParameterNames.DashboardDisplayName),
-                CreateParameterProperty(ArmParameterNames.ResourceGroupName),
-                CreateParameterProperty(ArmParameterNames.SubscriptionId)
+                CreateParameterProperty(ArmPropertyParameter.AppinsightsName),
+                CreateParameterProperty(ArmPropertyParameter.DashboardName),
+                CreateParameterProperty(ArmPropertyParameter.DashboardDisplayName),
+                CreateParameterProperty(ArmPropertyParameter.ResourceGroupName),
+                CreateParameterProperty(ArmPropertyParameter.SubscriptionId)
             ));
         }
 
-        private static JProperty CreateParameterProperty(string parameterName)
+        private static JProperty CreateParameterProperty(ArmPropertyParameter parameter)
         {
-            return new JProperty(parameterName, new JObject(new JProperty("type", "string")));
+            return new JProperty(parameter.ParameterName, new JObject(new JProperty("type", "string")));
         }
 
         private static string CreateOutputJsonWithFormatting(JObject inputJson)

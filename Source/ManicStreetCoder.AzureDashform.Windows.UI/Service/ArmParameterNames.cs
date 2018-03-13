@@ -1,14 +1,5 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service
 {
-    public static class ArmParameterNames
-    {
-        public const string SubscriptionId = "subscriptionId";
-        public const string ResourceGroupName = "resourceGroupName";
-        public const string AppinsightsName = "appinsightsName";
-        public const string DashboardName = "dashboardName";
-        public const string DashboardDisplayName = "dashboardDisplayName";
-    }
-
     public class ArmPropertyParameter
     {
         public static ArmPropertyParameter SubscriptionId = new ArmPropertyParameter("subscriptionId");
