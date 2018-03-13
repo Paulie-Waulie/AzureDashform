@@ -1389,7 +1389,6 @@
 					}
 				}
 			},
-			"metadata": {},
 			"name": "[parameters('dashboardName')]",
 			"type": "Microsoft.Portal/dashboards",
 			"apiVersion": "2015-08-01-preview",

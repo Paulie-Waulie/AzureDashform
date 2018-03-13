@@ -1,5 +1,6 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service
 {
+    using System;
     using System.IO;
     using System.Text;
     using Exceptions;
@@ -15,12 +16,12 @@
             try
             {
                 var inputJson = JObject.Parse(inputTemplate.TemplateJson);
-                inputJson = WrapPropertiesNodeInResourcesNode(inputJson);
+                inputJson = WrapRootPropertiesInResourcesObject(inputJson);
                 ReplaceValuesWithParameters(inputJson);
                 AddDocumetHeader(inputJson);
-                outputJson = WriteOutputJsonWithFormatting(inputJson);
+                outputJson = CreateOutputJsonWithFormatting(inputJson);
             }
-            catch (JsonReaderException e)
+            catch (Exception e)
             {
                 throw new InvalidInputTemplateException(e);
             }
@@ -31,12 +32,12 @@
         private static void AddDocumetHeader(JObject inputJson)
         {
             inputJson.AddFirst(new JProperty("variables", new JObject()));
-            inputJson.AddFirst(BuildParameters());
+            inputJson.AddFirst(BuildTemplateParameters());
             inputJson.AddFirst(new JProperty("contentVersion", "1.0.0.0"));
             inputJson.AddFirst(new JProperty("$schema", "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#"));
         }
 
-        private static JObject WrapPropertiesNodeInResourcesNode(JObject inputJson)
+        private static JObject WrapRootPropertiesInResourcesObject(JObject inputJson)
         {
             var resources = new JArray();
             var properties = inputJson.Properties();
@@ -62,9 +63,8 @@
         private static void UpdateParts(JToken parts)
         {
             int partNumber = 0;
-            bool partExists = true;
 
-            while (partExists)
+            while (true)
             {
                 var part = parts.SelectToken(partNumber.ToString());
                 if (part != null)
@@ -77,7 +77,7 @@
                 }
                 else
                 {
-                    partExists = false;
+                    return;
                 }
 
                 partNumber++;
@@ -87,18 +87,9 @@
         private static void UpdateTemplateMetadata(JObject properties)
         {
             RemoveTemplateId(properties);
-
             properties.ReplacePropertyValueWithParameter(ArmPropertyParameter.DashboardName);
-
-            AddEmptyMetadataProperty(properties);
             AddArmApiVersion(properties);
-
             properties.GetObject("tags").ReplacePropertyValueWithParameter(ArmPropertyParameter.DashboardDisplayName);
-        }
-
-        private static void AddEmptyMetadataProperty(JObject inputJson)
-        {
-            inputJson.GetProperty("name").AddBeforeSelf(new JProperty("metadata", new JObject()));
         }
 
         private static void AddArmApiVersion(JObject inputJson)
@@ -129,7 +120,7 @@
             componentIdInput.ReplacePropertyValueWithParameter(ArmPropertyParameter.AppinsightsName);
         }
 
-        private static JProperty BuildParameters()
+        private static JProperty BuildTemplateParameters()
         {
             return new JProperty("parameters", new JObject(
                 CreateParameterProperty(ArmParameterNames.AppinsightsName),
@@ -145,7 +136,7 @@
             return new JProperty(parameterName, new JObject(new JProperty("type", "string")));
         }
 
-        private static string WriteOutputJsonWithFormatting(JObject inputJson)
+        private static string CreateOutputJsonWithFormatting(JObject inputJson)
         {
             StringBuilder sb = new StringBuilder();
             using (StringWriter sw = new StringWriter(sb))
