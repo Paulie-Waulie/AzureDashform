@@ -96,11 +96,17 @@
     <Compile Include="Model\DashboardArmTemplate.cs" />
     <Compile Include="Model\InputDashboardArmTemplate.cs" />
     <Compile Include="Model\OutputDashboardArmTemplate.cs" />
+    <Compile Include="Model\TemplateParameters.cs" />
     <Compile Include="Model\TransformationDetails.cs" />
     <Compile Include="Service\ArmParameterNames.cs" />
+    <Compile Include="Service\ArmPropertyNameConstants.cs" />
+    <Compile Include="Service\ArmPropertyValueConstants.cs" />
+    <Compile Include="Service\DashboardJsonTemplateTransformationService.cs" />
+    <Compile Include="Service\DashboardJsonParametersService.cs" />
     <Compile Include="Service\Exceptions\InvalidInputTemplateException.cs" />
     <Compile Include="Service\ITransformationFileService.cs" />
     <Compile Include="Service\ArmJsonExtensions.cs" />
+    <Compile Include="Service\JsonWriter.cs" />
     <Compile Include="Service\TransformationFileService.cs" />
     <Compile Include="Service\ITransformationService.cs" />
     <Compile Include="Service\TransformationService.cs" />

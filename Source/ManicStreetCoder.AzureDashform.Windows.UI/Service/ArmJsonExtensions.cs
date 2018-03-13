@@ -3,7 +3,7 @@
     using System.Linq;
     using Newtonsoft.Json.Linq;
 
-    public static class ArmJsonExtensions
+    internal static class ArmJsonExtensions
     {
         public static JObject GetObjectByName(this IJEnumerable<JToken> objects, string name)
         {
@@ -29,12 +29,12 @@
             }
         }
 
-        public static void ReplacePropertyValueWithParameter(this JObject jObject, ArmPropertyParameter armPropertyParameter)
+        public static void ReplacePropertyValueWithParameter(this JObject jObject, ArmParameterProperty armPropertyParameter)
         {
             jObject.ReplacePropertyValueWithParameter(armPropertyParameter.ArmTemplatePropertyName, armPropertyParameter);
         }
 
-        public static void ReplacePropertyValueWithParameter(this JObject jObject, string propertyName, ArmPropertyParameter armPropertyParameter)
+        public static void ReplacePropertyValueWithParameter(this JObject jObject, string propertyName, ArmParameterProperty armPropertyParameter)
         {
             var paramterString = $"[parameters(\'{armPropertyParameter.ParameterName}\')]";
             jObject.UpdatePropertyValue(propertyName, paramterString);

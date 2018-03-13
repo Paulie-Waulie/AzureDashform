@@ -2,8 +2,11 @@
 {
     public class OutputDashboardArmTemplate : DashboardArmTemplate
     {
-        public OutputDashboardArmTemplate(string templateJson) : base(templateJson)
+        public OutputDashboardArmTemplate(string templateJson, string parametersJson) : base(templateJson)
         {
+            this.ParametersJson = parametersJson;
         }
+
+        public string ParametersJson { get; }
     }
 }

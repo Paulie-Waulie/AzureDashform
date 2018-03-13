@@ -24,7 +24,7 @@
         public void Setup()
         {
             this.inputTemplate = new InputDashboardArmTemplate("SomeJson");
-            this.outputTemplate = new OutputDashboardArmTemplate("SomeOutputJson");
+            this.outputTemplate = new OutputDashboardArmTemplate("SomeOutputJson", "SomeParametersJson");
 
             this.fileService = A.Fake<ITransformationFileService>();
             var transformationService = A.Fake<ITransformationService>();

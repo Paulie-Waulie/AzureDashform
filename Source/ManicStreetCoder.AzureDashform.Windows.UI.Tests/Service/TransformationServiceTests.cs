@@ -1,6 +1,7 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.Service
 {
     using System;
+    using System.IO;
     using FluentAssertions;
     using Model;
     using NUnit.Framework;
@@ -45,6 +46,7 @@
             this.Given(_ => _.ValidJson(validJson))
                 .When(_ => _.Transforming())
                 .Then(_ => _.TheOutputTemplateMatchesExpected(expectedJsonOutput))
+                .And(_ => _.TheParametersFileMatchesExpected())
                 .WithExamples(new ExampleTable(nameof(validJson), nameof(expectedJsonOutput))
                 {
                     { Resources.GoldenMasterInputTemplate1, Resources.GoldenMasterOutputTemplate1 }
@@ -89,6 +91,11 @@
         private void TheOutputTemplateMatchesExpected(string expected)
         {
             Assert.AreEqual(expected, this.output.TemplateJson);
+        }
+
+        private void TheParametersFileMatchesExpected()
+        {
+            Assert.AreEqual(Resources.GoldenMasterParameters, this.output.ParametersJson);
         }
     }
 }

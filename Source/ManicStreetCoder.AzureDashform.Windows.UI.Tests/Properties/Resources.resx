@@ -768,7 +768,7 @@
 	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
 	"contentVersion": "1.0.0.0",
 	"parameters": {
-		"appinsightsName": {
+		"appInsightsName": {
 			"type": "string"
 		},
 		"dashboardName": {
@@ -806,7 +806,7 @@
 											"value": {
 												"SubscriptionId": "[parameters('subscriptionId')]",
 												"ResourceGroup": "[parameters('resourceGroupName')]",
-												"Name": "[parameters('appinsightsName')]"
+												"Name": "[parameters('appInsightsName')]"
 											}
 										},
 										{
@@ -850,7 +850,7 @@
 											"value": {
 												"SubscriptionId": "[parameters('subscriptionId')]",
 												"ResourceGroup": "[parameters('resourceGroupName')]",
-												"Name": "[parameters('appinsightsName')]"
+												"Name": "[parameters('appInsightsName')]"
 											}
 										},
 										{
@@ -893,7 +893,7 @@
 										},
 										{
 											"name": "PartSubTitle",
-											"value": "[parameters('appinsightsName')]"
+											"value": "[parameters('appInsightsName')]"
 										},
 										{
 											"name": "resourceTypeMode",
@@ -927,7 +927,7 @@
 											"value": {
 												"SubscriptionId": "[parameters('subscriptionId')]",
 												"ResourceGroup": "[parameters('resourceGroupName')]",
-												"Name": "[parameters('appinsightsName')]"
+												"Name": "[parameters('appInsightsName')]"
 											}
 										},
 										{
@@ -975,7 +975,7 @@
 											"value": {
 												"SubscriptionId": "[parameters('subscriptionId')]",
 												"ResourceGroup": "[parameters('resourceGroupName')]",
-												"Name": "[parameters('appinsightsName')]"
+												"Name": "[parameters('appInsightsName')]"
 											}
 										},
 										{
@@ -1013,7 +1013,7 @@
 										},
 										{
 											"name": "PartSubTitle",
-											"value": "[parameters('appinsightsName')]"
+											"value": "[parameters('appInsightsName')]"
 										},
 										{
 											"name": "resourceTypeMode",
@@ -1047,7 +1047,7 @@
 											"value": {
 												"SubscriptionId": "[parameters('subscriptionId')]",
 												"ResourceGroup": "[parameters('resourceGroupName')]",
-												"Name": "[parameters('appinsightsName')]"
+												"Name": "[parameters('appInsightsName')]"
 											}
 										},
 										{
@@ -1085,7 +1085,7 @@
 										},
 										{
 											"name": "PartSubTitle",
-											"value": "[parameters('appinsightsName')]"
+											"value": "[parameters('appInsightsName')]"
 										},
 										{
 											"name": "resourceTypeMode",
@@ -1119,7 +1119,7 @@
 											"value": {
 												"SubscriptionId": "[parameters('subscriptionId')]",
 												"ResourceGroup": "[parameters('resourceGroupName')]",
-												"Name": "[parameters('appinsightsName')]"
+												"Name": "[parameters('appInsightsName')]"
 											}
 										},
 										{
@@ -1140,7 +1140,7 @@
 										},
 										{
 											"name": "PartSubTitle",
-											"value": "[parameters('appinsightsName')]"
+											"value": "[parameters('appInsightsName')]"
 										},
 										{
 											"name": "resourceTypeMode",
@@ -1174,7 +1174,7 @@
 											"value": {
 												"SubscriptionId": "[parameters('subscriptionId')]",
 												"ResourceGroup": "[parameters('resourceGroupName')]",
-												"Name": "[parameters('appinsightsName')]"
+												"Name": "[parameters('appInsightsName')]"
 											}
 										},
 										{
@@ -1217,7 +1217,7 @@
 										},
 										{
 											"name": "PartSubTitle",
-											"value": "[parameters('appinsightsName')]"
+											"value": "[parameters('appInsightsName')]"
 										},
 										{
 											"name": "resourceTypeMode",
@@ -1251,7 +1251,7 @@
 											"value": {
 												"SubscriptionId": "[parameters('subscriptionId')]",
 												"ResourceGroup": "[parameters('resourceGroupName')]",
-												"Name": "[parameters('appinsightsName')]"
+												"Name": "[parameters('appInsightsName')]"
 											}
 										},
 										{
@@ -1297,7 +1297,7 @@
 										},
 										{
 											"name": "PartSubTitle",
-											"value": "[parameters('appinsightsName')]"
+											"value": "[parameters('appInsightsName')]"
 										},
 										{
 											"name": "resourceTypeMode",
@@ -1331,7 +1331,7 @@
 											"value": {
 												"SubscriptionId": "[parameters('subscriptionId')]",
 												"ResourceGroup": "[parameters('resourceGroupName')]",
-												"Name": "[parameters('appinsightsName')]"
+												"Name": "[parameters('appInsightsName')]"
 											}
 										},
 										{
@@ -1352,7 +1352,7 @@
 										},
 										{
 											"name": "PartSubTitle",
-											"value": "[parameters('appinsightsName')]"
+											"value": "[parameters('appInsightsName')]"
 										},
 										{
 											"name": "resourceTypeMode",
@@ -1400,5 +1400,29 @@
 	]
 }</value>
     <comment>An example output JSON file used as the expected output of GoldenMasterInputTemplate1</comment>
+  </data>
+  <data name="GoldenMasterParameters" xml:space="preserve">
+    <value>{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"resourceGroupName": {
+			"value": "#{ResourceGroup.Name}"
+		},
+		"subscriptionId": {
+			"value": "#{AzureSubscriptionId}"
+		},
+		"appInsightsName": {
+			"value": "#{ApplicationInsights.Name}"
+		},
+		"dashboardName": {
+			"value": "#{Dashboard.Name}"
+		},
+		"dashboardDisplayName": {
+			"value": "#{Dashboard.DisplayName}"
+		}
+	}
+}</value>
+    <comment>The golden master of what a parameters file JSON should contain.</comment>
   </data>
 </root>

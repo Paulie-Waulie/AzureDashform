@@ -1,28 +1,24 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service
 {
-    public class ArmPropertyParameter
+    internal class ArmParameterProperty
     {
-        public static ArmPropertyParameter SubscriptionId = new ArmPropertyParameter("subscriptionId");
-        public static ArmPropertyParameter ResourceGroupName = new ArmPropertyParameter("resourceGroupName", "ResourceGroup");
-        public static ArmPropertyParameter AppinsightsName = new ArmPropertyParameter("appinsightsName", "Name");
-        public static ArmPropertyParameter DashboardName = new ArmPropertyParameter("dashboardName", "name");
-        public static ArmPropertyParameter DashboardDisplayName = new ArmPropertyParameter("dashboardDisplayName", "hidden-title");
+        public static ArmParameterProperty SubscriptionId = new ArmParameterProperty("SubscriptionId", "subscriptionId", "#{AzureSubscriptionId}");
+        public static ArmParameterProperty ResourceGroupName = new ArmParameterProperty("ResourceGroup", "resourceGroupName", "#{ResourceGroup.Name}");
+        public static ArmParameterProperty AppinsightsName = new ArmParameterProperty("Name", "appInsightsName", "#{ApplicationInsights.Name}");
+        public static ArmParameterProperty DashboardName = new ArmParameterProperty("name", "dashboardName", "#{Dashboard.Name}");
+        public static ArmParameterProperty DashboardDisplayName = new ArmParameterProperty("hidden-title", "dashboardDisplayName", "#{Dashboard.DisplayName}");
 
-        private ArmPropertyParameter(string parameterName)
+        private ArmParameterProperty(string armTemplatePropertyName, string parameterName, string parameterValue)
         {
-            ParameterName = parameterName;
-            var propertyName = $"{parameterName.Substring(0, 1).ToUpper()}{parameterName.Substring(1)}";
-            ArmTemplatePropertyName = propertyName;
+            this.ArmTemplatePropertyName = armTemplatePropertyName;
+            this.ParameterName = parameterName;
+            this.ParameterValue = parameterValue;
         }
         
-        private ArmPropertyParameter(string parameterName, string armTemplatePropertyName)
-        {
-            ParameterName = parameterName;
-            ArmTemplatePropertyName = armTemplatePropertyName;
-        }
+        public string ArmTemplatePropertyName { get; }
 
         public string ParameterName { get; }
 
-        public string ArmTemplatePropertyName { get; }
+        public string ParameterValue { get; }
     }
 }

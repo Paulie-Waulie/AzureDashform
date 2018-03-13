@@ -90,7 +90,7 @@ namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.Properties {
         ///	&quot;$schema&quot;: &quot;https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#&quot;,
         ///	&quot;contentVersion&quot;: &quot;1.0.0.0&quot;,
         ///	&quot;parameters&quot;: {
-        ///		&quot;appinsightsName&quot;: {
+        ///		&quot;appInsightsName&quot;: {
         ///			&quot;type&quot;: &quot;string&quot;
         ///		},
         ///		&quot;dashboardName&quot;: {
@@ -117,6 +117,35 @@ namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.Properties {
         internal static string GoldenMasterOutputTemplate1 {
             get {
                 return ResourceManager.GetString("GoldenMasterOutputTemplate1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {
+        ///	&quot;$schema&quot;: &quot;https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#&quot;,
+        ///	&quot;contentVersion&quot;: &quot;1.0.0.0&quot;,
+        ///	&quot;parameters&quot;: {
+        ///		&quot;resourceGroupName&quot;: {
+        ///			&quot;value&quot;: &quot;#{ResourceGroup.Name}&quot;
+        ///		},
+        ///		&quot;subscriptionId&quot;: {
+        ///			&quot;value&quot;: &quot;#{AzureSubscriptionId}&quot;
+        ///		},
+        ///		&quot;appInsightsName&quot;: {
+        ///			&quot;value&quot;: &quot;#{ApplicationInsights.Name}&quot;
+        ///		},
+        ///		&quot;dashboardName&quot;: {
+        ///			&quot;value&quot;: &quot;#{Dashboard.Name}&quot;
+        ///		},
+        ///		&quot;dashboardDisplayName&quot;: {
+        ///			&quot;value&quot;: &quot;#{Dashboard.DisplayName}&quot;
+        ///		}
+        ///	}
+        ///}.
+        /// </summary>
+        internal static string GoldenMasterParameters {
+            get {
+                return ResourceManager.GetString("GoldenMasterParameters", resourceCulture);
             }
         }
     }
