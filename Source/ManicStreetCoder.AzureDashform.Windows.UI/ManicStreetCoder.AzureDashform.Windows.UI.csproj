@@ -96,7 +96,6 @@
     <Compile Include="Model\DashboardArmTemplate.cs" />
     <Compile Include="Model\InputDashboardArmTemplate.cs" />
     <Compile Include="Model\OutputDashboardArmTemplate.cs" />
-    <Compile Include="Model\TemplateParameters.cs" />
     <Compile Include="Model\TransformationDetails.cs" />
     <Compile Include="Service\ArmParameterNames.cs" />
     <Compile Include="Service\ArmPropertyNameConstants.cs" />
