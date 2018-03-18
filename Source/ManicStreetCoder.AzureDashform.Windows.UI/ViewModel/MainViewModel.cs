@@ -15,7 +15,7 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
 
         public MainViewModel(ITransformationFileService fileService, ITransformationService transformationService)
         {
-            this.details = new TransformationDetails(@"C:\Dashboard.json");
+            this.details = new TransformationDetails(@"C:\temp\Dashboard.json");
             this.ValidationErrors = new ObservableCollection<ValidationError>();
             this.transformationFileService = fileService;
             this.transformationService = transformationService;
