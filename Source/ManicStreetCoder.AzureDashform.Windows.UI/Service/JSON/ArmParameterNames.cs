@@ -1,4 +1,4 @@
-﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service
+﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service.JSON
 {
     internal class ArmParameterProperty
     {
