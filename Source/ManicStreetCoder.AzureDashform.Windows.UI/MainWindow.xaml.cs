@@ -1,8 +1,10 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI
 {
     using System.Windows;
+    using System.Windows.Forms;
     using AzureDashform.ViewModel;
-    using Microsoft.Win32;
+    using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
+    using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -29,10 +31,12 @@
 
         private void OutputFileDialog_OnClick(object sender, RoutedEventArgs e)
         {
-            var dialog = new SaveFileDialog { Filter = FileFilter };
-            if (dialog.ShowDialog() ?? false)
+            using (var dialog = new FolderBrowserDialog())
             {
-                ViewModel.OutputFilePath = dialog.FileName;
+                if (dialog.ShowDialog().Equals(System.Windows.Forms.DialogResult.OK))
+                {
+                    ViewModel.OutputFolderPath = dialog.SelectedPath;
+                }
             }
         }
     }

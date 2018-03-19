@@ -11,12 +11,12 @@
         {
             var errors = new List<ValidationError>();
 
-            if (IsFilePathInvalid(viewModel.SourceFilePath))
+            if (IsInValidJsonFilePath(viewModel.SourceFilePath))
             {
                 errors.Add(new ValidationError("Please provide a valid input source file path."));
             }
 
-            if (IsFilePathInvalid(viewModel.OutputFilePath))
+            if (IsFilePathInvalid(viewModel.OutputFolderPath))
             {
                 errors.Add(new ValidationError("Please provide a valid output file path."));
             }
@@ -29,13 +29,17 @@
             try
             {
                 return string.IsNullOrWhiteSpace(filePath) ||
-                    !filePath.EndsWith(".json") ||
                     !Path.IsPathRooted(filePath);
             }
             catch (ArgumentException)
             {
                 return true;
             }
+        }
+
+        private static bool IsInValidJsonFilePath(string filePath)
+        {
+            return IsFilePathInvalid(filePath) || !filePath.EndsWith(".json");
         }
     }
 }

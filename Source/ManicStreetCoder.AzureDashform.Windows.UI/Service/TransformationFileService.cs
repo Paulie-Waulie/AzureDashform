@@ -12,8 +12,10 @@
 
         public void SaveOutputDashboardArmTemplate(OutputDashboardArmTemplate outputDashboardArmTemplate, string outputFilePath)
         {
-            File.WriteAllText(outputFilePath, outputDashboardArmTemplate.TemplateJson);
-            File.WriteAllText(@"C:\\temp\parameters.json", outputDashboardArmTemplate.ParametersJson);
+            Directory.CreateDirectory(outputFilePath);
+
+            File.WriteAllText($@"{outputFilePath}\dashboard.json", outputDashboardArmTemplate.TemplateJson);
+            File.WriteAllText($@"{outputFilePath}\parameters.json", outputDashboardArmTemplate.ParametersJson);
         }
     }
 }

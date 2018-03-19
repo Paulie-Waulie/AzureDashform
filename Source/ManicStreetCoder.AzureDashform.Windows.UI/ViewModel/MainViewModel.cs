@@ -15,7 +15,7 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
 
         public MainViewModel(ITransformationFileService fileService, ITransformationService transformationService)
         {
-            this.details = new TransformationDetails(@"C:\temp\Dashboard.json");
+            this.details = new TransformationDetails(@"C:\ArmTemplate\Output");
             this.ValidationErrors = new ObservableCollection<ValidationError>();
             this.transformationFileService = fileService;
             this.transformationService = transformationService;
@@ -33,13 +33,13 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
             }
         }
 
-        public string OutputFilePath
+        public string OutputFolderPath
         {
             get { return this.details.OutputFilePath; }
             set
             {
                 this.details.OutputFilePath = value;
-                this.RaisePropertyChanged(nameof(OutputFilePath));
+                this.RaisePropertyChanged(nameof(OutputFolderPath));
             }
         }
 
@@ -52,7 +52,7 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
                 var inputTemplate = this.transformationFileService.GetInputDashboardArmTemplate(this.SourceFilePath);
                 var outputTemplate = this.transformationService.Transform(inputTemplate);
 
-                this.transformationFileService.SaveOutputDashboardArmTemplate(outputTemplate, this.OutputFilePath);
+                this.transformationFileService.SaveOutputDashboardArmTemplate(outputTemplate, this.OutputFolderPath);
             }
         }
 

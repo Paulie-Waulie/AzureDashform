@@ -7,6 +7,9 @@
     </Style>
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}">
     </Style>
+     <Style TargetType="{x:Type TextBlock}">
+         <Setter Property="FontSize" Value="16" />
+        </Style>
       <Style TargetType="{x:Type Button}">
           <Setter Property="Height" Value="30"></Setter>
       </Style>

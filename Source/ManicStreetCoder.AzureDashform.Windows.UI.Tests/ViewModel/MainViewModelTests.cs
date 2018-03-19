@@ -30,7 +30,7 @@
             var transformationService = A.Fake<ITransformationService>();
             mainViewModel = new MainViewModel(this.fileService, transformationService);
             mainViewModel.SourceFilePath = @"C:\Input.json";
-            mainViewModel.OutputFilePath = @"C:\Output.json";
+            mainViewModel.OutputFolderPath = @"C:\Output";
 
             A.CallTo(() => transformationService.Transform(this.inputTemplate)).Returns(outputTemplate);
         }
@@ -58,7 +58,7 @@
         }
 
         [Test]
-        public void InValidOutputFilePath()
+        public void InValidOutputFolderPath()
         {
             var value = default(string);
 
@@ -66,7 +66,7 @@
                 .When(_ => _.TrasformingTheInputFile())
                 .Then(_ => _.TheValidationErrorIsRaised(new ValidationError(InvalidOutputSourceFilePathErrorMessage)))
                 .And(_ => _.TheOutputIsNotSaved())
-                .WithExamples(InvalidFilePathExamples())
+                .WithExamples(InvalidFolderPathExamples())
                 .BDDfy();
         }
 
@@ -100,7 +100,7 @@
 
         private void AnInvalidOutputFileSourcePath(string value)
         {
-            this.mainViewModel.OutputFilePath = value;
+            this.mainViewModel.OutputFolderPath = value;
         }
 
         private void TrasformingTheInputFile()
@@ -110,7 +110,7 @@
 
         private void TheOutputIsSaved()
         {
-            A.CallTo(() => this.fileService.SaveOutputDashboardArmTemplate(this.outputTemplate, this.mainViewModel.OutputFilePath))
+            A.CallTo(() => this.fileService.SaveOutputDashboardArmTemplate(this.outputTemplate, this.mainViewModel.OutputFolderPath))
                      .MustHaveHappenedOnceExactly();
         }
 
@@ -141,6 +141,16 @@
                 @"C:\File",
                 "File.json",
                 @"C:>File.json"
+            };
+        }
+
+        private static ExampleTable InvalidFolderPathExamples()
+        {
+            return new ExampleTable("value")
+            {
+                string.Empty,
+                (string)null,
+                " "
             };
         }
     }

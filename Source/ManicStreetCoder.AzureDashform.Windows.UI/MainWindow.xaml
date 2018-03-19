@@ -25,8 +25,8 @@
             <TextBox Name="SourceFile" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text="{Binding SourceFilePath, Mode=TwoWay}"></TextBox>
             <Button Name="InputFileDialog" Grid.Column="3" Grid.Row="0" Click="InputFileDialog_OnClick">...</Button>
             
-            <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">Output ARM Template</Label>
-            <TextBox Name="OutputFile" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Text="{Binding OutputFilePath}"></TextBox>
+            <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">Output Directory</Label>
+            <TextBlock Name="OutputFile" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding OutputFolderPath}"></TextBlock>
             <Button Name="OutputFileDialog" Grid.Column="3" Grid.Row="1" Click="OutputFileDialog_OnClick">...</Button>
 
             <ItemsControl Grid.Row="2" Grid.Column="1" ItemsSource="{Binding ValidationErrors}">
