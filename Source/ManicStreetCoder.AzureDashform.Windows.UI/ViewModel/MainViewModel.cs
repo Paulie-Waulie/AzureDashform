@@ -1,24 +1,28 @@
 namespace ManicStreetCoder.AzureDashform.ViewModel
 {
+    using System;
     using System.Collections.ObjectModel;
     using AzureDashform.Windows.UI.Model;
     using AzureDashform.Windows.UI.Service;
     using AzureDashform.Windows.UI.ViewModel.Validation;
     using GalaSoft.MvvmLight;
     using GalaSoft.MvvmLight.Command;
+    using GalaSoft.MvvmLight.Views;
 
     public class MainViewModel : ViewModelBase
     {
-        private ITransformationService transformationService;
-        private ITransformationFileService transformationFileService;
-        private TransformationDetails details = new TransformationDetails();
+        private readonly ITransformationService transformationService;
+        private readonly IDialogService dialogService;
+        private readonly ITransformationFileService transformationFileService;
+        private readonly TransformationDetails details = new TransformationDetails();
 
-        public MainViewModel(ITransformationFileService fileService, ITransformationService transformationService)
+        public MainViewModel(ITransformationFileService fileService, ITransformationService transformationService, IDialogService dialogService)
         {
             this.details = new TransformationDetails(@"C:\ArmTemplate\Output");
             this.ValidationErrors = new ObservableCollection<ValidationError>();
             this.transformationFileService = fileService;
             this.transformationService = transformationService;
+            this.dialogService = dialogService;
         }
 
         public RelayCommand TransformCommand => new RelayCommand(this.Transform);
@@ -49,10 +53,17 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
         {
             if (this.IsValid())
             {
-                var inputTemplate = this.transformationFileService.GetInputDashboardArmTemplate(this.SourceFilePath);
-                var outputTemplate = this.transformationService.Transform(inputTemplate);
+                try
+                {
+                    var inputTemplate = this.transformationFileService.GetInputDashboardArmTemplate(this.SourceFilePath);
+                    var outputTemplate = this.transformationService.Transform(inputTemplate);
 
-                this.transformationFileService.SaveOutputDashboardArmTemplate(outputTemplate, this.OutputFolderPath);
+                    this.transformationFileService.SaveOutputDashboardArmTemplate(outputTemplate, this.OutputFolderPath);
+                }
+                catch (Exception e)
+                {
+                    this.dialogService.ShowError(e, "Error Whilst Transforming The Template.", "OK", null);
+                }
             }
         }
 

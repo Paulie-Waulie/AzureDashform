@@ -1,9 +1,11 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.ViewModel
 {
+    using System;
     using System.Collections.Generic;
     using AzureDashform.ViewModel;
     using FakeItEasy;
     using FluentAssertions;
+    using GalaSoft.MvvmLight.Views;
     using Model;
     using NUnit.Framework;
     using TestStack.BDDfy;
@@ -19,6 +21,8 @@
         private MainViewModel mainViewModel;
         private InputDashboardArmTemplate inputTemplate;
         private OutputDashboardArmTemplate outputTemplate;
+        private IDialogService dialogService;
+        private ITransformationService transformationService;
 
         [SetUp]
         public void Setup()
@@ -27,8 +31,10 @@
             this.outputTemplate = new OutputDashboardArmTemplate("SomeOutputJson", "SomeParametersJson");
 
             this.fileService = A.Fake<ITransformationFileService>();
-            var transformationService = A.Fake<ITransformationService>();
-            mainViewModel = new MainViewModel(this.fileService, transformationService);
+            this.dialogService = A.Fake<IDialogService>();
+            this.transformationService = A.Fake<ITransformationService>();
+
+            mainViewModel = new MainViewModel(this.fileService, transformationService, this.dialogService);
             mainViewModel.SourceFilePath = @"C:\Input.json";
             mainViewModel.OutputFolderPath = @"C:\Output";
 
@@ -87,6 +93,41 @@
                 .BDDfy();
         }
 
+        [Test]
+        public void ReadingFileThrowsError()
+        {
+            var exception = new Exception("InputFileException");
+
+            this.Given(_ => _.AnInputFileSourcePathThatCausesAnError(exception))
+                .When(_ => _.TrasformingTheInputFile())
+                .Then(_ => _.TheErrorMessageIsReportedToTheUser(exception))
+                .And(_ => _.TheOutputIsNotSaved())
+                .BDDfy();
+        }
+
+        [Test]
+        public void TransformingFileThrowsError()
+        {
+            var exception = new Exception("TransformationException");
+
+            this.Given(_ => _.AnInputFileThatCausesAnTransformationError(exception))
+                .When(_ => _.TrasformingTheInputFile())
+                .Then(_ => _.TheErrorMessageIsReportedToTheUser(exception))
+                .And(_ => _.TheOutputIsNotSaved())
+                .BDDfy();
+        }
+
+        [Test]
+        public void SavingFileThrowsError()
+        {
+            var exception = new Exception("SavingFileException");
+
+            this.Given(_ => _.AnOutputFileSourcePathThatCausesAnError(exception))
+                .When(_ => _.TrasformingTheInputFile())
+                .Then(_ => _.TheErrorMessageIsReportedToTheUser(exception))
+                .BDDfy();
+        }
+
         private void AValidInputFile()
         {
             A.CallTo(() => this.fileService.GetInputDashboardArmTemplate(this.mainViewModel.SourceFilePath))
@@ -101,6 +142,21 @@
         private void AnInvalidOutputFileSourcePath(string value)
         {
             this.mainViewModel.OutputFolderPath = value;
+        }
+
+        private void AnInputFileSourcePathThatCausesAnError(Exception exception)
+        {
+            A.CallTo(() => this.fileService.GetInputDashboardArmTemplate(null)).WithAnyArguments().Throws(exception);
+        }
+
+        private void AnInputFileThatCausesAnTransformationError(Exception exception)
+        {
+            A.CallTo(() => this.transformationService.Transform(null)).WithAnyArguments().Throws(exception);
+        }
+
+        private void AnOutputFileSourcePathThatCausesAnError(Exception exception)
+        {
+            A.CallTo(() => this.fileService.SaveOutputDashboardArmTemplate(null, null)).WithAnyArguments().Throws(exception);
         }
 
         private void TrasformingTheInputFile()
@@ -122,6 +178,12 @@
         private void TheValidationErrorsAreRaised(IEnumerable<ValidationError> expectedErrors)
         {
             this.mainViewModel.ValidationErrors.Should().Contain(expectedErrors);
+        }
+
+        private void TheErrorMessageIsReportedToTheUser(Exception exception)
+        {
+            A.CallTo(() => this.dialogService.ShowError(exception, "Error Whilst Transforming The Template.", "OK", null))
+                .MustHaveHappenedOnceExactly();
         }
 
         private void TheOutputIsNotSaved()

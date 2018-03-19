@@ -18,6 +18,7 @@ using CommonServiceLocator;
 namespace ManicStreetCoder.AzureDashform.ViewModel.Windows.UI.ViewModel
 {
     using AzureDashform.Windows.UI.Service;
+    using GalaSoft.MvvmLight.Views;
 
     /// <summary>
     /// This class contains static references to all the view models in the
@@ -32,6 +33,7 @@ namespace ManicStreetCoder.AzureDashform.ViewModel.Windows.UI.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
+            SimpleIoc.Default.Register<IDialogService, DialogService>();
             SimpleIoc.Default.Register<ITransformationService, TransformationService>();
             SimpleIoc.Default.Register<ITransformationFileService, TransformationFileService>();
             SimpleIoc.Default.Register<MainViewModel>();
