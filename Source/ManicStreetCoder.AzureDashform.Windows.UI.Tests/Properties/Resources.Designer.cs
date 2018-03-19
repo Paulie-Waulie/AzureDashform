@@ -99,7 +99,7 @@ namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.Properties {
         ///		&quot;dashboardDisplayName&quot;: {
         ///			&quot;type&quot;: &quot;string&quot;
         ///		},
-        ///		&quot;resourceGroupName&quot;: {
+        ///		&quot;nameOfResourceGroup&quot;: {
         ///			&quot;type&quot;: &quot;string&quot;
         ///		},
         ///		&quot;subscriptionId&quot;: {
@@ -112,7 +112,7 @@ namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.Properties {
         ///			&quot;properties&quot;: {
         ///				&quot;lenses&quot;: {
         ///					&quot;0&quot;: {
-        ///						&quot;ord [rest of string was truncated]&quot;;.
+        ///						&quot;o [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string GoldenMasterOutputTemplate1 {
             get {
@@ -125,7 +125,7 @@ namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.Properties {
         ///	&quot;$schema&quot;: &quot;https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#&quot;,
         ///	&quot;contentVersion&quot;: &quot;1.0.0.0&quot;,
         ///	&quot;parameters&quot;: {
-        ///		&quot;resourceGroupName&quot;: {
+        ///		&quot;nameOfResourceGroup&quot;: {
         ///			&quot;value&quot;: &quot;#{ResourceGroup.Name}&quot;
         ///		},
         ///		&quot;subscriptionId&quot;: {

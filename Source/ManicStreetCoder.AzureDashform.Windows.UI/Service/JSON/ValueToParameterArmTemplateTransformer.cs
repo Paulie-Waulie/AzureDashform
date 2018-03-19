@@ -58,7 +58,7 @@
 
         private static void RemoveTemplateId(JObject inputJson)
         {
-            inputJson.GetProperty("id").Remove();
+            inputJson.GetProperty("id")?.Remove();
         }
 
         private static void RemoveDashboardId(IJEnumerable<JToken> inputs)
