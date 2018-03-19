@@ -1,8 +1,11 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI
 {
+    using System;
     using System.Windows;
     using System.Windows.Forms;
     using AzureDashform.ViewModel;
+    using GalaSoft.MvvmLight.Messaging;
+    using MessageBox = System.Windows.MessageBox;
     using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
     using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 
@@ -16,6 +19,7 @@
         public MainWindow()
         {
             InitializeComponent();
+            Messenger.Default.Register<Exception>(this, HandleError);
         }
 
         private MainViewModel ViewModel => (MainViewModel) this.DataContext;
@@ -27,6 +31,11 @@
             {
                 ViewModel.SourceFilePath = dialog.FileName;
             }
+        }
+
+        private void HandleError(Exception exception)
+        {
+            MessageBox.Show(exception.Message, "Transform Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void OutputFileDialog_OnClick(object sender, RoutedEventArgs e)

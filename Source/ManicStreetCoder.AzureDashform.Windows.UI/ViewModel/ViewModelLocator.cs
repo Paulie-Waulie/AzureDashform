@@ -33,7 +33,6 @@ namespace ManicStreetCoder.AzureDashform.ViewModel.Windows.UI.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            SimpleIoc.Default.Register<IDialogService, DialogService>();
             SimpleIoc.Default.Register<ITransformationService, TransformationService>();
             SimpleIoc.Default.Register<ITransformationFileService, TransformationFileService>();
             SimpleIoc.Default.Register<MainViewModel>();

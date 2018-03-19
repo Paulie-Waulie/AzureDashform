@@ -98,7 +98,6 @@
     <Compile Include="Model\InputDashboardArmTemplate.cs" />
     <Compile Include="Model\OutputDashboardArmTemplate.cs" />
     <Compile Include="Model\TransformationDetails.cs" />
-    <Compile Include="Service\DialogService.cs" />
     <Compile Include="Service\JSON\ArmParameterNames.cs" />
     <Compile Include="Service\JSON\ArmPropertyNameConstants.cs" />
     <Compile Include="Service\JSON\ArmPropertyValueConstants.cs" />

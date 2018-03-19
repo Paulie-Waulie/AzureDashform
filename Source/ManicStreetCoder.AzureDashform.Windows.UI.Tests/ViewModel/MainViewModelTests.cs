@@ -5,6 +5,7 @@
     using AzureDashform.ViewModel;
     using FakeItEasy;
     using FluentAssertions;
+    using GalaSoft.MvvmLight.Messaging;
     using GalaSoft.MvvmLight.Views;
     using Model;
     using NUnit.Framework;
@@ -21,20 +22,21 @@
         private MainViewModel mainViewModel;
         private InputDashboardArmTemplate inputTemplate;
         private OutputDashboardArmTemplate outputTemplate;
-        private IDialogService dialogService;
         private ITransformationService transformationService;
+        private Exception reportedError;
 
         [SetUp]
         public void Setup()
         {
+            this.reportedError = null;
             this.inputTemplate = new InputDashboardArmTemplate("SomeJson");
             this.outputTemplate = new OutputDashboardArmTemplate("SomeOutputJson", "SomeParametersJson");
 
             this.fileService = A.Fake<ITransformationFileService>();
-            this.dialogService = A.Fake<IDialogService>();
             this.transformationService = A.Fake<ITransformationService>();
 
-            mainViewModel = new MainViewModel(this.fileService, transformationService, this.dialogService);
+            Messenger.Default.Register<Exception>(this, e => this.reportedError = e);
+            mainViewModel = new MainViewModel(this.fileService, transformationService);
             mainViewModel.SourceFilePath = @"C:\Input.json";
             mainViewModel.OutputFolderPath = @"C:\Output";
 
@@ -182,8 +184,7 @@
 
         private void TheErrorMessageIsReportedToTheUser(Exception exception)
         {
-            A.CallTo(() => this.dialogService.ShowError(exception, "Error Whilst Transforming The Template.", "OK", null))
-                .MustHaveHappenedOnceExactly();
+            this.reportedError.Should().Be(exception);
         }
 
         private void TheOutputIsNotSaved()

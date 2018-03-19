@@ -12,17 +12,15 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private readonly ITransformationService transformationService;
-        private readonly IDialogService dialogService;
         private readonly ITransformationFileService transformationFileService;
         private readonly TransformationDetails details = new TransformationDetails();
 
-        public MainViewModel(ITransformationFileService fileService, ITransformationService transformationService, IDialogService dialogService)
+        public MainViewModel(ITransformationFileService fileService, ITransformationService transformationService)
         {
             this.details = new TransformationDetails(@"C:\ArmTemplate\Output");
             this.ValidationErrors = new ObservableCollection<ValidationError>();
             this.transformationFileService = fileService;
             this.transformationService = transformationService;
-            this.dialogService = dialogService;
         }
 
         public RelayCommand TransformCommand => new RelayCommand(this.Transform);
@@ -62,7 +60,7 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
                 }
                 catch (Exception e)
                 {
-                    this.dialogService.ShowError(e, "Error Whilst Transforming The Template.", "OK", null);
+                    this.MessengerInstance.Send(e);
                 }
             }
         }
