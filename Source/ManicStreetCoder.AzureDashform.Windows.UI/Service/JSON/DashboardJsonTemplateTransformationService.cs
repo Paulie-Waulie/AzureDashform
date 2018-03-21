@@ -4,6 +4,7 @@
     using Exceptions;
     using Model;
     using Newtonsoft.Json.Linq;
+    using Transformers;
 
     internal static class DashboardJsonTemplateTransformationService
     {
@@ -27,7 +28,8 @@
         {
             return new RootObjectArmTemplateTransformer(
                 new ValueToParameterArmTemplateTransformer(
-                    new DocumentHeaderArmTemplateTransformer(null)));
+                    new ResourceIdArmTemplateTransformer(
+                    new DocumentHeaderArmTemplateTransformer(null))));
         }
     }
 }

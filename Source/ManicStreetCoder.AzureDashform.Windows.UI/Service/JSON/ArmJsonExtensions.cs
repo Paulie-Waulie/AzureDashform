@@ -1,5 +1,6 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service.JSON
 {
+    using System.Collections.Generic;
     using System.Linq;
     using Newtonsoft.Json.Linq;
 
@@ -13,6 +14,11 @@
         public static JProperty GetProperty(this JObject jObject, string propertyName)
         {
             return jObject.Property(propertyName);
+        }
+
+        public static IEnumerable<JProperty> GetAllChildProperties(this JObject jObject, string propertyName)
+        {
+            return jObject.Descendants().OfType<JProperty>().Where(x => x.Name.Equals(propertyName));
         }
 
         public static JObject GetObject(this JObject armObject, string tokenName)
@@ -36,8 +42,7 @@
 
         public static void ReplacePropertyValueWithParameter(this JObject jObject, string propertyName, ArmParameterProperty armPropertyParameter)
         {
-            var paramterString = $"[parameters(\'{armPropertyParameter.ParameterName}\')]";
-            jObject.UpdatePropertyValue(propertyName, paramterString);
+            jObject.UpdatePropertyValue(propertyName, armPropertyParameter.ArmParameterSelector);
         }
     }
 }

@@ -87,6 +87,31 @@ namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to {
+        ///    &quot;properties&quot;: {
+        ///        &quot;lenses&quot;: {
+        ///            &quot;0&quot;: {
+        ///                &quot;order&quot;: 0,
+        ///                &quot;parts&quot;: {
+        ///                    &quot;0&quot;: {
+        ///                        &quot;position&quot;: {
+        ///                            &quot;x&quot;: 0,
+        ///                            &quot;y&quot;: 0,
+        ///                            &quot;rowSpan&quot;: 4,
+        ///                            &quot;colSpan&quot;: 6
+        ///                        },
+        ///                        &quot;metadata&quot;: {
+        ///                            &quot;inputs&quot;: [
+        ///                                {
+        ///                      [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string GoldenMasterInputTemplate2 {
+            get {
+                return ResourceManager.GetString("GoldenMasterInputTemplate2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {
         ///	&quot;$schema&quot;: &quot;https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#&quot;,
         ///	&quot;contentVersion&quot;: &quot;1.0.0.0&quot;,
         ///	&quot;parameters&quot;: {
@@ -117,6 +142,41 @@ namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.Properties {
         internal static string GoldenMasterOutputTemplate1 {
             get {
                 return ResourceManager.GetString("GoldenMasterOutputTemplate1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {
+        ///	&quot;$schema&quot;: &quot;https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#&quot;,
+        ///	&quot;contentVersion&quot;: &quot;1.0.0.0&quot;,
+        ///	&quot;parameters&quot;: {
+        ///		&quot;appInsightsName&quot;: {
+        ///			&quot;type&quot;: &quot;string&quot;
+        ///		},
+        ///		&quot;dashboardName&quot;: {
+        ///			&quot;type&quot;: &quot;string&quot;
+        ///		},
+        ///		&quot;dashboardDisplayName&quot;: {
+        ///			&quot;type&quot;: &quot;string&quot;
+        ///		},
+        ///		&quot;nameOfResourceGroup&quot;: {
+        ///			&quot;type&quot;: &quot;string&quot;
+        ///		},
+        ///		&quot;subscriptionId&quot;: {
+        ///			&quot;type&quot;: &quot;string&quot;
+        ///		}
+        ///	},
+        ///	&quot;variables&quot;: {},
+        ///	&quot;resources&quot;: [
+        ///		{
+        ///			&quot;properties&quot;: {
+        ///				&quot;lenses&quot;: {
+        ///					&quot;0&quot;: {
+        ///						&quot;o [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string GoldenMasterOutputTemplate2 {
+            get {
+                return ResourceManager.GetString("GoldenMasterOutputTemplate2", resourceCulture);
             }
         }
         

@@ -1,6 +1,5 @@
-﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service
+﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service.JSON
 {
-    using JSON;
     using Newtonsoft.Json.Linq;
 
     public static class DashboardJsonParametersService

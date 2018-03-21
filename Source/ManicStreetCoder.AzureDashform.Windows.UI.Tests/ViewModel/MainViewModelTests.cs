@@ -6,7 +6,6 @@
     using FakeItEasy;
     using FluentAssertions;
     using GalaSoft.MvvmLight.Messaging;
-    using GalaSoft.MvvmLight.Views;
     using Model;
     using NUnit.Framework;
     using TestStack.BDDfy;

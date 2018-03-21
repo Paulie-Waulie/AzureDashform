@@ -1,5 +1,6 @@
-﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service.JSON
+﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service.JSON.Transformers
 {
+    using System.Linq;
     using Newtonsoft.Json.Linq;
 
     internal class ValueToParameterArmTemplateTransformer : ArmTemplateTransformer
@@ -73,10 +74,13 @@
 
         private static void UpdateComponentIds(IJEnumerable<JToken> inputs)
         {
-            var componentIdInput = inputs.GetObjectByName("ComponentId").GetObject("value");
-            componentIdInput.ReplacePropertyValueWithParameter(ArmParameterProperty.SubscriptionId);
-            componentIdInput.ReplacePropertyValueWithParameter(ArmParameterProperty.ResourceGroupName);
-            componentIdInput.ReplacePropertyValueWithParameter(ArmParameterProperty.AppinsightsName);
+            var componentIdInput = inputs.GetObjectByName("ComponentId")?.GetObject("value");
+            if (componentIdInput != null)
+            {
+                componentIdInput.ReplacePropertyValueWithParameter(ArmParameterProperty.SubscriptionId);
+                componentIdInput.ReplacePropertyValueWithParameter(ArmParameterProperty.ResourceGroupName);
+                componentIdInput.ReplacePropertyValueWithParameter(ArmParameterProperty.AppinsightsName);
+            }
         }
     }
 }

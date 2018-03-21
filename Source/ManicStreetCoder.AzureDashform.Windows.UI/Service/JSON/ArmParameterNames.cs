@@ -20,5 +20,7 @@
         public string ParameterName { get; }
 
         public string ParameterValue { get; }
+
+        public string ArmParameterSelector => $"[parameters(\'{this.ParameterName}\')]";
     }
 }

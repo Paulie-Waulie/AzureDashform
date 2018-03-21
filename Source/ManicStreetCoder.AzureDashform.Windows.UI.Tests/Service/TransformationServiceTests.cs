@@ -49,7 +49,8 @@
                 .And(_ => _.TheParametersFileMatchesExpected())
                 .WithExamples(new ExampleTable(nameof(validJson), nameof(expectedJsonOutput))
                 {
-                    { Resources.GoldenMasterInputTemplate1, Resources.GoldenMasterOutputTemplate1 }
+                    { Resources.GoldenMasterInputTemplate1, Resources.GoldenMasterOutputTemplate1 },
+                    { Resources.GoldenMasterInputTemplate2, Resources.GoldenMasterOutputTemplate2 }
                 })
                 .BDDfy();
         }
