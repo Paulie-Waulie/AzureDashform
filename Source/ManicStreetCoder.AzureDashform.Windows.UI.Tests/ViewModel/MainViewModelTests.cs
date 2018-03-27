@@ -23,11 +23,13 @@
         private OutputDashboardArmTemplate outputTemplate;
         private ITransformationService transformationService;
         private Exception reportedError;
+        private string userMessage;
 
         [SetUp]
         public void Setup()
         {
             this.reportedError = null;
+            this.userMessage = null;
             this.inputTemplate = new InputDashboardArmTemplate("SomeJson");
             this.outputTemplate = new OutputDashboardArmTemplate("SomeOutputJson", "SomeParametersJson");
 
@@ -35,6 +37,7 @@
             this.transformationService = A.Fake<ITransformationService>();
 
             Messenger.Default.Register<Exception>(this, e => this.reportedError = e);
+            Messenger.Default.Register<string>(this, e => this.userMessage = e);
             mainViewModel = new MainViewModel(this.fileService, transformationService);
             mainViewModel.SourceFilePath = @"C:\Input.json";
             mainViewModel.OutputFolderPath = @"C:\Output";
@@ -48,6 +51,7 @@
             this.Given(_ => _.AValidInputFile())
                 .When(_ => _.TrasformingTheInputFile())
                 .Then(_ => _.TheOutputIsSaved())
+                .And(_ => _.TheUserIsInformedTheTransformSucceeded())
                 .BDDfy();
         }
 
@@ -169,6 +173,11 @@
         {
             A.CallTo(() => this.fileService.SaveOutputDashboardArmTemplate(this.outputTemplate, this.mainViewModel.OutputFolderPath))
                      .MustHaveHappenedOnceExactly();
+        }
+
+        private void TheUserIsInformedTheTransformSucceeded()
+        {
+            this.userMessage.Should().Be("The transform succeeded.");
         }
 
         private void TheValidationErrorIsRaised(ValidationError expectedError)

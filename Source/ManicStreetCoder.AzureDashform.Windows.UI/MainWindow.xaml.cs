@@ -20,6 +20,7 @@
         {
             InitializeComponent();
             Messenger.Default.Register<Exception>(this, HandleError);
+            Messenger.Default.Register<string>(this, HandleMessage);
         }
 
         private MainViewModel ViewModel => (MainViewModel) this.DataContext;
@@ -31,6 +32,11 @@
             {
                 ViewModel.SourceFilePath = dialog.FileName;
             }
+        }
+
+        private void HandleMessage(string message)
+        {
+            MessageBox.Show(message, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void HandleError(Exception exception)

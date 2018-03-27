@@ -56,6 +56,7 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
                     var inputTemplate = this.transformationFileService.GetInputDashboardArmTemplate(this.SourceFilePath);
                     var outputTemplate = this.transformationService.Transform(inputTemplate);
                     this.transformationFileService.SaveOutputDashboardArmTemplate(outputTemplate, this.OutputFolderPath);
+                    this.MessengerInstance.Send("The transform succeeded.");
                 }
                 catch (Exception e)
                 {
