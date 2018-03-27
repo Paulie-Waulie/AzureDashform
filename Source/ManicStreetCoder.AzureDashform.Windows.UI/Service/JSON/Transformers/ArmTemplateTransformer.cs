@@ -1,6 +1,25 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service.JSON.Transformers
 {
+    using System.Collections.Generic;
     using Newtonsoft.Json.Linq;
+
+    internal class ArmTemplate
+    {
+        public ArmTemplate(JObject json)
+        {
+            this.Json = json;
+            this.AdditionalParameterNames = new List<string>();
+        }
+
+        public List<string> AdditionalParameterNames { get; }
+
+        public JObject Json { get; private set; }
+
+        public void ReplaceJson(JObject json)
+        {
+            this.Json = json;
+        }
+    }
 
     internal abstract class ArmTemplateTransformer
     {
@@ -11,12 +30,12 @@
             this.nextTransformer = nextTransformer;
         }
 
-        public JObject Transform(JObject inputJson)
+        public ArmTemplate Transform(ArmTemplate armTemplate)
         {
-            inputJson = TransformInner(inputJson);
-            return this.nextTransformer != null ? this.nextTransformer.Transform(inputJson) : inputJson;
+            armTemplate = TransformInner(armTemplate);
+            return this.nextTransformer != null ? this.nextTransformer.Transform(armTemplate) : armTemplate;
         }
 
-        protected abstract JObject TransformInner(JObject inputJson);
+        protected abstract ArmTemplate TransformInner(ArmTemplate armTemplate);
     }
 }

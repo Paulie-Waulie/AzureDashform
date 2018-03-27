@@ -8,15 +8,16 @@
 
     internal static class DashboardJsonTemplateTransformationService
     {
-        internal static string TransformTemplate(InputDashboardArmTemplate inputTemplate)
+        internal static ArmTemplate TransformTemplate(InputDashboardArmTemplate inputTemplate)
         {
             try
             {
                 var inputJson = JObject.Parse(inputTemplate.TemplateJson);
+                var armTemplate = new ArmTemplate(inputJson);
                 ArmTemplateTransformer rootTransformer = CreateTransformer();
-                inputJson = rootTransformer.Transform(inputJson);
+                rootTransformer.Transform(armTemplate);
 
-                return JsonWriter.CreateOutputJsonWithFormatting(inputJson);
+                return armTemplate;
             }
             catch (Exception e)
             {

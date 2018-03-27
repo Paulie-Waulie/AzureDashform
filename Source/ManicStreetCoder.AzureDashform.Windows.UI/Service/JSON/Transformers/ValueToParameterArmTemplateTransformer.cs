@@ -9,15 +9,15 @@
         {
         }
 
-        protected override JObject TransformInner(JObject inputJson)
+        protected override ArmTemplate TransformInner(ArmTemplate armTemplate)
         {
-            JObject resource = inputJson.GetObject("resources[0]");
+            JObject resource = armTemplate.Json.GetObject("resources[0]");
             var parts = resource.SelectToken("properties.lenses.0.parts");
 
             UpdateParts(parts);
             UpdateTemplateMetadata(resource);
 
-            return inputJson;
+            return armTemplate;
         }
 
         private static void UpdateParts(JToken parts)

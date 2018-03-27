@@ -7,8 +7,9 @@
     {
         public OutputDashboardArmTemplate Transform(InputDashboardArmTemplate inputTemplate)
         {
-            var outputJson = DashboardJsonTemplateTransformationService.TransformTemplate(inputTemplate);
-            var parametersJson = DashboardJsonParametersService.CreateParameters();
+            var armTemplate = DashboardJsonTemplateTransformationService.TransformTemplate(inputTemplate);
+            var parametersJson = DashboardJsonParametersService.CreateParameters(armTemplate.AdditionalParameterNames);
+            var outputJson = JsonWriter.CreateOutputJsonWithFormatting(armTemplate.Json);
             return new OutputDashboardArmTemplate(outputJson, parametersJson);
         }
     }

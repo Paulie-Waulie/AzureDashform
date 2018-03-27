@@ -912,7 +912,7 @@
                                                     {
                                                         "name": "ServiceApiLatency",
                                                         "resourceMetadata": {
-                                                            "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/My-Resource-Group/providers/Microsoft.KeyVault/vaults/MyKeyVault"
+                                                            "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/My-Resource-Group/providers/Microsoft.KeyVault/vaults/myKeyVault"
                                                         },
                                                         "aggregationType": 1
                                                     }
@@ -2010,6 +2010,12 @@
 		},
 		"subscriptionId": {
 			"type": "string"
+		},
+		"myKeyVaultResourceName": {
+			"type": "string"
+		},
+		"myCosmosDbResourceName": {
+			"type": "string"
 		}
 	},
 	"variables": {},
@@ -2162,7 +2168,7 @@
 															{
 																"name": "ServiceApiLatency",
 																"resourceMetadata": {
-																	"resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('nameOfResourceGroup')]/providers/Microsoft.KeyVault/vaults/MyKeyVault"
+																	"resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('nameOfResourceGroup'),'/providers/Microsoft.KeyVault/vaults/',parameters('myKeyVaultResourceName'))]"
 																},
 																"aggregationType": 1
 															}
@@ -2477,7 +2483,7 @@
 														"metrics": [
 															{
 																"resourceMetadata": {
-																	"resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('nameOfResourceGroup')]/providers/Microsoft.DocumentDB/databaseAccounts/myCosmosDb"
+																	"resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('nameOfResourceGroup'),'/providers/Microsoft.DocumentDB/databaseAccounts/',parameters('myCosmosDbResourceName'))]"
 																},
 																"aggregationType": 1,
 																"name": "Observed Read Latency",
@@ -2485,7 +2491,7 @@
 															},
 															{
 																"resourceMetadata": {
-																	"resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('nameOfResourceGroup')]/providers/Microsoft.DocumentDB/databaseAccounts/myCosmosDb"
+																	"resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('nameOfResourceGroup'),'/providers/Microsoft.DocumentDB/databaseAccounts/',parameters('myCosmosDbResourceName'))]"
 																},
 																"aggregationType": 1,
 																"name": "Observed Write Latency",
@@ -2531,7 +2537,7 @@
 														"metrics": [
 															{
 																"resourceMetadata": {
-																	"resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('nameOfResourceGroup')]/providers/Microsoft.DocumentDB/databaseAccounts/myCosmosDb"
+																	"resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('nameOfResourceGroup'),'/providers/Microsoft.DocumentDB/databaseAccounts/',parameters('myCosmosDbResourceName'))]"
 																},
 																"aggregationType": 3,
 																"name": "Max RUs Per Second",
@@ -2539,7 +2545,7 @@
 															},
 															{
 																"resourceMetadata": {
-																	"resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('nameOfResourceGroup')]/providers/Microsoft.DocumentDB/databaseAccounts/myCosmosDb"
+																	"resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('nameOfResourceGroup'),'/providers/Microsoft.DocumentDB/databaseAccounts/',parameters('myCosmosDbResourceName'))]"
 																},
 																"aggregationType": 4,
 																"name": "Throttled Requests",
@@ -2597,7 +2603,7 @@
 }</value>
     <comment>An example output JSON file used as the expected output of GoldenMasterInputTemplate2 which includes key vault and cosmos db charts</comment>
   </data>
-  <data name="GoldenMasterParameters" xml:space="preserve">
+  <data name="GoldenMasterParameters1" xml:space="preserve">
     <value>{
 	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
 	"contentVersion": "1.0.0.0",
@@ -2619,6 +2625,36 @@
 		}
 	}
 }</value>
-    <comment>The golden master of what a parameters file JSON should contain.</comment>
+    <comment>The golden master of what a parameters file JSON should contain for template 1, a template without resource Ids.</comment>
+  </data>
+  <data name="GoldenMasterParameters2" xml:space="preserve">
+    <value>{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"nameOfResourceGroup": {
+			"value": "#{ResourceGroup.Name}"
+		},
+		"subscriptionId": {
+			"value": "#{AzureSubscriptionId}"
+		},
+		"appInsightsName": {
+			"value": "#{ApplicationInsights.Name}"
+		},
+		"dashboardName": {
+			"value": "#{Dashboard.Name}"
+		},
+		"dashboardDisplayName": {
+			"value": "#{Dashboard.DisplayName}"
+		},
+		"myKeyVaultResourceName": {
+			"value": "#{MyKeyVaultResourceName}"
+		},
+		"myCosmosDbResourceName": {
+			"value": "#{MyCosmosDbResourceName}"
+		}
+	}
+}</value>
+    <comment>The golden master of what a parameters file JSON should contain for template 2, a template with resource Ids.</comment>
   </data>
 </root>

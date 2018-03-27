@@ -8,10 +8,10 @@
         {
         }
 
-        protected override JObject TransformInner(JObject inputJson)
+        protected override ArmTemplate TransformInner(ArmTemplate armTemplate)
         {
             var resources = new JArray();
-            var properties = inputJson.Properties();
+            var properties = armTemplate.Json.Properties();
             var resourcesObject = new JObject();
             foreach (var property in properties)
             {
@@ -19,7 +19,8 @@
             }
 
             resources.Add(resourcesObject);
-            return new JObject(new JProperty("resources", resources));
+            armTemplate.ReplaceJson(new JObject(new JProperty("resources", resources)));
+            return armTemplate;
         }
     }
 }

@@ -41,16 +41,17 @@
         public void ValidJsonReturnsExpectedResult()
         {
             var validJson = default(string);
-            var expectedJsonOutput = default(string);
+            var expectedJsonTemplateOutput = default(string);
+            var expectedJsonParametersOutput = default(string);
 
             this.Given(_ => _.ValidJson(validJson))
                 .When(_ => _.Transforming())
-                .Then(_ => _.TheOutputTemplateMatchesExpected(expectedJsonOutput))
-                .And(_ => _.TheParametersFileMatchesExpected())
-                .WithExamples(new ExampleTable(nameof(validJson), nameof(expectedJsonOutput))
+                .Then(_ => _.TheOutputTemplateMatchesExpected(expectedJsonTemplateOutput))
+                .And(_ => _.TheParametersFileMatchesExpected(expectedJsonParametersOutput))
+                .WithExamples(new ExampleTable(nameof(validJson), nameof(expectedJsonTemplateOutput), nameof(expectedJsonParametersOutput))
                 {
-                    { Resources.GoldenMasterInputTemplate1, Resources.GoldenMasterOutputTemplate1 },
-                    { Resources.GoldenMasterInputTemplate2, Resources.GoldenMasterOutputTemplate2 }
+                    { Resources.GoldenMasterInputTemplate1, Resources.GoldenMasterOutputTemplate1, Resources.GoldenMasterParameters1 },
+                    { Resources.GoldenMasterInputTemplate2, Resources.GoldenMasterOutputTemplate2, Resources.GoldenMasterParameters2 }
                 })
                 .BDDfy();
         }
@@ -94,9 +95,9 @@
             Assert.AreEqual(expected, this.output.TemplateJson);
         }
 
-        private void TheParametersFileMatchesExpected()
+        private void TheParametersFileMatchesExpected(string expected)
         {
-            Assert.AreEqual(Resources.GoldenMasterParameters, this.output.ParametersJson);
+            Assert.AreEqual(expected, this.output.ParametersJson);
         }
     }
 }

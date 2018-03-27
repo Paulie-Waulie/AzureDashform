@@ -42,7 +42,17 @@
 
         public static void ReplacePropertyValueWithParameter(this JObject jObject, string propertyName, ArmParameterProperty armPropertyParameter)
         {
-            jObject.UpdatePropertyValue(propertyName, armPropertyParameter.ArmParameterSelector);
+            jObject.UpdatePropertyValue(propertyName, $"[{ArmParameterSelector(armPropertyParameter.ParameterName)}]");
+        }
+
+        public static string ArmParameterSelector(this ArmParameterProperty armPropertyParameter)
+        {
+            return ArmParameterSelector(armPropertyParameter.ParameterName);
+        }
+
+        public static string ArmParameterSelector(string parameterName)
+        {
+            return $"parameters(\'{parameterName}\')";
         }
     }
 }

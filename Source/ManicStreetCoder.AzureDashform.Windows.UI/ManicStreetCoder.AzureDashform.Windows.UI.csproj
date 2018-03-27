@@ -108,7 +108,6 @@
     <Compile Include="Service\ITransformationFileService.cs" />
     <Compile Include="Service\JSON\ArmJsonExtensions.cs" />
     <Compile Include="Service\JSON\Transformers\DocumentHeaderArmTemplateTransformer.cs" />
-    <Compile Include="Service\JSON\Transformers\IArmTemplateJsonTransformer.cs" />
     <Compile Include="Service\JSON\JsonWriter.cs" />
     <Compile Include="Service\JSON\Transformers\ResourceIdArmTemplateTransformer.cs" />
     <Compile Include="Service\JSON\Transformers\RootObjectArmTemplateTransformer.cs" />

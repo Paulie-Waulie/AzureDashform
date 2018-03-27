@@ -164,15 +164,12 @@ namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.Properties {
         ///		},
         ///		&quot;subscriptionId&quot;: {
         ///			&quot;type&quot;: &quot;string&quot;
-        ///		}
-        ///	},
-        ///	&quot;variables&quot;: {},
-        ///	&quot;resources&quot;: [
-        ///		{
-        ///			&quot;properties&quot;: {
-        ///				&quot;lenses&quot;: {
-        ///					&quot;0&quot;: {
-        ///						&quot;o [rest of string was truncated]&quot;;.
+        ///		},
+        ///		&quot;myKeyVaultResourceName&quot;: {
+        ///			&quot;type&quot;: &quot;string&quot;
+        ///		},
+        ///		&quot;myCosmosDbResourceName&quot;: {
+        ///			&quot;type&quot;: &quot;st [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string GoldenMasterOutputTemplate2 {
             get {
@@ -203,9 +200,37 @@ namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.Properties {
         ///	}
         ///}.
         /// </summary>
-        internal static string GoldenMasterParameters {
+        internal static string GoldenMasterParameters1 {
             get {
-                return ResourceManager.GetString("GoldenMasterParameters", resourceCulture);
+                return ResourceManager.GetString("GoldenMasterParameters1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {
+        ///	&quot;$schema&quot;: &quot;https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#&quot;,
+        ///	&quot;contentVersion&quot;: &quot;1.0.0.0&quot;,
+        ///	&quot;parameters&quot;: {
+        ///		&quot;nameOfResourceGroup&quot;: {
+        ///			&quot;value&quot;: &quot;#{ResourceGroup.Name}&quot;
+        ///		},
+        ///		&quot;subscriptionId&quot;: {
+        ///			&quot;value&quot;: &quot;#{AzureSubscriptionId}&quot;
+        ///		},
+        ///		&quot;appInsightsName&quot;: {
+        ///			&quot;value&quot;: &quot;#{ApplicationInsights.Name}&quot;
+        ///		},
+        ///		&quot;dashboardName&quot;: {
+        ///			&quot;value&quot;: &quot;#{Dashboard.Name}&quot;
+        ///		},
+        ///		&quot;dashboardDisplayName&quot;: {
+        ///			&quot;value&quot;: &quot;#{Dashboard.DisplayName}&quot;
+        ///		},
+        ///		&quot;myKeyVaultRe [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string GoldenMasterParameters2 {
+            get {
+                return ResourceManager.GetString("GoldenMasterParameters2", resourceCulture);
             }
         }
     }

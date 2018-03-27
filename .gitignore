@@ -11,3 +11,4 @@
 *.suo
 *.cache
 /Source/.vs/*
+/Source/_NCrunch*
