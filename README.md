@@ -1,5 +1,3 @@
-<snippet>
-  <content><![CDATA[
 # ${1:Azure Dashform}
 
 A simple application to do the leg work of creating an Azure dashboard ARM template and parameterising obvious values such as the subscription Id, the Application Insight Resource Group, the dashboard name etc.
@@ -30,6 +28,3 @@ Because it can be quite difficult to test each facet of the JSON parsing and tok
 ## License
 
 This project is licensed under the terms of the GNU GENERAL PUBLIC LICENSE.
-]]></content>
-  <tabTrigger>readme</tabTrigger>
-</snippet>
