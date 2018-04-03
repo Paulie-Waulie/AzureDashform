@@ -1,7 +1,6 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.Service
 {
     using System;
-    using System.IO;
     using FluentAssertions;
     using Model;
     using NUnit.Framework;
@@ -40,19 +39,20 @@
         [Test]
         public void ValidJsonReturnsExpectedResult()
         {
-            var validJson = default(string);
-            var expectedJsonTemplateOutput = default(string);
-            var expectedJsonParametersOutput = default(string);
-
-            this.Given(_ => _.ValidJson(validJson))
+            this.Given(_ => _.ValidJson(Resources.GoldenMasterInputTemplate1), false)
                 .When(_ => _.Transforming())
-                .Then(_ => _.TheOutputTemplateMatchesExpected(expectedJsonTemplateOutput))
-                .And(_ => _.TheParametersFileMatchesExpected(expectedJsonParametersOutput))
-                .WithExamples(new ExampleTable(nameof(validJson), nameof(expectedJsonTemplateOutput), nameof(expectedJsonParametersOutput))
-                {
-                    { Resources.GoldenMasterInputTemplate1, Resources.GoldenMasterOutputTemplate1, Resources.GoldenMasterParameters1 },
-                    { Resources.GoldenMasterInputTemplate2, Resources.GoldenMasterOutputTemplate2, Resources.GoldenMasterParameters2 }
-                })
+                .Then(_ => _.TheOutputTemplateMatchesExpected(Resources.GoldenMasterOutputTemplate1), false)
+                .And(_ => _.TheParametersFileMatchesExpected(Resources.GoldenMasterParameters1), false)
+                .BDDfy();
+        }
+
+        [Test]
+        public void ValidJsonWithExternalResourcesReturnsExpectedResult()
+        {
+            this.Given(_ => _.ValidJson(Resources.GoldenMasterInputTemplate2), "Valid Json With External Resources")
+                .When(_ => _.Transforming())
+                .Then(_ => _.TheOutputTemplateMatchesExpected(Resources.GoldenMasterOutputTemplate2), false)
+                .And(_ => _.TheParametersFileMatchesExpected(Resources.GoldenMasterParameters2), false)
                 .BDDfy();
         }
 
