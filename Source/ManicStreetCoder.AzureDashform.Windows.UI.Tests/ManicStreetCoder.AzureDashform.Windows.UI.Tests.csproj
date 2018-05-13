@@ -90,12 +90,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Resources\ExternalResourcesGoldenMasterTemplateInput.json" />
+    <None Include="Resources\ExternalResourcesGoldenMasterTemplateOutput.json" />
+    <None Include="Resources\ExternalResourcesParametersGoldenMaster.json" />
+    <None Include="Resources\SimpleGoldenMasterTemplateInput.json" />
+    <None Include="Resources\SimpleGoldenMasterTemplateOutput.json" />
+    <None Include="Resources\SimpleTemplateParametersGoldenMaster.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

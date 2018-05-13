@@ -14,9 +14,9 @@
             {
                 using (JsonTextWriter writer = new JsonTextWriter(sw))
                 {
-                    writer.Indentation = 1;
+                    writer.Indentation = 4;
                     writer.Formatting = Formatting.Indented;
-                    writer.IndentChar = '\t';
+                    writer.IndentChar = ' ';
                     JsonSerializer serializer = new JsonSerializer();
                     serializer.Serialize(writer, inputJson);
                     return sb.ToString();

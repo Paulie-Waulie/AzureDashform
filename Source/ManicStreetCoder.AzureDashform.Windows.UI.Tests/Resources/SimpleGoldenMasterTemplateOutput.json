@@ -1,0 +1,635 @@
+﻿{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "appInsightsName": {
+            "type": "string"
+        },
+        "dashboardName": {
+            "type": "string"
+        },
+        "dashboardDisplayName": {
+            "type": "string"
+        },
+        "nameOfResourceGroup": {
+            "type": "string"
+        },
+        "subscriptionId": {
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "properties": {
+                "lenses": {
+                    "0": {
+                        "order": 0,
+                        "parts": {
+                            "0": {
+                                "position": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "rowSpan": 4,
+                                    "colSpan": 6
+                                },
+                                "metadata": {
+                                    "inputs": [
+                                        {
+                                            "name": "ComponentId",
+                                            "value": {
+                                                "SubscriptionId": "[parameters('subscriptionId')]",
+                                                "ResourceGroup": "[parameters('nameOfResourceGroup')]",
+                                                "Name": "[parameters('appInsightsName')]"
+                                            }
+                                        },
+                                        {
+                                            "name": "MetricsExplorerJsonDefinitionId",
+                                            "value": "InsightsTimelineMetrics"
+                                        },
+                                        {
+                                            "name": "TimeContext",
+                                            "value": {
+                                                "durationMs": 86400000,
+                                                "endTime": null,
+                                                "createdTime": "2017-09-15T15:20:40.734Z",
+                                                "isInitialTime": true,
+                                                "grain": 1,
+                                                "useDashboardTimeRange": false
+                                            }
+                                        },
+                                        {
+                                            "name": "Version",
+                                            "value": "1.0"
+                                        }
+                                    ],
+                                    "type": "Extension/AppInsightsExtension/Blade/AspNetOverview/Lens/ApplicationHealthLens/PartInstance/InsightsTimeline_MetricsExplorerPartReferenceOveriew",
+                                    "asset": {
+                                        "idInputName": "ComponentId",
+                                        "type": "ApplicationInsights"
+                                    }
+                                }
+                            },
+                            "1": {
+                                "position": {
+                                    "x": 6,
+                                    "y": 0,
+                                    "rowSpan": 4,
+                                    "colSpan": 6
+                                },
+                                "metadata": {
+                                    "inputs": [
+                                        {
+                                            "name": "ComponentId",
+                                            "value": {
+                                                "SubscriptionId": "[parameters('subscriptionId')]",
+                                                "ResourceGroup": "[parameters('nameOfResourceGroup')]",
+                                                "Name": "[parameters('appInsightsName')]"
+                                            }
+                                        },
+                                        {
+                                            "name": "Query",
+                                            "value": "requests\\r\\n| where timestamp > ago(7d) and url !contains \"Health\" and url !contains \"version\"  \\r\\n| summarize  count() by resultCode, bin(timestamp, 1h)\\r\\n| render areachart \n"
+                                        },
+                                        {
+                                            "name": "Dimensions",
+                                            "value": {
+                                                "xAxis": {
+                                                    "name": "timestamp",
+                                                    "type": "DateTime"
+                                                },
+                                                "yAxis": [
+                                                    {
+                                                        "name": "count_",
+                                                        "type": "Int64"
+                                                    }
+                                                ],
+                                                "splitBy": [
+                                                    {
+                                                        "name": "resultCode",
+                                                        "type": "String"
+                                                    }
+                                                ],
+                                                "aggregation": "Sum"
+                                            }
+                                        },
+                                        {
+                                            "name": "Version",
+                                            "value": "1.0"
+                                        },
+                                        {
+                                            "name": "PartId",
+                                            "value": "c7be7297-312b-4f33-8952-1798eb023bfc"
+                                        },
+                                        {
+                                            "name": "PartTitle",
+                                            "value": "Analytics"
+                                        },
+                                        {
+                                            "name": "PartSubTitle",
+                                            "value": "[parameters('appInsightsName')]"
+                                        },
+                                        {
+                                            "name": "resourceTypeMode",
+                                            "value": "components"
+                                        }
+                                    ],
+                                    "type": "Extension/AppInsightsExtension/PartType/AnalyticsAreaChartPart",
+                                    "settings": {
+                                        "content": {
+                                            "dashboardPartTitle": "Api Response Codes (Excluding Health & Version Checks)",
+                                            "dashboardPartSubTitle": "Last 7 Days - Per Hour"
+                                        }
+                                    },
+                                    "asset": {
+                                        "idInputName": "ComponentId",
+                                        "type": "ApplicationInsights"
+                                    }
+                                }
+                            },
+                            "2": {
+                                "position": {
+                                    "x": 12,
+                                    "y": 0,
+                                    "rowSpan": 4,
+                                    "colSpan": 6
+                                },
+                                "metadata": {
+                                    "inputs": [
+                                        {
+                                            "name": "ComponentId",
+                                            "value": {
+                                                "SubscriptionId": "[parameters('subscriptionId')]",
+                                                "ResourceGroup": "[parameters('nameOfResourceGroup')]",
+                                                "Name": "[parameters('appInsightsName')]"
+                                            }
+                                        },
+                                        {
+                                            "name": "TimeContext",
+                                            "value": {
+                                                "durationMs": 86400000,
+                                                "endTime": null,
+                                                "createdTime": "2017-09-15T15:21:13.153Z",
+                                                "isInitialTime": true,
+                                                "grain": 1,
+                                                "useDashboardTimeRange": false
+                                            }
+                                        },
+                                        {
+                                            "name": "ChartJsonDefinitionId",
+                                            "value": "ServerRequestsByPerformanceMetric"
+                                        },
+                                        {
+                                            "name": "BladeId",
+                                            "value": "ServerRequestsByPerformanceGridPart"
+                                        },
+                                        {
+                                            "name": "Version",
+                                            "value": "1.1"
+                                        }
+                                    ],
+                                    "type": "Extension/AppInsightsExtension/Blade/AspNetOverview/Lens/ServerAndPerformanceChart/PartInstance/ServerRequestsByPerformanceGridReference",
+                                    "asset": {
+                                        "idInputName": "ComponentId",
+                                        "type": "ApplicationInsights"
+                                    }
+                                }
+                            },
+                            "3": {
+                                "position": {
+                                    "x": 0,
+                                    "y": 4,
+                                    "rowSpan": 4,
+                                    "colSpan": 6
+                                },
+                                "metadata": {
+                                    "inputs": [
+                                        {
+                                            "name": "ComponentId",
+                                            "value": {
+                                                "SubscriptionId": "[parameters('subscriptionId')]",
+                                                "ResourceGroup": "[parameters('nameOfResourceGroup')]",
+                                                "Name": "[parameters('appInsightsName')]"
+                                            }
+                                        },
+                                        {
+                                            "name": "Query",
+                                            "value": "customEvents\\r\\n| where timestamp > ago(14d) and name == \"MessageFailure\" \\r\\n| order by timestamp desc\\r\\n| project FailureType = tostring(customDimensions.FailureType), Attempt = toint(customDimensions.AttemptNumber)\\r\\n| project FailureType = iif(FailureType == \"FirstLevelFailure\" , \"Attempt\" ,  iif(FailureType == \"SentToSecondLevelRetry\", \"Sent To SLR\", \"Sent to Error Queue\")), Attempt\\r\\n| summarize count() by FailureType, Attempt\\r\\n| extend AttemptType = iif(isnotempty(Attempt), strcat(FailureType, \" \", Attempt), FailureType)\\r\\n| project AttemptType, count_\\r\\n| order by AttemptType desc\\r\\n| render piechart\n"
+                                        },
+                                        {
+                                            "name": "Dimensions",
+                                            "value": {
+                                                "xAxis": {
+                                                    "name": "AttemptType",
+                                                    "type": "String"
+                                                },
+                                                "yAxis": [
+                                                    {
+                                                        "name": "count_",
+                                                        "type": "Int64"
+                                                    }
+                                                ],
+                                                "splitBy": [],
+                                                "aggregation": "Sum"
+                                            }
+                                        },
+                                        {
+                                            "name": "Version",
+                                            "value": "1.0"
+                                        },
+                                        {
+                                            "name": "PartId",
+                                            "value": "84d8385a-6c69-4ff1-abd8-bf5c04b00e11"
+                                        },
+                                        {
+                                            "name": "PartTitle",
+                                            "value": "Analytics"
+                                        },
+                                        {
+                                            "name": "PartSubTitle",
+                                            "value": "[parameters('appInsightsName')]"
+                                        },
+                                        {
+                                            "name": "resourceTypeMode",
+                                            "value": "components"
+                                        }
+                                    ],
+                                    "type": "Extension/AppInsightsExtension/PartType/AnalyticsDonutPart",
+                                    "settings": {
+                                        "content": {
+                                            "dashboardPartTitle": "Failures Types",
+                                            "dashboardPartSubTitle": "Last 14 Days"
+                                        }
+                                    },
+                                    "asset": {
+                                        "idInputName": "ComponentId",
+                                        "type": "ApplicationInsights"
+                                    }
+                                }
+                            },
+                            "4": {
+                                "position": {
+                                    "x": 6,
+                                    "y": 4,
+                                    "rowSpan": 4,
+                                    "colSpan": 6
+                                },
+                                "metadata": {
+                                    "inputs": [
+                                        {
+                                            "name": "ComponentId",
+                                            "value": {
+                                                "SubscriptionId": "[parameters('subscriptionId')]",
+                                                "ResourceGroup": "[parameters('nameOfResourceGroup')]",
+                                                "Name": "[parameters('appInsightsName')]"
+                                            }
+                                        },
+                                        {
+                                            "name": "Query",
+                                            "value": "customEvents\\r\\n| where name == \"ValidationFailure\" \\r\\nand timestamp > ago(7d) \\r\\n| project ErrorCode = tostring(customDimensions[\"ErrorCode\"])\\r\\n| summarize  Rejections = count() by ErrorCode "
+                                        },
+                                        {
+                                            "name": "Dimensions",
+                                            "value": {
+                                                "xAxis": {
+                                                    "name": "ErrorCode",
+                                                    "type": "String"
+                                                },
+                                                "yAxis": [
+                                                    {
+                                                        "name": "Rejections",
+                                                        "type": "Int64"
+                                                    }
+                                                ],
+                                                "splitBy": [],
+                                                "aggregation": "Sum"
+                                            }
+                                        },
+                                        {
+                                            "name": "Version",
+                                            "value": "1.0"
+                                        },
+                                        {
+                                            "name": "PartId",
+                                            "value": "39295f9d-a9b4-495e-9d1a-645316d5f4aa"
+                                        },
+                                        {
+                                            "name": "PartTitle",
+                                            "value": "Analytics"
+                                        },
+                                        {
+                                            "name": "PartSubTitle",
+                                            "value": "[parameters('appInsightsName')]"
+                                        },
+                                        {
+                                            "name": "resourceTypeMode",
+                                            "value": "components"
+                                        }
+                                    ],
+                                    "type": "Extension/AppInsightsExtension/PartType/AnalyticsDonutPart",
+                                    "settings": {
+                                        "content": {
+                                            "dashboardPartTitle": "Validation Failures",
+                                            "dashboardPartSubTitle": "Last 7 Days"
+                                        }
+                                    },
+                                    "asset": {
+                                        "idInputName": "ComponentId",
+                                        "type": "ApplicationInsights"
+                                    }
+                                }
+                            },
+                            "5": {
+                                "position": {
+                                    "x": 12,
+                                    "y": 4,
+                                    "rowSpan": 4,
+                                    "colSpan": 6
+                                },
+                                "metadata": {
+                                    "inputs": [
+                                        {
+                                            "name": "ComponentId",
+                                            "value": {
+                                                "SubscriptionId": "[parameters('subscriptionId')]",
+                                                "ResourceGroup": "[parameters('nameOfResourceGroup')]",
+                                                "Name": "[parameters('appInsightsName')]"
+                                            }
+                                        },
+                                        {
+                                            "name": "Query",
+                                            "value": "requests\\r\\n| where timestamp > ago(1h)\\r\\n| where url contains \"Health\"\\r\\n| make-series Count = count(success == \"False\") default=0 on timestamp in range(ago(30m), now() , 5m) by success\\r\\n| mvexpand timestamp, Count\\r\\n| project Time = todatetime(timestamp), State = iff(Count == 0, \"Healthy\", \"Failed\")\\r\\n| order by Time desc\\r\\n| project format_datetime(Time, 'd-M-yyyy HH:mm:ss'), State \n | project Time, State"
+                                        },
+                                        {
+                                            "name": "Version",
+                                            "value": "1.0"
+                                        },
+                                        {
+                                            "name": "PartId",
+                                            "value": "3b60ce9b-1c29-4d62-9af4-594ee18c985a"
+                                        },
+                                        {
+                                            "name": "PartTitle",
+                                            "value": "Analytics"
+                                        },
+                                        {
+                                            "name": "PartSubTitle",
+                                            "value": "[parameters('appInsightsName')]"
+                                        },
+                                        {
+                                            "name": "resourceTypeMode",
+                                            "value": "components"
+                                        }
+                                    ],
+                                    "type": "Extension/AppInsightsExtension/PartType/AnalyticsGridPart",
+                                    "settings": {
+                                        "content": {
+                                            "dashboardPartTitle": "Service Health",
+                                            "dashboardPartSubTitle": "Last 30 Minutes"
+                                        }
+                                    },
+                                    "asset": {
+                                        "idInputName": "ComponentId",
+                                        "type": "ApplicationInsights"
+                                    }
+                                }
+                            },
+                            "6": {
+                                "position": {
+                                    "x": 0,
+                                    "y": 8,
+                                    "rowSpan": 4,
+                                    "colSpan": 6
+                                },
+                                "metadata": {
+                                    "inputs": [
+                                        {
+                                            "name": "ComponentId",
+                                            "value": {
+                                                "SubscriptionId": "[parameters('subscriptionId')]",
+                                                "ResourceGroup": "[parameters('nameOfResourceGroup')]",
+                                                "Name": "[parameters('appInsightsName')]"
+                                            }
+                                        },
+                                        {
+                                            "name": "Query",
+                                            "value": "requests\\r\\n| where timestamp > ago(48h) and url contains \"/something/\" \\r\\n| render areachart\n"
+                                        },
+                                        {
+                                            "name": "Dimensions",
+                                            "value": {
+                                                "xAxis": {
+                                                    "name": "timestamp",
+                                                    "type": "DateTime"
+                                                },
+                                                "yAxis": [
+                                                    {
+                                                        "name": "Count",
+                                                        "type": "Int32"
+                                                    }
+                                                ],
+                                                "splitBy": [
+                                                    {
+                                                        "name": "Status",
+                                                        "type": "String"
+                                                    }
+                                                ],
+                                                "aggregation": "Sum"
+                                            }
+                                        },
+                                        {
+                                            "name": "Version",
+                                            "value": "1.0"
+                                        },
+                                        {
+                                            "name": "PartId",
+                                            "value": "47e6f449-b68b-42e9-82ef-6964d39737fd"
+                                        },
+                                        {
+                                            "name": "PartTitle",
+                                            "value": "Analytics"
+                                        },
+                                        {
+                                            "name": "PartSubTitle",
+                                            "value": "[parameters('appInsightsName')]"
+                                        },
+                                        {
+                                            "name": "resourceTypeMode",
+                                            "value": "components"
+                                        }
+                                    ],
+                                    "type": "Extension/AppInsightsExtension/PartType/AnalyticsAreaChartPart",
+                                    "settings": {
+                                        "content": {
+                                            "dashboardPartTitle": "Something Happened",
+                                            "dashboardPartSubTitle": "Last 48 Hours - Per 30 Minutes"
+                                        }
+                                    },
+                                    "asset": {
+                                        "idInputName": "ComponentId",
+                                        "type": "ApplicationInsights"
+                                    }
+                                }
+                            },
+                            "7": {
+                                "position": {
+                                    "x": 6,
+                                    "y": 8,
+                                    "rowSpan": 4,
+                                    "colSpan": 6
+                                },
+                                "metadata": {
+                                    "inputs": [
+                                        {
+                                            "name": "ComponentId",
+                                            "value": {
+                                                "SubscriptionId": "[parameters('subscriptionId')]",
+                                                "ResourceGroup": "[parameters('nameOfResourceGroup')]",
+                                                "Name": "[parameters('appInsightsName')]"
+                                            }
+                                        },
+                                        {
+                                            "name": "Query",
+                                            "value": "exceptions\\r\\n| where timestamp > ago(7d)\\r\\n| summarize   [\"Failed Foo\"] = sum(outerType == \"MyNameSpace.Exceptions.Foo\"),   [\"Failed Bar\"] = sum(outerType ==  \"MyNameSpace.Exceptions.Bar\"),  [\"Failed FooBar\"] = sum(outerType == \"MyNameSpace.Exceptions.FooBar\") by bin(timestamp, 1h)\\r\\n| render areachart \n"
+                                        },
+                                        {
+                                            "name": "Dimensions",
+                                            "value": {
+                                                "xAxis": {
+                                                    "name": "timestamp",
+                                                    "type": "DateTime"
+                                                },
+                                                "yAxis": [
+                                                    {
+                                                        "name": "Failed Foo",
+                                                        "type": "Int64"
+                                                    },
+                                                    {
+                                                        "name": "Failed Bar",
+                                                        "type": "Int64"
+                                                    },
+                                                    {
+                                                        "name": "Failed FooBar",
+                                                        "type": "Int64"
+                                                    }
+                                                ],
+                                                "splitBy": [],
+                                                "aggregation": "Sum"
+                                            }
+                                        },
+                                        {
+                                            "name": "Version",
+                                            "value": "1.0"
+                                        },
+                                        {
+                                            "name": "PartId",
+                                            "value": "364b7ce3-e7ba-4e6b-a1eb-e138a924d77e"
+                                        },
+                                        {
+                                            "name": "PartTitle",
+                                            "value": "Analytics"
+                                        },
+                                        {
+                                            "name": "PartSubTitle",
+                                            "value": "[parameters('appInsightsName')]"
+                                        },
+                                        {
+                                            "name": "resourceTypeMode",
+                                            "value": "components"
+                                        }
+                                    ],
+                                    "type": "Extension/AppInsightsExtension/PartType/AnalyticsAreaChartPart",
+                                    "settings": {
+                                        "content": {
+                                            "dashboardPartTitle": "Failed Foos",
+                                            "dashboardPartSubTitle": "Last 7 Days"
+                                        }
+                                    },
+                                    "asset": {
+                                        "idInputName": "ComponentId",
+                                        "type": "ApplicationInsights"
+                                    }
+                                }
+                            },
+                            "8": {
+                                "position": {
+                                    "x": 12,
+                                    "y": 8,
+                                    "rowSpan": 4,
+                                    "colSpan": 6
+                                },
+                                "metadata": {
+                                    "inputs": [
+                                        {
+                                            "name": "ComponentId",
+                                            "value": {
+                                                "SubscriptionId": "[parameters('subscriptionId')]",
+                                                "ResourceGroup": "[parameters('nameOfResourceGroup')]",
+                                                "Name": "[parameters('appInsightsName')]"
+                                            }
+                                        },
+                                        {
+                                            "name": "Query",
+                                            "value": "exceptions\\r\\n| where timestamp > ago(7d) \\r\\n| project FullTypeName = outerType \\r\\n| extend ExceptionTypeName = extract(@\"[.\\w]+\\.(\\w+)\", 1, FullTypeName)\\r\\n| summarize [\"Exception Count\"] = count() by ExceptionTypeName\\r\\n| order by ['Exception Count'] desc\\r\\n | project ExceptionTypeName, [\"Exception Count\"]"
+                                        },
+                                        {
+                                            "name": "Version",
+                                            "value": "1.0"
+                                        },
+                                        {
+                                            "name": "PartId",
+                                            "value": "f6e4ac32-4c0c-493e-a14b-b61fd87fca27"
+                                        },
+                                        {
+                                            "name": "PartTitle",
+                                            "value": "Analytics"
+                                        },
+                                        {
+                                            "name": "PartSubTitle",
+                                            "value": "[parameters('appInsightsName')]"
+                                        },
+                                        {
+                                            "name": "resourceTypeMode",
+                                            "value": "components"
+                                        }
+                                    ],
+                                    "type": "Extension/AppInsightsExtension/PartType/AnalyticsGridPart",
+                                    "settings": {
+                                        "content": {
+                                            "dashboardPartTitle": "Top Server Exceptions",
+                                            "dashboardPartSubTitle": "Last 7 Days"
+                                        }
+                                    },
+                                    "asset": {
+                                        "idInputName": "ComponentId",
+                                        "type": "ApplicationInsights"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "metadata": {
+                    "model": {
+                        "timeRange": {
+                            "value": {
+                                "relative": {
+                                    "duration": 24,
+                                    "timeUnit": 1
+                                }
+                            },
+                            "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+                        }
+                    }
+                }
+            },
+            "name": "[parameters('dashboardName')]",
+            "type": "Microsoft.Portal/dashboards",
+            "apiVersion": "2015-08-01-preview",
+            "location": "centralus",
+            "tags": {
+                "hidden-title": "[parameters('dashboardDisplayName')]"
+            }
+        }
+    ]
+}

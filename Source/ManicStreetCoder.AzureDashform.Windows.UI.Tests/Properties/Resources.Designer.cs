@@ -61,176 +61,62 @@ namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {
-        ///    &quot;properties&quot;: {
-        ///        &quot;lenses&quot;: {
-        ///            &quot;0&quot;: {
-        ///                &quot;order&quot;: 0,
-        ///                &quot;parts&quot;: {
-        ///                    &quot;0&quot;: {
-        ///                        &quot;position&quot;: {
-        ///                            &quot;x&quot;: 0,
-        ///                            &quot;y&quot;: 0,
-        ///                            &quot;rowSpan&quot;: 4,
-        ///                            &quot;colSpan&quot;: 6
-        ///                        },
-        ///                        &quot;metadata&quot;: {
-        ///                            &quot;inputs&quot;: [
-        ///                                {
-        ///                      [rest of string was truncated]&quot;;.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static string GoldenMasterInputTemplate1 {
+        internal static byte[] ExternalResourcesGoldenMasterTemplateInput {
             get {
-                return ResourceManager.GetString("GoldenMasterInputTemplate1", resourceCulture);
+                object obj = ResourceManager.GetObject("ExternalResourcesGoldenMasterTemplateInput", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {
-        ///    &quot;properties&quot;: {
-        ///        &quot;lenses&quot;: {
-        ///            &quot;0&quot;: {
-        ///                &quot;order&quot;: 0,
-        ///                &quot;parts&quot;: {
-        ///                    &quot;0&quot;: {
-        ///                        &quot;position&quot;: {
-        ///                            &quot;x&quot;: 0,
-        ///                            &quot;y&quot;: 0,
-        ///                            &quot;rowSpan&quot;: 4,
-        ///                            &quot;colSpan&quot;: 6
-        ///                        },
-        ///                        &quot;metadata&quot;: {
-        ///                            &quot;inputs&quot;: [
-        ///                                {
-        ///                      [rest of string was truncated]&quot;;.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static string GoldenMasterInputTemplate2 {
+        internal static byte[] ExternalResourcesGoldenMasterTemplateOutput {
             get {
-                return ResourceManager.GetString("GoldenMasterInputTemplate2", resourceCulture);
+                object obj = ResourceManager.GetObject("ExternalResourcesGoldenMasterTemplateOutput", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {
-        ///	&quot;$schema&quot;: &quot;https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#&quot;,
-        ///	&quot;contentVersion&quot;: &quot;1.0.0.0&quot;,
-        ///	&quot;parameters&quot;: {
-        ///		&quot;appInsightsName&quot;: {
-        ///			&quot;type&quot;: &quot;string&quot;
-        ///		},
-        ///		&quot;dashboardName&quot;: {
-        ///			&quot;type&quot;: &quot;string&quot;
-        ///		},
-        ///		&quot;dashboardDisplayName&quot;: {
-        ///			&quot;type&quot;: &quot;string&quot;
-        ///		},
-        ///		&quot;nameOfResourceGroup&quot;: {
-        ///			&quot;type&quot;: &quot;string&quot;
-        ///		},
-        ///		&quot;subscriptionId&quot;: {
-        ///			&quot;type&quot;: &quot;string&quot;
-        ///		}
-        ///	},
-        ///	&quot;variables&quot;: {},
-        ///	&quot;resources&quot;: [
-        ///		{
-        ///			&quot;properties&quot;: {
-        ///				&quot;lenses&quot;: {
-        ///					&quot;0&quot;: {
-        ///						&quot;o [rest of string was truncated]&quot;;.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static string GoldenMasterOutputTemplate1 {
+        internal static byte[] ExternalResourcesParametersGoldenMaster {
             get {
-                return ResourceManager.GetString("GoldenMasterOutputTemplate1", resourceCulture);
+                object obj = ResourceManager.GetObject("ExternalResourcesParametersGoldenMaster", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {
-        ///	&quot;$schema&quot;: &quot;https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#&quot;,
-        ///	&quot;contentVersion&quot;: &quot;1.0.0.0&quot;,
-        ///	&quot;parameters&quot;: {
-        ///		&quot;appInsightsName&quot;: {
-        ///			&quot;type&quot;: &quot;string&quot;
-        ///		},
-        ///		&quot;dashboardName&quot;: {
-        ///			&quot;type&quot;: &quot;string&quot;
-        ///		},
-        ///		&quot;dashboardDisplayName&quot;: {
-        ///			&quot;type&quot;: &quot;string&quot;
-        ///		},
-        ///		&quot;nameOfResourceGroup&quot;: {
-        ///			&quot;type&quot;: &quot;string&quot;
-        ///		},
-        ///		&quot;subscriptionId&quot;: {
-        ///			&quot;type&quot;: &quot;string&quot;
-        ///		},
-        ///		&quot;myKeyVaultResourceName&quot;: {
-        ///			&quot;type&quot;: &quot;string&quot;
-        ///		},
-        ///		&quot;myCosmosDbResourceName&quot;: {
-        ///			&quot;type&quot;: &quot;st [rest of string was truncated]&quot;;.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static string GoldenMasterOutputTemplate2 {
+        internal static byte[] SimpleGoldenMasterTemplateInput {
             get {
-                return ResourceManager.GetString("GoldenMasterOutputTemplate2", resourceCulture);
+                object obj = ResourceManager.GetObject("SimpleGoldenMasterTemplateInput", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {
-        ///	&quot;$schema&quot;: &quot;https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#&quot;,
-        ///	&quot;contentVersion&quot;: &quot;1.0.0.0&quot;,
-        ///	&quot;parameters&quot;: {
-        ///		&quot;nameOfResourceGroup&quot;: {
-        ///			&quot;value&quot;: &quot;#{ResourceGroup.Name}&quot;
-        ///		},
-        ///		&quot;subscriptionId&quot;: {
-        ///			&quot;value&quot;: &quot;#{AzureSubscriptionId}&quot;
-        ///		},
-        ///		&quot;appInsightsName&quot;: {
-        ///			&quot;value&quot;: &quot;#{ApplicationInsights.Name}&quot;
-        ///		},
-        ///		&quot;dashboardName&quot;: {
-        ///			&quot;value&quot;: &quot;#{Dashboard.Name}&quot;
-        ///		},
-        ///		&quot;dashboardDisplayName&quot;: {
-        ///			&quot;value&quot;: &quot;#{Dashboard.DisplayName}&quot;
-        ///		}
-        ///	}
-        ///}.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static string GoldenMasterParameters1 {
+        internal static byte[] SimpleGoldenMasterTemplateOutput {
             get {
-                return ResourceManager.GetString("GoldenMasterParameters1", resourceCulture);
+                object obj = ResourceManager.GetObject("SimpleGoldenMasterTemplateOutput", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {
-        ///	&quot;$schema&quot;: &quot;https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#&quot;,
-        ///	&quot;contentVersion&quot;: &quot;1.0.0.0&quot;,
-        ///	&quot;parameters&quot;: {
-        ///		&quot;nameOfResourceGroup&quot;: {
-        ///			&quot;value&quot;: &quot;#{ResourceGroup.Name}&quot;
-        ///		},
-        ///		&quot;subscriptionId&quot;: {
-        ///			&quot;value&quot;: &quot;#{AzureSubscriptionId}&quot;
-        ///		},
-        ///		&quot;appInsightsName&quot;: {
-        ///			&quot;value&quot;: &quot;#{ApplicationInsights.Name}&quot;
-        ///		},
-        ///		&quot;dashboardName&quot;: {
-        ///			&quot;value&quot;: &quot;#{Dashboard.Name}&quot;
-        ///		},
-        ///		&quot;dashboardDisplayName&quot;: {
-        ///			&quot;value&quot;: &quot;#{Dashboard.DisplayName}&quot;
-        ///		},
-        ///		&quot;myKeyVaultRe [rest of string was truncated]&quot;;.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static string GoldenMasterParameters2 {
+        internal static byte[] SimpleTemplateParametersGoldenMaster {
             get {
-                return ResourceManager.GetString("GoldenMasterParameters2", resourceCulture);
+                object obj = ResourceManager.GetObject("SimpleTemplateParametersGoldenMaster", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }
