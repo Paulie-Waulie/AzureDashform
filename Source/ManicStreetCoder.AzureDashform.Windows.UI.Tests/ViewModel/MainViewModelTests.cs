@@ -21,7 +21,8 @@
         private ITransformationFileService fileService;
         private MainViewModel mainViewModel;
         private InputDashboardArmTemplate inputTemplate;
-        private OutputDashboardArmTemplate outputTemplate;
+        private OutputDashboardArmTemplate completeOutputTemplate;
+        private OutputDashboardArmTemplate partOfExistingTemplateOutput;
         private ITransformationService transformationService;
         private Exception reportedError;
         private string userMessage;
@@ -32,7 +33,8 @@
             this.reportedError = null;
             this.userMessage = null;
             this.inputTemplate = new InputDashboardArmTemplate("SomeJson");
-            this.outputTemplate = new OutputDashboardArmTemplate("SomeOutputJson", "SomeParametersJson");
+            this.completeOutputTemplate = new OutputDashboardArmTemplate("SomeOutputJson", "SomeParametersJson");
+            this.partOfExistingTemplateOutput = new OutputDashboardArmTemplate("PartOutputJson", "SomeParametersJson");
 
             this.fileService = A.Fake<ITransformationFileService>();
             this.transformationService = A.Fake<ITransformationService>();
@@ -43,15 +45,28 @@
             this.mainViewModel.SourceFilePath = @"C:\Input.json";
             this.mainViewModel.OutputFolderPath = OutputPath;
 
-            A.CallTo(() => this.transformationService.Transform(this.inputTemplate, A<TransformationDetails>.Ignored)).Returns(this.outputTemplate);
+            A.CallTo(() => this.transformationService.Transform(this.inputTemplate, A<TransformationDetails>.That.Matches(x => x.DashboardIsCompleteTemplate.Equals(true)))).Returns(this.completeOutputTemplate);
+            A.CallTo(() => this.transformationService.Transform(this.inputTemplate, A<TransformationDetails>.That.Matches(x => x.DashboardIsCompleteTemplate.Equals(false)))).Returns(this.partOfExistingTemplateOutput);
         }
 
         [Test]
-        public void ValidInputFile()
+        public void ValidInputFileToBeOutputtedAsCompleteTemplate()
         {
             this.Given(_ => _.AValidInputFile())
+                .And(_ => _.TheOutputIsToBeCompleteTemplate())
                 .When(_ => _.TransformingTheInputFile())
-                .Then(_ => _.TheOutputIsSaved())
+                .Then(_ => _.TheCompleteTemplateIsSaved())
+                .And(_ => _.TheUserIsInformedTheTransformSucceeded())
+                .BDDfy();
+        }
+
+        [Test]
+        public void ValidInputFileToBeOutputtedAsPartOfExistingTemplate()
+        {
+            this.Given(_ => _.AValidInputFile())
+                .And(_ => _.TheOutputIsToBePartOfAnExistingTemplate())
+                .When(_ => _.TransformingTheInputFile())
+                .Then(_ => _.ThePartialTemplateIsSaved())
                 .And(_ => _.TheUserIsInformedTheTransformSucceeded())
                 .BDDfy();
         }
@@ -140,6 +155,16 @@
                 .Returns(this.inputTemplate);
         }
 
+        private void TheOutputIsToBeCompleteTemplate()
+        {
+            this.mainViewModel.CreateOutputAsCompleteTemplate = true;
+        }
+
+        private void TheOutputIsToBePartOfAnExistingTemplate()
+        {
+            this.mainViewModel.CreateOutputAsCompleteTemplate = false;
+        }
+
         private void AnInvalidInputFileSourcePath(string value)
         {
             this.mainViewModel.SourceFilePath = value;
@@ -170,10 +195,16 @@
             this.mainViewModel.TransformCommand.Execute(null);
         }
 
-        private void TheOutputIsSaved()
+        private void TheCompleteTemplateIsSaved()
         {
-            A.CallTo(() => this.fileService.SaveOutputDashboardArmTemplate(this.outputTemplate, A<TransformationDetails>.That.Matches(x => x.OutputFilePath.Equals(OutputPath))))
+            A.CallTo(() => this.fileService.SaveOutputDashboardArmTemplate(this.completeOutputTemplate, A<TransformationDetails>.That.Matches(x => x.OutputFilePath.Equals(OutputPath))))
                      .MustHaveHappenedOnceExactly();
+        }
+
+        private void ThePartialTemplateIsSaved()
+        {
+            A.CallTo(() => this.fileService.SaveOutputDashboardArmTemplate(this.partOfExistingTemplateOutput, A<TransformationDetails>.That.Matches(x => x.OutputFilePath.Equals(OutputPath))))
+                .MustHaveHappenedOnceExactly();
         }
 
         private void TheUserIsInformedTheTransformSucceeded()

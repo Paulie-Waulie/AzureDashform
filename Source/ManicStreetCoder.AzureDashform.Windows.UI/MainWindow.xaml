@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ManicStreetCoder.AzureDashform"
         mc:Ignorable="d"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
-        Title="Azure Dashform" Height="400" Width="900">
+        Title="Azure Dashform" Height="500" Width="900">
     <Grid Margin="10">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -20,6 +20,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center">Original ARM Template</Label>
             <TextBox Name="SourceFile" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text="{Binding SourceFilePath, Mode=TwoWay}"></TextBox>
@@ -29,7 +30,10 @@
             <TextBlock Name="OutputFile" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding OutputFolderPath}"></TextBlock>
             <Button Name="OutputFileDialog" Grid.Column="3" Grid.Row="1" Click="OutputFileDialog_OnClick">...</Button>
 
-            <ItemsControl Grid.Row="2" Grid.Column="1" ItemsSource="{Binding ValidationErrors}">
+            <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">Create Full Template</Label>
+            <CheckBox Name="CreateFulleTemplate" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" IsChecked="{Binding CreateOutputAsCompleteTemplate}"></CheckBox>
+
+            <ItemsControl Grid.Row="3" Grid.Column="1" ItemsSource="{Binding ValidationErrors}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Foreground="Red"  Text="{Binding ValidationMessage}"/>

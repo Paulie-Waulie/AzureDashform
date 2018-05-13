@@ -17,7 +17,7 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
 
         public MainViewModel(ITransformationFileService fileService, ITransformationService transformationService)
         {
-            this.details = new TransformationDetails(@"C:\ArmTemplate\Output");
+            this.details = new TransformationDetails(@"C:\ArmTemplate\Output", true);
             this.ValidationErrors = new ObservableCollection<ValidationError>();
             this.transformationFileService = fileService;
             this.transformationService = transformationService;
@@ -42,6 +42,16 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
             {
                 this.details.OutputFilePath = value;
                 this.RaisePropertyChanged(nameof(OutputFolderPath));
+            }
+        }
+
+        public bool CreateOutputAsCompleteTemplate
+        {
+            get { return this.details.DashboardIsCompleteTemplate; }
+            set
+            {
+                this.details.DashboardIsCompleteTemplate = value;
+                this.RaisePropertyChanged(nameof(this.CreateOutputAsCompleteTemplate));
             }
         }
 
