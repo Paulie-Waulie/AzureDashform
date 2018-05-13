@@ -1,0 +1,579 @@
+﻿{
+    "properties": {
+        "lenses": {
+            "0": {
+                "order": 0,
+                "parts": {
+                    "0": {
+                        "position": {
+                            "x": 0,
+                            "y": 0,
+                            "rowSpan": 4,
+                            "colSpan": 6
+                        },
+                        "metadata": {
+                            "inputs": [
+                                {
+                                    "name": "ComponentId",
+                                    "value": {
+                                        "SubscriptionId": "[subscription().subscriptionId]",
+                                        "ResourceGroup": "[resourceGroup().name]",
+                                        "Name": "[variables('appInsights-name')]"
+                                    }
+                                },
+                                {
+                                    "name": "AdapterDashboardTimeRange",
+                                    "binding": "timeRange",
+                                    "isOptional": true
+                                }
+                            ],
+                            "type": "Extension[azure]/AppInsightsExtension/PartType/UnconfiguredChartAdaptedPartSmall",
+                            "settings": {
+                                "content": {
+                                    "metricsExplorerJson": "{\n  \"version\": \"1.4.1\",\n  \"isCustomDataModel\": true,\n  \"items\": [\n    {\n      \"id\": \"11111111-1111-1111-1111-111111111111\",\n      \"grouping\": {\n        \"kind\": \"ByDimension\",\n        \"dimension\": \"context.location.country\"\n      },\n      \"chartType\": \"Area\",\n      \"chartHeight\": 4,\n      \"metrics\": [\n        {\n          \"id\": \"request.count\",\n          \"metricAggregation\": \"Sum\",\n          \"color\": \"msportalfx-bgcolor-j1\"\n        }\n      ],\n      \"priorPeriod\": false,\n      \"clickAction\": {\n        \"defaultBlade\": \"SearchBlade\"\n      },\n      \"horizontalBars\": true,\n      \"showOther\": true,\n      \"aggregation\": \"Sum\",\n      \"percentage\": false,\n      \"palette\": \"greenHues\",\n      \"yAxisOption\": 0,\n      \"title\": \"\"\n    },\n    {\n      \"id\": \"84e5c47b-e40b-4a62-a326-0ecec8a46118\",\n      \"chartType\": \"Area\",\n      \"chartHeight\": 2,\n      \"metrics\": [\n        {\n          \"id\": \"request.duration\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-b2\"\n        }\n      ],\n      \"priorPeriod\": false,\n      \"clickAction\": {\n        \"defaultBlade\": \"SearchBlade\"\n      },\n      \"horizontalBars\": true,\n      \"showOther\": true,\n      \"aggregation\": \"Avg\",\n      \"percentage\": false,\n      \"palette\": \"warmHues\",\n      \"yAxisOption\": 0,\n      \"title\": \"\"\n    }\n  ],\n  \"title\": \"API Requests\",\n  \"currentFilter\": {\n    \"eventTypes\": [\n      1\n    ],\n    \"typeFacets\": {},\n    \"isPermissive\": false\n  },\n  \"timeContext\": {\n    \"durationMs\": 86400000,\n    \"endTime\": null,\n    \"createdTime\": \"2017-08-30T07:58:45.881Z\",\n    \"isInitialTime\": false,\n    \"grain\": 1,\n    \"useDashboardTimeRange\": false\n  },\n  \"jsonUri\": \"DashboardUnconfiguredChartSmall\",\n  \"timeSource\": 0\n}"
+                                }
+                            },
+                            "isAdapter": true,
+                            "viewState": {
+                                "content": {
+                                    "metricsExplorerJson": "{\n  \"version\": \"1.4.1\",\n  \"isCustomDataModel\": true,\n  \"items\": [\n    {\n      \"id\": \"11111111-1111-1111-1111-111111111111\",\n      \"grouping\": {\n        \"kind\": \"ByDimension\",\n        \"dimension\": \"context.location.country\"\n      },\n      \"chartType\": \"Area\",\n      \"chartHeight\": 4,\n      \"metrics\": [\n        {\n          \"id\": \"request.count\",\n          \"metricAggregation\": \"Sum\",\n          \"color\": \"msportalfx-bgcolor-j1\"\n        }\n      ],\n      \"priorPeriod\": false,\n      \"clickAction\": {\n        \"defaultBlade\": \"SearchBlade\"\n      },\n      \"horizontalBars\": true,\n      \"showOther\": true,\n      \"aggregation\": \"Sum\",\n      \"percentage\": false,\n      \"palette\": \"greenHues\",\n      \"yAxisOption\": 0,\n      \"title\": \"\"\n    },\n    {\n      \"id\": \"84e5c47b-e40b-4a62-a326-0ecec8a46118\",\n      \"chartType\": \"Area\",\n      \"chartHeight\": 2,\n      \"metrics\": [\n        {\n          \"id\": \"request.duration\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-b2\"\n        }\n      ],\n      \"priorPeriod\": false,\n      \"clickAction\": {\n        \"defaultBlade\": \"SearchBlade\"\n      },\n      \"horizontalBars\": true,\n      \"showOther\": true,\n      \"aggregation\": \"Avg\",\n      \"percentage\": false,\n      \"palette\": \"warmHues\",\n      \"yAxisOption\": 0,\n      \"title\": \"\"\n    }\n  ],\n  \"title\": \"API Requests\",\n  \"currentFilter\": {\n    \"eventTypes\": [\n      1\n    ],\n    \"typeFacets\": {},\n    \"isPermissive\": false\n  },\n  \"timeContext\": {\n    \"durationMs\": 86400000,\n    \"endTime\": null,\n    \"createdTime\": \"2017-08-30T07:58:45.881Z\",\n    \"isInitialTime\": false,\n    \"grain\": 1,\n    \"useDashboardTimeRange\": false\n  },\n  \"jsonUri\": \"DashboardUnconfiguredChartSmall\",\n  \"timeSource\": 0\n}"
+                                }
+                            },
+                            "asset": {
+                                "idInputName": "ComponentId",
+                                "type": "ApplicationInsights"
+                            }
+                        }
+                    },
+                    "1": {
+                        "position": {
+                            "x": 6,
+                            "y": 0,
+                            "rowSpan": 4,
+                            "colSpan": 6
+                        },
+                        "metadata": {
+                            "inputs": [
+                                {
+                                    "name": "ComponentId",
+                                    "value": {
+                                        "SubscriptionId": "[subscription().subscriptionId]",
+                                        "ResourceGroup": "[resourceGroup().name]",
+                                        "Name": "[variables('appInsights-name')]"
+                                    }
+                                },
+                                {
+                                    "name": "AdapterDashboardTimeRange",
+                                    "binding": "timeRange",
+                                    "isOptional": true
+                                }
+                            ],
+                            "type": "Extension[azure]/AppInsightsExtension/PartType/UnconfiguredChartAdaptedPartSmall",
+                            "settings": {
+                                "content": {
+                                    "metricsExplorerJson": "{\n  \"version\": \"1.4.1\",\n  \"isCustomDataModel\": true,\n  \"items\": [\n    {\n      \"id\": \"11111111-1111-1111-1111-111111111111\",\n      \"chartType\": \"Area\",\n      \"chartHeight\": 4,\n      \"metrics\": [\n        {\n          \"id\": \"performanceCounters/Billing Endpoint No. of msgs successfully processed per sec\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-g2\"\n        },\n        {\n          \"id\": \"performanceCounters/Endpoint No. of msgs successfully processed per sec\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-g1\"\n        },\n        {\n          \"id\": \"performanceCounters/Legacy Endpoint No. of msgs successfully processed per sec\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-j0t1\"\n        }\n      ],\n      \"priorPeriod\": false,\n      \"clickAction\": {\n        \"defaultBlade\": \"SearchBlade\"\n      },\n      \"horizontalBars\": true,\n      \"showOther\": true,\n      \"aggregation\": \"Avg\",\n      \"percentage\": false,\n      \"palette\": \"qualitativeHues\",\n      \"yAxisOption\": 0,\n      \"title\": \"\"\n    },\n    {\n      \"id\": \"f2898d33-6254-4462-bb85-7a49fb3da01b\",\n      \"chartType\": \"Area\",\n      \"chartHeight\": 2,\n      \"metrics\": [\n        {\n          \"id\": \"performanceCounters/Billing Endpoint No. of msgs failures per sec\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-b2\"\n        },\n        {\n          \"id\": \"performanceCounters/Endpoint No. of msgs failures per sec\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-b1\"\n        },\n        {\n          \"id\": \"performanceCounters/Legacy Endpoint No. of msgs failures per sec\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-a0t1\"\n        }\n      ],\n      \"priorPeriod\": false,\n      \"clickAction\": {\n        \"defaultBlade\": \"SearchBlade\"\n      },\n      \"horizontalBars\": true,\n      \"showOther\": true,\n      \"aggregation\": \"Avg\",\n      \"percentage\": false,\n      \"palette\": \"warmHues\",\n      \"yAxisOption\": 0,\n      \"title\": \"\"\n    }\n  ],\n  \"title\": \"Messaging\",\n  \"currentFilter\": {\n    \"eventTypes\": [\n      4,\n      1,\n      3,\n      5,\n      2,\n      6,\n      13,\n      8\n    ],\n    \"typeFacets\": {},\n    \"isPermissive\": false\n  },\n  \"timeContext\": {\n    \"durationMs\": 86400000,\n    \"endTime\": null,\n    \"createdTime\": \"2017-10-20T16:06:10.908Z\",\n    \"isInitialTime\": false,\n    \"grain\": 1,\n    \"useDashboardTimeRange\": false\n  },\n  \"jsonUri\": \"DashboardUnconfiguredChartSmall\",\n  \"timeSource\": 0\n}"
+                                }
+                            },
+                            "isAdapter": true,
+                            "viewState": {
+                                "content": {
+                                    "metricsExplorerJson": "{\n  \"version\": \"1.4.1\",\n  \"isCustomDataModel\": true,\n  \"items\": [\n    {\n      \"id\": \"11111111-1111-1111-1111-111111111111\",\n      \"chartType\": \"Area\",\n      \"chartHeight\": 4,\n      \"metrics\": [\n        {\n          \"id\": \"performanceCounters/Billing Endpoint No. of msgs successfully processed per sec\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-g2\"\n        },\n        {\n          \"id\": \"performanceCounters/Endpoint No. of msgs successfully processed per sec\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-g1\"\n        },\n        {\n          \"id\": \"performanceCounters/Legacy Endpoint No. of msgs successfully processed per sec\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-j0t1\"\n        }\n      ],\n      \"priorPeriod\": false,\n      \"clickAction\": {\n        \"defaultBlade\": \"SearchBlade\"\n      },\n      \"horizontalBars\": true,\n      \"showOther\": true,\n      \"aggregation\": \"Avg\",\n      \"percentage\": false,\n      \"palette\": \"qualitativeHues\",\n      \"yAxisOption\": 0,\n      \"title\": \"\"\n    },\n    {\n      \"id\": \"f2898d33-6254-4462-bb85-7a49fb3da01b\",\n      \"chartType\": \"Area\",\n      \"chartHeight\": 2,\n      \"metrics\": [\n        {\n          \"id\": \"performanceCounters/Billing Endpoint No. of msgs failures per sec\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-b2\"\n        },\n        {\n          \"id\": \"performanceCounters/Endpoint No. of msgs failures per sec\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-b1\"\n        },\n        {\n          \"id\": \"performanceCounters/Legacy Endpoint No. of msgs failures per sec\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-a0t1\"\n        }\n      ],\n      \"priorPeriod\": false,\n      \"clickAction\": {\n        \"defaultBlade\": \"SearchBlade\"\n      },\n      \"horizontalBars\": true,\n      \"showOther\": true,\n      \"aggregation\": \"Avg\",\n      \"percentage\": false,\n      \"palette\": \"warmHues\",\n      \"yAxisOption\": 0,\n      \"title\": \"\"\n    }\n  ],\n  \"title\": \"Messaging\",\n  \"currentFilter\": {\n    \"eventTypes\": [\n      4,\n      1,\n      3,\n      5,\n      2,\n      6,\n      13,\n      8\n    ],\n    \"typeFacets\": {},\n    \"isPermissive\": false\n  },\n  \"timeContext\": {\n    \"durationMs\": 86400000,\n    \"endTime\": null,\n    \"createdTime\": \"2017-10-20T16:06:10.908Z\",\n    \"isInitialTime\": false,\n    \"grain\": 1,\n    \"useDashboardTimeRange\": false\n  },\n  \"jsonUri\": \"DashboardUnconfiguredChartSmall\",\n  \"timeSource\": 0\n}"
+                                }
+                            },
+                            "asset": {
+                                "idInputName": "ComponentId",
+                                "type": "ApplicationInsights"
+                            }
+                        }
+                    },
+                    "2": {
+                        "position": {
+                            "x": 18,
+                            "y": 4,
+                            "rowSpan": 4,
+                            "colSpan": 6
+                        },
+                        "metadata": {
+                            "inputs": [
+                                {
+                                    "name": "ComponentId",
+                                    "value": {
+                                        "SubscriptionId": "[subscription().subscriptionId]",
+                                        "ResourceGroup": "[resourceGroup().name]",
+                                        "Name": "[variables('appInsights-name')]"
+                                    }
+                                },
+                                {
+                                    "name": "AdapterDashboardTimeRange",
+                                    "binding": "timeRange",
+                                    "isOptional": true
+                                }
+                            ],
+                            "type": "Extension[azure]/AppInsightsExtension/PartType/UnconfiguredChartAdaptedPartSmall",
+                            "settings": {
+                                "content": {
+                                    "metricsExplorerJson": "{\n  \"version\": \"1.4.1\",\n  \"isCustomDataModel\": true,\n  \"items\": [\n    {\n      \"id\": \"11111111-1111-1111-1111-111111111111\",\n      \"chartType\": \"Area\",\n      \"chartHeight\": 4,\n      \"metrics\": [\n        {\n          \"id\": \"performanceCounters/Set Express Checkout Number Of Operations Per Second\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-d0\"\n        },\n        {\n          \"id\": \"performanceCounters/Authorise Payment Number Of Operations Per Second\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-j0\"\n        }\n      ],\n      \"priorPeriod\": false,\n      \"clickAction\": {\n        \"defaultBlade\": \"SearchBlade\"\n      },\n      \"horizontalBars\": true,\n      \"showOther\": true,\n      \"aggregation\": \"Avg\",\n      \"percentage\": false,\n      \"palette\": \"fail\",\n      \"yAxisOption\": 0,\n      \"title\": \"\"\n    },\n    {\n      \"id\": \"e68bdd92-1b54-4950-a85e-83153a04f931\",\n      \"chartType\": \"Area\",\n      \"chartHeight\": 2,\n      \"metrics\": [\n        {\n          \"id\": \"performanceCounters/Set Express Checkout Last Operation Execution Time\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-b2\"\n        },\n        {\n          \"id\": \"performanceCounters/Authorise Payment Last Operation Execution Time\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-b1\"\n        }\n      ],\n      \"priorPeriod\": false,\n      \"clickAction\": {\n        \"defaultBlade\": \"SearchBlade\"\n      },\n      \"horizontalBars\": true,\n      \"showOther\": true,\n      \"aggregation\": \"Avg\",\n      \"percentage\": false,\n      \"palette\": \"warmHues\",\n      \"yAxisOption\": 0,\n      \"title\": \"\"\n    }\n  ],\n  \"title\": \"Operations\",\n  \"currentFilter\": {\n    \"eventTypes\": [\n      4,\n      1,\n      3,\n      5,\n      2,\n      6,\n      13,\n      8\n    ],\n    \"typeFacets\": {},\n    \"isPermissive\": false\n  },\n  \"timeContext\": {\n    \"durationMs\": 604800000,\n    \"endTime\": null,\n    \"createdTime\": \"2018-03-09T15:00:39.776Z\",\n    \"isInitialTime\": false,\n    \"grain\": 1,\n    \"useDashboardTimeRange\": false\n  },\n  \"jsonUri\": \"DashboardUnconfiguredChartSmall\",\n  \"timeSource\": 0\n}"
+                                }
+                            },
+                            "isAdapter": true,
+                            "viewState": {
+                                "content": {
+                                    "metricsExplorerJson": "{\n  \"version\": \"1.4.1\",\n  \"isCustomDataModel\": true,\n  \"items\": [\n    {\n      \"id\": \"11111111-1111-1111-1111-111111111111\",\n      \"chartType\": \"Area\",\n      \"chartHeight\": 4,\n      \"metrics\": [\n        {\n          \"id\": \"performanceCounters/Set Express Checkout Number Of Operations Per Second\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-d0\"\n        },\n        {\n          \"id\": \"performanceCounters/Authorise Payment Number Of Operations Per Second\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-j0\"\n        }\n      ],\n      \"priorPeriod\": false,\n      \"clickAction\": {\n        \"defaultBlade\": \"SearchBlade\"\n      },\n      \"horizontalBars\": true,\n      \"showOther\": true,\n      \"aggregation\": \"Avg\",\n      \"percentage\": false,\n      \"palette\": \"fail\",\n      \"yAxisOption\": 0,\n      \"title\": \"\"\n    },\n    {\n      \"id\": \"e68bdd92-1b54-4950-a85e-83153a04f931\",\n      \"chartType\": \"Area\",\n      \"chartHeight\": 2,\n      \"metrics\": [\n        {\n          \"id\": \"performanceCounters/Set Express Checkout Last Operation Execution Time\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-b2\"\n        },\n        {\n          \"id\": \"performanceCounters/Authorise Payment Last Operation Execution Time\",\n          \"metricAggregation\": \"Avg\",\n          \"color\": \"msportalfx-bgcolor-b1\"\n        }\n      ],\n      \"priorPeriod\": false,\n      \"clickAction\": {\n        \"defaultBlade\": \"SearchBlade\"\n      },\n      \"horizontalBars\": true,\n      \"showOther\": true,\n      \"aggregation\": \"Avg\",\n      \"percentage\": false,\n      \"palette\": \"warmHues\",\n      \"yAxisOption\": 0,\n      \"title\": \"\"\n    }\n  ],\n  \"title\": \"Operations\",\n  \"currentFilter\": {\n    \"eventTypes\": [\n      4,\n      1,\n      3,\n      5,\n      2,\n      6,\n      13,\n      8\n    ],\n    \"typeFacets\": {},\n    \"isPermissive\": false\n  },\n  \"timeContext\": {\n    \"durationMs\": 604800000,\n    \"endTime\": null,\n    \"createdTime\": \"2018-03-09T15:00:39.776Z\",\n    \"isInitialTime\": false,\n    \"grain\": 1,\n    \"useDashboardTimeRange\": false\n  },\n  \"jsonUri\": \"DashboardUnconfiguredChartSmall\",\n  \"timeSource\": 0\n}"
+                                }
+                            },
+                            "asset": {
+                                "idInputName": "ComponentId",
+                                "type": "ApplicationInsights"
+                            }
+                        }
+                    },
+                    "3": {
+                        "position": {
+                            "x": 18,
+                            "y": 0,
+                            "rowSpan": 4,
+                            "colSpan": 6
+                        },
+                        "metadata": {
+                            "inputs": [
+                                {
+                                    "name": "options",
+                                    "value": {
+                                        "charts": [
+                                            {
+                                                "title": "Key Vault Average Latency",
+                                                "metrics": [
+                                                    {
+                                                        "name": "ServiceApiLatency",
+                                                        "resourceMetadata": {
+                                                            "resourceId": "[resourceId(subscription().subscriptionId, resourceGroup().name, 'Microsoft.KeyVault/vaults', variables('myKeyVault-resource-name'))]"
+                                                        },
+                                                        "aggregationType": 1
+                                                    }
+                                                ],
+                                                "grouping": "ActivityType",
+                                                "timespan": {
+                                                    "relative": {
+                                                        "durationMs": 86400000
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "v2charts": true
+                                    }
+                                },
+                                {
+                                    "name": "sharedTimeRange",
+                                    "binding": "timeRange",
+                                    "isOptional": true
+                                }
+                            ],
+                            "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+                            "settings": {}
+                        }
+                    },
+                    "4": {
+                        "position": {
+                            "x": 12,
+                            "y": 0,
+                            "rowSpan": 4,
+                            "colSpan": 6
+                        },
+                        "metadata": {
+                            "inputs": [
+                                {
+                                    "name": "ComponentId",
+                                    "value": {
+                                        "SubscriptionId": "[subscription().subscriptionId]",
+                                        "ResourceGroup": "[resourceGroup().name]",
+                                        "Name": "[variables('appInsights-name')]"
+                                    }
+                                },
+                                {
+                                    "name": "Query",
+                                    "value": "dependencies\n| where timestamp >= ago(24h)\n| extend Dependency = iif(type contains \"Azure\", type , name)\n| summarize DurationMilliseconds = percentile(duration, 95) by Dependency, bin(timestamp, 1h)\n| render areachart "
+                                },
+                                {
+                                    "name": "Dimensions",
+                                    "value": {
+                                        "xAxis": {
+                                            "name": "timestamp",
+                                            "type": "DateTime"
+                                        },
+                                        "yAxis": [
+                                            {
+                                                "name": "DurationMilliseconds",
+                                                "type": "Double"
+                                            }
+                                        ],
+                                        "splitBy": [
+                                            {
+                                                "name": "Dependency",
+                                                "type": "String"
+                                            }
+                                        ],
+                                        "aggregation": "Sum"
+                                    }
+                                },
+                                {
+                                    "name": "Version",
+                                    "value": "1.0"
+                                },
+                                {
+                                    "name": "PartId",
+                                    "value": "0e32cfff-ff0c-4a52-8259-3ed0b72b419e"
+                                },
+                                {
+                                    "name": "PartTitle",
+                                    "value": "Analytics"
+                                },
+                                {
+                                    "name": "PartSubTitle",
+                                    "value": "[variables('appInsights-name')]"
+                                },
+                                {
+                                    "name": "resourceTypeMode",
+                                    "value": "components"
+                                }
+                            ],
+                            "type": "Extension/AppInsightsExtension/PartType/AnalyticsAreaChartPart",
+                            "settings": {
+                                "content": {
+                                    "dashboardPartTitle": "Dependencies",
+                                    "dashboardPartSubTitle": "Last 24 hours"
+                                }
+                            },
+                            "asset": {
+                                "idInputName": "ComponentId",
+                                "type": "ApplicationInsights"
+                            }
+                        }
+                    },
+                    "5": {
+                        "position": {
+                            "x": 0,
+                            "y": 4,
+                            "rowSpan": 3,
+                            "colSpan": 6
+                        },
+                        "metadata": {
+                            "inputs": [
+                                {
+                                    "name": "ComponentId",
+                                    "value": {
+                                        "SubscriptionId": "[subscription().subscriptionId]",
+                                        "ResourceGroup": "[resourceGroup().name]",
+                                        "Name": "[variables('appInsights-name')]"
+                                    }
+                                },
+                                {
+                                    "name": "AdapterDashboardTimeRange",
+                                    "binding": "timeRange",
+                                    "isOptional": true
+                                }
+                            ],
+                            "type": "Extension[azure]/AppInsightsExtension/PartType/UnconfiguredChartAdaptedPartSmall",
+                            "settings": {
+                                "content": {
+                                    "metricsExplorerJson": "{\n  \"version\": \"1.4.1\",\n  \"isCustomDataModel\": true,\n  \"items\": [\n    {\n      \"id\": \"11111111-1111-1111-1111-111111111111\",\n      \"grouping\": {\n        \"kind\": \"ByDimension\",\n        \"dimension\": \"request.responseCode\"\n      },\n      \"chartType\": \"Bar\",\n      \"chartHeight\": 4,\n      \"metrics\": [\n        {\n          \"id\": \"requestFailed.count\",\n          \"metricAggregation\": \"Sum\",\n          \"color\": \"msportalfx-bgcolor-g0\"\n        }\n      ],\n      \"priorPeriod\": false,\n      \"clickAction\": {\n        \"defaultBlade\": \"SearchBlade\"\n      },\n      \"horizontalBars\": true,\n      \"showOther\": true,\n      \"aggregation\": \"Sum\",\n      \"percentage\": false,\n      \"palette\": \"blueHues\",\n      \"yAxisOption\": 0,\n      \"title\": \"\"\n    }\n  ],\n  \"title\": \"Failed Requests\",\n  \"currentFilter\": {\n    \"eventTypes\": [\n      1\n    ],\n    \"typeFacets\": {},\n    \"isPermissive\": false\n  },\n  \"timeContext\": {\n    \"durationMs\": 86400000,\n    \"endTime\": null,\n    \"createdTime\": \"2017-10-20T16:06:04.604Z\",\n    \"isInitialTime\": false,\n    \"grain\": 1,\n    \"useDashboardTimeRange\": false\n  },\n  \"jsonUri\": \"DashboardUnconfiguredChartSmall\",\n  \"timeSource\": 0\n}"
+                                }
+                            },
+                            "isAdapter": true,
+                            "viewState": {
+                                "content": {
+                                    "metricsExplorerJson": "{\n  \"version\": \"1.4.1\",\n  \"isCustomDataModel\": true,\n  \"items\": [\n    {\n      \"id\": \"11111111-1111-1111-1111-111111111111\",\n      \"grouping\": {\n        \"kind\": \"ByDimension\",\n        \"dimension\": \"request.responseCode\"\n      },\n      \"chartType\": \"Bar\",\n      \"chartHeight\": 4,\n      \"metrics\": [\n        {\n          \"id\": \"requestFailed.count\",\n          \"metricAggregation\": \"Sum\",\n          \"color\": \"msportalfx-bgcolor-g0\"\n        }\n      ],\n      \"priorPeriod\": false,\n      \"clickAction\": {\n        \"defaultBlade\": \"SearchBlade\"\n      },\n      \"horizontalBars\": true,\n      \"showOther\": true,\n      \"aggregation\": \"Sum\",\n      \"percentage\": false,\n      \"palette\": \"blueHues\",\n      \"yAxisOption\": 0,\n      \"title\": \"\"\n    }\n  ],\n  \"title\": \"Failed Requests\",\n  \"currentFilter\": {\n    \"eventTypes\": [\n      1\n    ],\n    \"typeFacets\": {},\n    \"isPermissive\": false\n  },\n  \"timeContext\": {\n    \"durationMs\": 86400000,\n    \"endTime\": null,\n    \"createdTime\": \"2017-10-20T16:06:04.604Z\",\n    \"isInitialTime\": false,\n    \"grain\": 1,\n    \"useDashboardTimeRange\": false\n  },\n  \"jsonUri\": \"DashboardUnconfiguredChartSmall\",\n  \"timeSource\": 0\n}"
+                                }
+                            },
+                            "asset": {
+                                "idInputName": "ComponentId",
+                                "type": "ApplicationInsights"
+                            }
+                        }
+                    },
+                    "6": {
+                        "position": {
+                            "x": 6,
+                            "y": 4,
+                            "rowSpan": 3,
+                            "colSpan": 6
+                        },
+                        "metadata": {
+                            "inputs": [
+                                {
+                                    "name": "ComponentId",
+                                    "value": {
+                                        "SubscriptionId": "[subscription().subscriptionId]",
+                                        "ResourceGroup": "[resourceGroup().name]",
+                                        "Name": "[variables('appInsights-name')]"
+                                    }
+                                },
+                                {
+                                    "name": "AdapterDashboardTimeRange",
+                                    "binding": "timeRange",
+                                    "isOptional": true
+                                }
+                            ],
+                            "type": "Extension[azure]/AppInsightsExtension/PartType/UnconfiguredChartAdaptedPartSmall",
+                            "settings": {
+                                "content": {
+                                    "metricsExplorerJson": "{\n  \"version\": \"1.4.1\",\n  \"isCustomDataModel\": true,\n  \"items\": [\n    {\n      \"id\": \"11111111-1111-1111-1111-111111111111\",\n      \"grouping\": {\n        \"kind\": \"ByDimension\",\n        \"dimension\": \"basicException.method\"\n      },\n      \"chartType\": \"Bar\",\n      \"chartHeight\": 4,\n      \"metrics\": [\n        {\n          \"id\": \"basicException.count\",\n          \"metricAggregation\": \"Sum\",\n          \"color\": \"msportalfx-bgcolor-g0\"\n        }\n      ],\n      \"priorPeriod\": false,\n      \"clickAction\": {\n        \"defaultBlade\": \"SearchBlade\"\n      },\n      \"horizontalBars\": true,\n      \"showOther\": true,\n      \"aggregation\": \"Sum\",\n      \"percentage\": false,\n      \"palette\": \"blueHues\",\n      \"yAxisOption\": 0,\n      \"title\": \"\"\n    }\n  ],\n  \"title\": \"Exceptions\",\n  \"currentFilter\": {\n    \"eventTypes\": [\n      2\n    ],\n    \"typeFacets\": {},\n    \"isPermissive\": false\n  },\n  \"timeContext\": {\n    \"durationMs\": 86400000,\n    \"endTime\": null,\n    \"createdTime\": \"2017-10-20T16:06:17.339Z\",\n    \"isInitialTime\": false,\n    \"grain\": 1,\n    \"useDashboardTimeRange\": false\n  },\n  \"jsonUri\": \"DashboardUnconfiguredChartSmall\",\n  \"timeSource\": 0\n}"
+                                }
+                            },
+                            "isAdapter": true,
+                            "viewState": {
+                                "content": {
+                                    "metricsExplorerJson": "{\n  \"version\": \"1.4.1\",\n  \"isCustomDataModel\": true,\n  \"items\": [\n    {\n      \"id\": \"11111111-1111-1111-1111-111111111111\",\n      \"grouping\": {\n        \"kind\": \"ByDimension\",\n        \"dimension\": \"basicException.method\"\n      },\n      \"chartType\": \"Bar\",\n      \"chartHeight\": 4,\n      \"metrics\": [\n        {\n          \"id\": \"basicException.count\",\n          \"metricAggregation\": \"Sum\",\n          \"color\": \"msportalfx-bgcolor-g0\"\n        }\n      ],\n      \"priorPeriod\": false,\n      \"clickAction\": {\n        \"defaultBlade\": \"SearchBlade\"\n      },\n      \"horizontalBars\": true,\n      \"showOther\": true,\n      \"aggregation\": \"Sum\",\n      \"percentage\": false,\n      \"palette\": \"blueHues\",\n      \"yAxisOption\": 0,\n      \"title\": \"\"\n    }\n  ],\n  \"title\": \"Exceptions\",\n  \"currentFilter\": {\n    \"eventTypes\": [\n      2\n    ],\n    \"typeFacets\": {},\n    \"isPermissive\": false\n  },\n  \"timeContext\": {\n    \"durationMs\": 86400000,\n    \"endTime\": null,\n    \"createdTime\": \"2017-10-20T16:06:17.339Z\",\n    \"isInitialTime\": false,\n    \"grain\": 1,\n    \"useDashboardTimeRange\": false\n  },\n  \"jsonUri\": \"DashboardUnconfiguredChartSmall\",\n  \"timeSource\": 0\n}"
+                                }
+                            },
+                            "asset": {
+                                "idInputName": "ComponentId",
+                                "type": "ApplicationInsights"
+                            }
+                        }
+                    },
+                    "7": {
+                        "position": {
+                            "x": 12,
+                            "y": 4,
+                            "rowSpan": 3,
+                            "colSpan": 6
+                        },
+                        "metadata": {
+                            "inputs": [
+                                {
+                                    "name": "ComponentId",
+                                    "value": {
+                                        "SubscriptionId": "[subscription().subscriptionId]",
+                                        "ResourceGroup": "[resourceGroup().name]",
+                                        "Name": "[variables('appInsights-name')]"
+                                    }
+                                },
+                                {
+                                    "name": "AdapterDashboardTimeRange",
+                                    "binding": "timeRange",
+                                    "isOptional": true
+                                }
+                            ],
+                            "type": "Extension[azure]/AppInsightsExtension/PartType/UnconfiguredChartAdaptedPartSmall",
+                            "settings": {
+                                "content": {
+                                    "metricsExplorerJson": "{\n  \"version\": \"1.4.1\",\n  \"isCustomDataModel\": true,\n  \"items\": [\n    {\n      \"id\": \"11111111-1111-1111-1111-111111111111\",\n      \"grouping\": {\n        \"kind\": \"ByDimension\",\n        \"dimension\": \"message.severityLevel\"\n      },\n      \"chartType\": \"Area\",\n      \"chartHeight\": 4,\n      \"metrics\": [\n        {\n          \"id\": \"trace.count\",\n          \"metricAggregation\": \"Sum\",\n          \"color\": \"msportalfx-bgcolor-e0\"\n        }\n      ],\n      \"priorPeriod\": false,\n      \"clickAction\": {\n        \"defaultBlade\": \"SearchBlade\"\n      },\n      \"horizontalBars\": true,\n      \"showOther\": true,\n      \"aggregation\": \"Sum\",\n      \"percentage\": false,\n      \"palette\": \"purpleHues\",\n      \"yAxisOption\": 0,\n      \"title\": \"\"\n    }\n  ],\n  \"title\": \"Logs\",\n  \"currentFilter\": {\n    \"eventTypes\": [\n      4\n    ],\n    \"typeFacets\": {},\n    \"isPermissive\": false\n  },\n  \"timeContext\": {\n    \"durationMs\": 86400000,\n    \"endTime\": null,\n    \"createdTime\": \"2017-10-20T16:07:05.628Z\",\n    \"isInitialTime\": false,\n    \"grain\": 1,\n    \"useDashboardTimeRange\": false\n  },\n  \"jsonUri\": \"DashboardUnconfiguredChartSmall\",\n  \"timeSource\": 0\n}"
+                                }
+                            },
+                            "isAdapter": true,
+                            "viewState": {
+                                "content": {
+                                    "metricsExplorerJson": "{\n  \"version\": \"1.4.1\",\n  \"isCustomDataModel\": true,\n  \"items\": [\n    {\n      \"id\": \"11111111-1111-1111-1111-111111111111\",\n      \"grouping\": {\n        \"kind\": \"ByDimension\",\n        \"dimension\": \"message.severityLevel\"\n      },\n      \"chartType\": \"Area\",\n      \"chartHeight\": 4,\n      \"metrics\": [\n        {\n          \"id\": \"trace.count\",\n          \"metricAggregation\": \"Sum\",\n          \"color\": \"msportalfx-bgcolor-e0\"\n        }\n      ],\n      \"priorPeriod\": false,\n      \"clickAction\": {\n        \"defaultBlade\": \"SearchBlade\"\n      },\n      \"horizontalBars\": true,\n      \"showOther\": true,\n      \"aggregation\": \"Sum\",\n      \"percentage\": false,\n      \"palette\": \"purpleHues\",\n      \"yAxisOption\": 0,\n      \"title\": \"\"\n    }\n  ],\n  \"title\": \"Logs\",\n  \"currentFilter\": {\n    \"eventTypes\": [\n      4\n    ],\n    \"typeFacets\": {},\n    \"isPermissive\": false\n  },\n  \"timeContext\": {\n    \"durationMs\": 86400000,\n    \"endTime\": null,\n    \"createdTime\": \"2017-10-20T16:07:05.628Z\",\n    \"isInitialTime\": false,\n    \"grain\": 1,\n    \"useDashboardTimeRange\": false\n  },\n  \"jsonUri\": \"DashboardUnconfiguredChartSmall\",\n  \"timeSource\": 0\n}"
+                                }
+                            },
+                            "asset": {
+                                "idInputName": "ComponentId",
+                                "type": "ApplicationInsights"
+                            }
+                        }
+                    },
+                    "8": {
+                        "position": {
+                            "x": 0,
+                            "y": 7,
+                            "rowSpan": 4,
+                            "colSpan": 6
+                        },
+                        "metadata": {
+                            "inputs": [
+                                {
+                                    "name": "ComponentId",
+                                    "value": {
+                                        "SubscriptionId": "[subscription().subscriptionId]",
+                                        "ResourceGroup": "[resourceGroup().name]",
+                                        "Name": "[variables('appInsights-name')]"
+                                    }
+                                },
+                                {
+                                    "name": "Query",
+                                    "value": "customEvents\n| where timestamp > ago(7d) and name == \"MyEvent\"\n| order by timestamp desc\n| project TransactionType = tostring(customDimensions.TransactionType), timestamp \n| summarize count() by TransactionType\n| render piechart\n"
+                                },
+                                {
+                                    "name": "Dimensions",
+                                    "value": {
+                                        "xAxis": {
+                                            "name": "TransactionType",
+                                            "type": "String"
+                                        },
+                                        "yAxis": [
+                                            {
+                                                "name": "count_",
+                                                "type": "Int64"
+                                            }
+                                        ],
+                                        "splitBy": [],
+                                        "aggregation": "Sum"
+                                    }
+                                },
+                                {
+                                    "name": "Version",
+                                    "value": "1.0"
+                                },
+                                {
+                                    "name": "PartId",
+                                    "value": "9d0fcbae-2b45-44c6-bf14-4d8c47a7b198"
+                                },
+                                {
+                                    "name": "PartTitle",
+                                    "value": "Analytics"
+                                },
+                                {
+                                    "name": "PartSubTitle",
+                                    "value": "[variables('appInsights-name')]"
+                                },
+                                {
+                                    "name": "resourceTypeMode",
+                                    "value": "components"
+                                }
+                            ],
+                            "type": "Extension/AppInsightsExtension/PartType/AnalyticsDonutPart",
+                            "settings": {
+                                "content": {
+                                    "dashboardPartTitle": "Transaction Failures",
+                                    "dashboardPartSubTitle": "Last 7 Days"
+                                }
+                            },
+                            "asset": {
+                                "idInputName": "ComponentId",
+                                "type": "ApplicationInsights"
+                            }
+                        }
+                    },
+                    "9": {
+                        "position": {
+                            "x": 6,
+                            "y": 7,
+                            "rowSpan": 4,
+                            "colSpan": 6
+                        },
+                        "metadata": {
+                            "inputs": [
+                                {
+                                    "name": "options",
+                                    "value": {
+                                        "charts": [
+                                            {
+                                                "metrics": [
+                                                    {
+                                                        "resourceMetadata": {
+                                                            "resourceId": "[resourceId(subscription().subscriptionId, resourceGroup().name, 'Microsoft.DocumentDB/databaseAccounts', variables('myCosmosDb-resource-name'))]"
+                                                        },
+                                                        "aggregationType": 1,
+                                                        "name": "Observed Read Latency",
+                                                        "unit": 6
+                                                    },
+                                                    {
+                                                        "resourceMetadata": {
+                                                            "resourceId": "[resourceId(subscription().subscriptionId, resourceGroup().name, 'Microsoft.DocumentDB/databaseAccounts', variables('myCosmosDb-resource-name'))]"
+                                                        },
+                                                        "aggregationType": 1,
+                                                        "name": "Observed Write Latency",
+                                                        "unit": 6
+                                                    }
+                                                ],
+                                                "chartType": 0,
+                                                "timespan": {
+                                                    "relative": {
+                                                        "durationMs": 604800000
+                                                    }
+                                                },
+                                                "title": "CosmosDB Latency",
+                                                "subtitle": "LAST 7 DAYS"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "name": "sharedTimeRange",
+                                    "binding": "timeRange",
+                                    "isOptional": true
+                                }
+                            ],
+                            "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+                            "settings": {}
+                        }
+                    },
+                    "10": {
+                        "position": {
+                            "x": 12,
+                            "y": 7,
+                            "rowSpan": 4,
+                            "colSpan": 6
+                        },
+                        "metadata": {
+                            "inputs": [
+                                {
+                                    "name": "options",
+                                    "value": {
+                                        "charts": [
+                                            {
+                                                "metrics": [
+                                                    {
+                                                        "resourceMetadata": {
+                                                            "resourceId": "[resourceId(subscription().subscriptionId, resourceGroup().name, 'Microsoft.DocumentDB/databaseAccounts', variables('myCosmosDb-resource-name'))]"
+                                                        },
+                                                        "aggregationType": 3,
+                                                        "name": "Max RUs Per Second",
+                                                        "unit": 0
+                                                    },
+                                                    {
+                                                        "resourceMetadata": {
+                                                            "resourceId": "[resourceId(subscription().subscriptionId, resourceGroup().name, 'Microsoft.DocumentDB/databaseAccounts', variables('myCosmosDb-resource-name'))]"
+                                                        },
+                                                        "aggregationType": 4,
+                                                        "name": "Throttled Requests",
+                                                        "unit": 0
+                                                    }
+                                                ],
+                                                "chartType": 0,
+                                                "timespan": {
+                                                    "relative": {
+                                                        "durationMs": 604800000
+                                                    }
+                                                },
+                                                "title": "CosmosDB Resource Usage",
+                                                "subtitle": "LAST 7 DAYS"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "name": "sharedTimeRange",
+                                    "binding": "timeRange",
+                                    "isOptional": true
+                                }
+                            ],
+                            "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+                            "settings": {}
+                        }
+                    }
+                }
+            }
+        },
+        "metadata": {
+            "model": {
+                "timeRange": {
+                    "value": {
+                        "relative": {
+                            "duration": 24,
+                            "timeUnit": 1
+                        }
+                    },
+                    "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+                }
+            }
+        }
+    },
+    "name": "[variables('dashboard-name')]",
+    "type": "Microsoft.Portal/dashboards",
+    "apiVersion": "2015-08-01-preview",
+    "location": "centralus",
+    "tags": {
+        "hidden-title": "[variables('dashboard-display-name')]"
+    }
+}

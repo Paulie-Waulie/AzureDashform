@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Resources\DependantResourcesGoldenMasterPartialTemplateOutput.json" />
     <None Include="Resources\DependantResourcesGoldenMasterTemplateInput.json" />
     <None Include="Resources\DependantResourcesGoldenMasterFullTemplateOutput.json" />
     <None Include="Resources\DependantResourcesParametersGoldenMaster.json" />
