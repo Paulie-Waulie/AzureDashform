@@ -46,8 +46,14 @@
 
         private static JProperty CreateAdditionalParameterProperty(string parameter)
         {
-            var parameterName = WrapParamter(UppercaseFirstLetter(parameter));
+            var parameterName = WrapParamter(FormatParameterTokenValue(parameter));
             return new JProperty(parameter, new JObject(new JProperty("value", parameterName)));
+        }
+
+        private static string FormatParameterTokenValue(string parameter)
+        {
+            var segments = parameter.Split('-');
+            return string.Join("", segments.Select(UppercaseFirstLetter));
         }
 
         private static string UppercaseFirstLetter(string parameter)

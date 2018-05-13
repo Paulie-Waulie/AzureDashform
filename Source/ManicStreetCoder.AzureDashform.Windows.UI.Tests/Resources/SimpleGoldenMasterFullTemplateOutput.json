@@ -2,16 +2,16 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "appInsightsName": {
+        "appInsights-name": {
             "type": "string"
         },
-        "dashboardName": {
+        "dashboard-name": {
             "type": "string"
         },
-        "dashboardDisplayName": {
+        "dashboard-display-name": {
             "type": "string"
         },
-        "nameOfResourceGroup": {
+        "name-of-resource-group": {
             "type": "string"
         },
         "subscriptionId": {
@@ -39,8 +39,8 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('nameOfResourceGroup')]",
-                                                "Name": "[parameters('appInsightsName')]"
+                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
                                         {
@@ -83,8 +83,8 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('nameOfResourceGroup')]",
-                                                "Name": "[parameters('appInsightsName')]"
+                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
                                         {
@@ -127,7 +127,7 @@
                                         },
                                         {
                                             "name": "PartSubTitle",
-                                            "value": "[parameters('appInsightsName')]"
+                                            "value": "[parameters('appInsights-name')]"
                                         },
                                         {
                                             "name": "resourceTypeMode",
@@ -160,8 +160,8 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('nameOfResourceGroup')]",
-                                                "Name": "[parameters('appInsightsName')]"
+                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
                                         {
@@ -208,8 +208,8 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('nameOfResourceGroup')]",
-                                                "Name": "[parameters('appInsightsName')]"
+                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
                                         {
@@ -247,7 +247,7 @@
                                         },
                                         {
                                             "name": "PartSubTitle",
-                                            "value": "[parameters('appInsightsName')]"
+                                            "value": "[parameters('appInsights-name')]"
                                         },
                                         {
                                             "name": "resourceTypeMode",
@@ -280,8 +280,8 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('nameOfResourceGroup')]",
-                                                "Name": "[parameters('appInsightsName')]"
+                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
                                         {
@@ -319,7 +319,7 @@
                                         },
                                         {
                                             "name": "PartSubTitle",
-                                            "value": "[parameters('appInsightsName')]"
+                                            "value": "[parameters('appInsights-name')]"
                                         },
                                         {
                                             "name": "resourceTypeMode",
@@ -352,8 +352,8 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('nameOfResourceGroup')]",
-                                                "Name": "[parameters('appInsightsName')]"
+                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
                                         {
@@ -374,7 +374,7 @@
                                         },
                                         {
                                             "name": "PartSubTitle",
-                                            "value": "[parameters('appInsightsName')]"
+                                            "value": "[parameters('appInsights-name')]"
                                         },
                                         {
                                             "name": "resourceTypeMode",
@@ -407,8 +407,8 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('nameOfResourceGroup')]",
-                                                "Name": "[parameters('appInsightsName')]"
+                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
                                         {
@@ -451,7 +451,7 @@
                                         },
                                         {
                                             "name": "PartSubTitle",
-                                            "value": "[parameters('appInsightsName')]"
+                                            "value": "[parameters('appInsights-name')]"
                                         },
                                         {
                                             "name": "resourceTypeMode",
@@ -484,8 +484,8 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('nameOfResourceGroup')]",
-                                                "Name": "[parameters('appInsightsName')]"
+                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
                                         {
@@ -531,7 +531,7 @@
                                         },
                                         {
                                             "name": "PartSubTitle",
-                                            "value": "[parameters('appInsightsName')]"
+                                            "value": "[parameters('appInsights-name')]"
                                         },
                                         {
                                             "name": "resourceTypeMode",
@@ -564,8 +564,8 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('nameOfResourceGroup')]",
-                                                "Name": "[parameters('appInsightsName')]"
+                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
                                         {
@@ -586,7 +586,7 @@
                                         },
                                         {
                                             "name": "PartSubTitle",
-                                            "value": "[parameters('appInsightsName')]"
+                                            "value": "[parameters('appInsights-name')]"
                                         },
                                         {
                                             "name": "resourceTypeMode",
@@ -623,12 +623,12 @@
                     }
                 }
             },
-            "name": "[parameters('dashboardName')]",
+            "name": "[parameters('dashboard-name')]",
             "type": "Microsoft.Portal/dashboards",
             "apiVersion": "2015-08-01-preview",
             "location": "centralus",
             "tags": {
-                "hidden-title": "[parameters('dashboardDisplayName')]"
+                "hidden-title": "[parameters('dashboard-display-name')]"
             }
         }
     ]

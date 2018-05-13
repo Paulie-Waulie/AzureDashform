@@ -2,25 +2,25 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "nameOfResourceGroup": {
+        "name-of-resource-group": {
             "value": "#{ResourceGroup.Name}"
         },
         "subscriptionId": {
             "value": "#{AzureSubscriptionId}"
         },
-        "appInsightsName": {
+        "appInsights-name": {
             "value": "#{ApplicationInsights.Name}"
         },
-        "dashboardName": {
+        "dashboard-name": {
             "value": "#{Dashboard.Name}"
         },
-        "dashboardDisplayName": {
+        "dashboard-display-name": {
             "value": "#{Dashboard.DisplayName}"
         },
-        "myKeyVaultResourceName": {
+        "myKeyVault-resource-name": {
             "value": "#{MyKeyVaultResourceName}"
         },
-        "myCosmosDbResourceName": {
+        "myCosmosDb-resource-name": {
             "value": "#{MyCosmosDbResourceName}"
         }
     }

@@ -52,7 +52,7 @@
 
             public string ResourceName { get; }
 
-            public string ResourceParameterName => $"{this.ResourceName}ResourceName";
+            public string ResourceParameterName => $"{this.ResourceName}-resource-name";
 
             public string ToParameterisedString()
             {

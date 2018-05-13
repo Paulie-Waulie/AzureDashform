@@ -1,6 +1,5 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service.JSON.Transformers
 {
-    using System.Linq;
     using Newtonsoft.Json.Linq;
 
     internal class ValueToParameterArmTemplateTransformer : ArmTemplateTransformer
