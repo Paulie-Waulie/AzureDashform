@@ -2,7 +2,6 @@
 {
     using System;
     using System.IO;
-    using System.Text;
     using FluentAssertions;
     using Model;
     using NUnit.Framework;
@@ -43,18 +42,18 @@
         {
             this.Given(_ => _.ValidJson(Resources.SimpleGoldenMasterTemplateInput), false)
                 .When(_ => _.Transforming())
-                .Then(_ => _.TheOutputTemplateMatchesExpected(Resources.SimpleGoldenMasterTemplateOutput), false)
+                .Then(_ => _.TheOutputTemplateMatchesExpected(Resources.SimpleGoldenMasterFullTemplateOutput), false)
                 .And(_ => _.TheParametersFileMatchesExpected(Resources.SimpleTemplateParametersGoldenMaster), false)
                 .BDDfy();
         }
 
         [Test]
-        public void ValidJsonWithExternalResourcesReturnsExpectedResult()
+        public void ValidJsonWithDependantResourcesReturnsExpectedResult()
         {
-            this.Given(_ => _.ValidJson(Resources.ExternalResourcesGoldenMasterTemplateInput), "Valid Json With External Resources")
+            this.Given(_ => _.ValidJson(Resources.DependantResourcesGoldenMasterTemplateInput), "Valid Json With External Resources")
                 .When(_ => _.Transforming())
-                .Then(_ => _.TheOutputTemplateMatchesExpected(Resources.ExternalResourcesGoldenMasterTemplateOutput), false)
-                .And(_ => _.TheParametersFileMatchesExpected(Resources.ExternalResourcesParametersGoldenMaster), false)
+                .Then(_ => _.TheOutputTemplateMatchesExpected(Resources.DependantResourcesGoldenMasterFullTemplateOutput), false)
+                .And(_ => _.TheParametersFileMatchesExpected(Resources.DependantResourcesParametersGoldenMaster), false)
                 .BDDfy();
         }
 

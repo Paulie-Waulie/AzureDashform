@@ -90,11 +90,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Resources\ExternalResourcesGoldenMasterTemplateInput.json" />
-    <None Include="Resources\ExternalResourcesGoldenMasterTemplateOutput.json" />
-    <None Include="Resources\ExternalResourcesParametersGoldenMaster.json" />
+    <None Include="Resources\DependantResourcesGoldenMasterTemplateInput.json" />
+    <None Include="Resources\DependantResourcesGoldenMasterFullTemplateOutput.json" />
+    <None Include="Resources\DependantResourcesParametersGoldenMaster.json" />
     <None Include="Resources\SimpleGoldenMasterTemplateInput.json" />
-    <None Include="Resources\SimpleGoldenMasterTemplateOutput.json" />
+    <None Include="Resources\SimpleGoldenMasterFullTemplateOutput.json" />
     <None Include="Resources\SimpleTemplateParametersGoldenMaster.json" />
   </ItemGroup>
   <ItemGroup>

@@ -63,9 +63,9 @@ namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] ExternalResourcesGoldenMasterTemplateInput {
+        internal static byte[] DependantResourcesGoldenMasterFullTemplateOutput {
             get {
-                object obj = ResourceManager.GetObject("ExternalResourcesGoldenMasterTemplateInput", resourceCulture);
+                object obj = ResourceManager.GetObject("DependantResourcesGoldenMasterFullTemplateOutput", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] ExternalResourcesGoldenMasterTemplateOutput {
+        internal static byte[] DependantResourcesGoldenMasterTemplateInput {
             get {
-                object obj = ResourceManager.GetObject("ExternalResourcesGoldenMasterTemplateOutput", resourceCulture);
+                object obj = ResourceManager.GetObject("DependantResourcesGoldenMasterTemplateInput", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -83,9 +83,19 @@ namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] ExternalResourcesParametersGoldenMaster {
+        internal static byte[] DependantResourcesParametersGoldenMaster {
             get {
-                object obj = ResourceManager.GetObject("ExternalResourcesParametersGoldenMaster", resourceCulture);
+                object obj = ResourceManager.GetObject("DependantResourcesParametersGoldenMaster", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SimpleGoldenMasterFullTemplateOutput {
+            get {
+                object obj = ResourceManager.GetObject("SimpleGoldenMasterFullTemplateOutput", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -96,16 +106,6 @@ namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.Properties {
         internal static byte[] SimpleGoldenMasterTemplateInput {
             get {
                 object obj = ResourceManager.GetObject("SimpleGoldenMasterTemplateInput", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] SimpleGoldenMasterTemplateOutput {
-            get {
-                object obj = ResourceManager.GetObject("SimpleGoldenMasterTemplateOutput", resourceCulture);
                 return ((byte[])(obj));
             }
         }

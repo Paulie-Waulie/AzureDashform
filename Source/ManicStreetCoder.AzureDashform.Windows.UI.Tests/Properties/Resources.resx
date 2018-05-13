@@ -118,20 +118,20 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ExternalResourcesGoldenMasterTemplateInput" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ExternalResourcesGoldenMasterTemplateInput.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="DependantResourcesGoldenMasterFullTemplateOutput" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DependantResourcesGoldenMasterFullTemplateOutput.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ExternalResourcesGoldenMasterTemplateOutput" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ExternalResourcesGoldenMasterTemplateOutput.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="DependantResourcesGoldenMasterTemplateInput" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DependantResourcesGoldenMasterTemplateInput.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ExternalResourcesParametersGoldenMaster" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ExternalResourcesParametersGoldenMaster.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="DependantResourcesParametersGoldenMaster" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DependantResourcesParametersGoldenMaster.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SimpleGoldenMasterFullTemplateOutput" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SimpleGoldenMasterFullTemplateOutput.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="SimpleGoldenMasterTemplateInput" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SimpleGoldenMasterTemplateInput.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="SimpleGoldenMasterTemplateOutput" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SimpleGoldenMasterTemplateOutput.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="SimpleTemplateParametersGoldenMaster" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SimpleTemplateParametersGoldenMaster.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
