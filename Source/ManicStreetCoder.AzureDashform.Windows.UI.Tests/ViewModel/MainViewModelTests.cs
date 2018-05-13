@@ -15,6 +15,7 @@
     [TestFixture]
     public class MainViewModelTests
     {
+        private const string OutputPath = @"C:\Output";
         private const string InvalidInputSourceFilePathErrorMessage = "Please provide a valid input source file path.";
         private const string InvalidOutputSourceFilePathErrorMessage = "Please provide a valid output file path.";
         private ITransformationFileService fileService;
@@ -40,7 +41,7 @@
             Messenger.Default.Register<string>(this, e => this.userMessage = e);
             this.mainViewModel = new MainViewModel(this.fileService, this.transformationService);
             this.mainViewModel.SourceFilePath = @"C:\Input.json";
-            this.mainViewModel.OutputFolderPath = @"C:\Output";
+            this.mainViewModel.OutputFolderPath = OutputPath;
 
             A.CallTo(() => this.transformationService.Transform(this.inputTemplate, A<TransformationDetails>.Ignored)).Returns(this.outputTemplate);
         }
@@ -171,7 +172,7 @@
 
         private void TheOutputIsSaved()
         {
-            A.CallTo(() => this.fileService.SaveOutputDashboardArmTemplate(this.outputTemplate, A<TransformationDetails>.That.Matches(x => x.OutputFilePath.Equals(this.mainViewModel.OutputFolderPath))))
+            A.CallTo(() => this.fileService.SaveOutputDashboardArmTemplate(this.outputTemplate, A<TransformationDetails>.That.Matches(x => x.OutputFilePath.Equals(OutputPath))))
                      .MustHaveHappenedOnceExactly();
         }
 
