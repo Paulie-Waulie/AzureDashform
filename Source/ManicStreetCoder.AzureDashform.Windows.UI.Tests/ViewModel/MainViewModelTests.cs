@@ -38,18 +38,18 @@
 
             Messenger.Default.Register<Exception>(this, e => this.reportedError = e);
             Messenger.Default.Register<string>(this, e => this.userMessage = e);
-            mainViewModel = new MainViewModel(this.fileService, transformationService);
-            mainViewModel.SourceFilePath = @"C:\Input.json";
-            mainViewModel.OutputFolderPath = @"C:\Output";
+            this.mainViewModel = new MainViewModel(this.fileService, this.transformationService);
+            this.mainViewModel.SourceFilePath = @"C:\Input.json";
+            this.mainViewModel.OutputFolderPath = @"C:\Output";
 
-            A.CallTo(() => transformationService.Transform(this.inputTemplate)).Returns(outputTemplate);
+            A.CallTo(() => this.transformationService.Transform(this.inputTemplate, A<TransformationDetails>.Ignored)).Returns(this.outputTemplate);
         }
 
         [Test]
         public void ValidInputFile()
         {
             this.Given(_ => _.AValidInputFile())
-                .When(_ => _.TrasformingTheInputFile())
+                .When(_ => _.TransformingTheInputFile())
                 .Then(_ => _.TheOutputIsSaved())
                 .And(_ => _.TheUserIsInformedTheTransformSucceeded())
                 .BDDfy();
@@ -61,7 +61,7 @@
             var value = default(string);
 
             this.Given(_ => _.AnInvalidInputFileSourcePath(value))
-                .When(_ => _.TrasformingTheInputFile())
+                .When(_ => _.TransformingTheInputFile())
                 .Then(_ => _.TheValidationErrorIsRaised(new ValidationError(InvalidInputSourceFilePathErrorMessage)))
                 .And(_ => _.TheOutputIsNotSaved())
                 .WithExamples(InvalidFilePathExamples())
@@ -74,7 +74,7 @@
             var value = default(string);
 
             this.Given(_ => _.AnInvalidOutputFileSourcePath(value))
-                .When(_ => _.TrasformingTheInputFile())
+                .When(_ => _.TransformingTheInputFile())
                 .Then(_ => _.TheValidationErrorIsRaised(new ValidationError(InvalidOutputSourceFilePathErrorMessage)))
                 .And(_ => _.TheOutputIsNotSaved())
                 .WithExamples(InvalidFolderPathExamples())
@@ -92,7 +92,7 @@
 
             this.Given(_ => _.AnInvalidInputFileSourcePath(string.Empty))
                 .And(_ => _.AnInvalidOutputFileSourcePath(string.Empty))
-                .When(_ => _.TrasformingTheInputFile())
+                .When(_ => _.TransformingTheInputFile())
                 .Then(_ => _.TheValidationErrorsAreRaised(errors))
                 .And(_ => _.TheOutputIsNotSaved())
                 .BDDfy();
@@ -104,7 +104,7 @@
             var exception = new Exception("InputFileException");
 
             this.Given(_ => _.AnInputFileSourcePathThatCausesAnError(exception))
-                .When(_ => _.TrasformingTheInputFile())
+                .When(_ => _.TransformingTheInputFile())
                 .Then(_ => _.TheErrorMessageIsReportedToTheUser(exception))
                 .And(_ => _.TheOutputIsNotSaved())
                 .BDDfy();
@@ -116,7 +116,7 @@
             var exception = new Exception("TransformationException");
 
             this.Given(_ => _.AnInputFileThatCausesAnTransformationError(exception))
-                .When(_ => _.TrasformingTheInputFile())
+                .When(_ => _.TransformingTheInputFile())
                 .Then(_ => _.TheErrorMessageIsReportedToTheUser(exception))
                 .And(_ => _.TheOutputIsNotSaved())
                 .BDDfy();
@@ -128,14 +128,14 @@
             var exception = new Exception("SavingFileException");
 
             this.Given(_ => _.AnOutputFileSourcePathThatCausesAnError(exception))
-                .When(_ => _.TrasformingTheInputFile())
+                .When(_ => _.TransformingTheInputFile())
                 .Then(_ => _.TheErrorMessageIsReportedToTheUser(exception))
                 .BDDfy();
         }
 
         private void AValidInputFile()
         {
-            A.CallTo(() => this.fileService.GetInputDashboardArmTemplate(this.mainViewModel.SourceFilePath))
+            A.CallTo(() => this.fileService.GetInputDashboardArmTemplate(A<TransformationDetails>.Ignored))
                 .Returns(this.inputTemplate);
         }
 
@@ -156,7 +156,7 @@
 
         private void AnInputFileThatCausesAnTransformationError(Exception exception)
         {
-            A.CallTo(() => this.transformationService.Transform(null)).WithAnyArguments().Throws(exception);
+            A.CallTo(() => this.transformationService.Transform(null, null)).WithAnyArguments().Throws(exception);
         }
 
         private void AnOutputFileSourcePathThatCausesAnError(Exception exception)
@@ -164,14 +164,14 @@
             A.CallTo(() => this.fileService.SaveOutputDashboardArmTemplate(null, null)).WithAnyArguments().Throws(exception);
         }
 
-        private void TrasformingTheInputFile()
+        private void TransformingTheInputFile()
         {
             this.mainViewModel.TransformCommand.Execute(null);
         }
 
         private void TheOutputIsSaved()
         {
-            A.CallTo(() => this.fileService.SaveOutputDashboardArmTemplate(this.outputTemplate, this.mainViewModel.OutputFolderPath))
+            A.CallTo(() => this.fileService.SaveOutputDashboardArmTemplate(this.outputTemplate, A<TransformationDetails>.That.Matches(x => x.OutputFilePath.Equals(this.mainViewModel.OutputFolderPath))))
                      .MustHaveHappenedOnceExactly();
         }
 

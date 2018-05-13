@@ -32,7 +32,7 @@
 
         public ArmTemplate Transform(ArmTemplate armTemplate)
         {
-            armTemplate = TransformInner(armTemplate);
+            armTemplate = this.TransformInner(armTemplate);
             return this.nextTransformer != null ? this.nextTransformer.Transform(armTemplate) : armTemplate;
         }
 

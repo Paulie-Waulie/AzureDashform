@@ -16,6 +16,13 @@
         private Exception thrownException;
         private InputDashboardArmTemplate inputDashboardArmTemplate;
         private OutputDashboardArmTemplate output;
+        private TransformationDetails transformationDetails;
+
+        [SetUp]
+        public void Setup()
+        {
+            this.transformationDetails = new TransformationDetails();
+        }
 
         [Test]
         public void InvalidJsonThrowsException()
@@ -83,7 +90,7 @@
 
         private void Transforming()
         {
-            this.output = new TransformationService().Transform(this.inputDashboardArmTemplate);
+            this.output = new TransformationService().Transform(this.inputDashboardArmTemplate, this.transformationDetails);
         }
 
         private void AInvalidTemplateExceptionIsThrown()

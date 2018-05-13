@@ -5,7 +5,7 @@
 
     public class TransformationService : ITransformationService
     {
-        public OutputDashboardArmTemplate Transform(InputDashboardArmTemplate inputTemplate)
+        public OutputDashboardArmTemplate Transform(InputDashboardArmTemplate inputTemplate, TransformationDetails transformationDetails)
         {
             var armTemplate = DashboardJsonTemplateTransformationService.TransformTemplate(inputTemplate);
             var parametersJson = DashboardJsonParametersService.CreateParameters(armTemplate.AdditionalParameterNames);

@@ -11,7 +11,7 @@
                 throw new ArgumentNullException(nameof(templateJson));
             }
 
-            TemplateJson = templateJson;
+            this.TemplateJson = templateJson;
         }
 
         public string TemplateJson { get; }

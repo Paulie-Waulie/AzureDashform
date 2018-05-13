@@ -4,6 +4,6 @@
 
     public interface ITransformationService
     {
-        OutputDashboardArmTemplate Transform(InputDashboardArmTemplate inputTemplate);
+        OutputDashboardArmTemplate Transform(InputDashboardArmTemplate inputTemplateParameters, TransformationDetails transformationDetails);
     }
 }

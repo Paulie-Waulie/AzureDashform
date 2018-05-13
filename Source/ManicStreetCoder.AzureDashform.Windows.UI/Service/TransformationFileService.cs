@@ -5,17 +5,17 @@
 
     public class TransformationFileService : ITransformationFileService
     {
-        public InputDashboardArmTemplate GetInputDashboardArmTemplate(string sourceInputFilePath)
+        public InputDashboardArmTemplate GetInputDashboardArmTemplate(TransformationDetails transformationDetails)
         {
-            return new InputDashboardArmTemplate(File.ReadAllText(sourceInputFilePath));
+            return new InputDashboardArmTemplate(File.ReadAllText(transformationDetails.SourceFilePath));
         }
 
-        public void SaveOutputDashboardArmTemplate(OutputDashboardArmTemplate outputDashboardArmTemplate, string outputFilePath)
+        public void SaveOutputDashboardArmTemplate(OutputDashboardArmTemplate outputDashboardArmTemplate, TransformationDetails transformationDetails)
         {
-            Directory.CreateDirectory(outputFilePath);
+            Directory.CreateDirectory(transformationDetails.OutputFilePath);
 
-            File.WriteAllText($@"{outputFilePath}\dashboard.json", outputDashboardArmTemplate.TemplateJson);
-            File.WriteAllText($@"{outputFilePath}\parameters.json", outputDashboardArmTemplate.ParametersJson);
+            File.WriteAllText($@"{transformationDetails.OutputFilePath}\dashboard.json", outputDashboardArmTemplate.TemplateJson);
+            File.WriteAllText($@"{transformationDetails.OutputFilePath}\parameters.json", outputDashboardArmTemplate.ParametersJson);
         }
     }
 }
