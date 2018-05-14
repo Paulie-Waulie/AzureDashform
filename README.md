@@ -29,7 +29,7 @@ https://docs.microsoft.com/en-us/azure/azure-portal/azure-portal-dashboards-crea
 11. If your dashboard references resources directly such as Key Vaults or Cosmos DB then additional parameters will be added to the parameters file. The name of this parameter will be the same as the resource name, this will probably not be desirable, e.g. MyKeyVaultDevTestResourceName. If this is modified you will also need to update all references to the parameter name in the template file.
 12. Deploy the ARM template in your pipeline.
 
-## Usage for Partil Template
+## Usage for Partial Template
 
 1. Create a dashboard in the Azure portal, typically this will be in a test environment.
 2. Make it as colourful and wonderful as you can, including lots of useful charts/stats.
