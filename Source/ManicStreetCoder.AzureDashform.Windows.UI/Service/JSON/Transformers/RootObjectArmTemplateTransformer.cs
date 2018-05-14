@@ -1,5 +1,8 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service.JSON.Transformers
 {
+    using System.Collections.Generic;
+    using Arm;
+    using Model;
     using Newtonsoft.Json.Linq;
 
     internal class RootObjectArmTemplateTransformer : ArmTemplateTransformer
@@ -8,7 +11,7 @@
         {
         }
 
-        protected override ArmTemplate TransformInner(ArmTemplate armTemplate)
+        protected override ArmTemplate TransformInner(ArmTemplate armTemplate, IArmPropertyValueResolver armPropertyValueResolver)
         {
             var resources = new JArray();
             var properties = armTemplate.Json.Properties();

@@ -8,19 +8,19 @@
         "dashboard-name": {
             "type": "string"
         },
-        "dashboard-display-name": {
+        "dashboard-displayName": {
             "type": "string"
         },
-        "name-of-resource-group": {
+        "resourceGroup-name": {
             "type": "string"
         },
         "subscriptionId": {
             "type": "string"
         },
-        "myKeyVault-resource-name": {
+        "myKeyVault-resourceName": {
             "type": "string"
         },
-        "myCosmosDb-resource-name": {
+        "myCosmosDb-resourceName": {
             "type": "string"
         }
     },
@@ -45,7 +45,7 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "ResourceGroup": "[parameters('resourceGroup-name')]",
                                                 "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
@@ -86,7 +86,7 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "ResourceGroup": "[parameters('resourceGroup-name')]",
                                                 "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
@@ -127,7 +127,7 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "ResourceGroup": "[parameters('resourceGroup-name')]",
                                                 "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
@@ -174,7 +174,7 @@
                                                             {
                                                                 "name": "ServiceApiLatency",
                                                                 "resourceMetadata": {
-                                                                    "resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('name-of-resource-group'),'/providers/Microsoft.KeyVault/vaults/',parameters('myKeyVault-resource-name'))]"
+                                                                    "resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('resourceGroup-name'),'/providers/Microsoft.KeyVault/vaults/',parameters('myKeyVault-resourceName'))]"
                                                                 },
                                                                 "aggregationType": 1
                                                             }
@@ -213,7 +213,7 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "ResourceGroup": "[parameters('resourceGroup-name')]",
                                                 "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
@@ -290,7 +290,7 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "ResourceGroup": "[parameters('resourceGroup-name')]",
                                                 "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
@@ -331,7 +331,7 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "ResourceGroup": "[parameters('resourceGroup-name')]",
                                                 "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
@@ -372,7 +372,7 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "ResourceGroup": "[parameters('resourceGroup-name')]",
                                                 "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
@@ -413,7 +413,7 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "ResourceGroup": "[parameters('resourceGroup-name')]",
                                                 "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
@@ -489,7 +489,7 @@
                                                         "metrics": [
                                                             {
                                                                 "resourceMetadata": {
-                                                                    "resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('name-of-resource-group'),'/providers/Microsoft.DocumentDB/databaseAccounts/',parameters('myCosmosDb-resource-name'))]"
+                                                                    "resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('resourceGroup-name'),'/providers/Microsoft.DocumentDB/databaseAccounts/',parameters('myCosmosDb-resourceName'))]"
                                                                 },
                                                                 "aggregationType": 1,
                                                                 "name": "Observed Read Latency",
@@ -497,7 +497,7 @@
                                                             },
                                                             {
                                                                 "resourceMetadata": {
-                                                                    "resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('name-of-resource-group'),'/providers/Microsoft.DocumentDB/databaseAccounts/',parameters('myCosmosDb-resource-name'))]"
+                                                                    "resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('resourceGroup-name'),'/providers/Microsoft.DocumentDB/databaseAccounts/',parameters('myCosmosDb-resourceName'))]"
                                                                 },
                                                                 "aggregationType": 1,
                                                                 "name": "Observed Write Latency",
@@ -543,7 +543,7 @@
                                                         "metrics": [
                                                             {
                                                                 "resourceMetadata": {
-                                                                    "resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('name-of-resource-group'),'/providers/Microsoft.DocumentDB/databaseAccounts/',parameters('myCosmosDb-resource-name'))]"
+                                                                    "resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('resourceGroup-name'),'/providers/Microsoft.DocumentDB/databaseAccounts/',parameters('myCosmosDb-resourceName'))]"
                                                                 },
                                                                 "aggregationType": 3,
                                                                 "name": "Max RUs Per Second",
@@ -551,7 +551,7 @@
                                                             },
                                                             {
                                                                 "resourceMetadata": {
-                                                                    "resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('name-of-resource-group'),'/providers/Microsoft.DocumentDB/databaseAccounts/',parameters('myCosmosDb-resource-name'))]"
+                                                                    "resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('resourceGroup-name'),'/providers/Microsoft.DocumentDB/databaseAccounts/',parameters('myCosmosDb-resourceName'))]"
                                                                 },
                                                                 "aggregationType": 4,
                                                                 "name": "Throttled Requests",
@@ -602,7 +602,7 @@
             "apiVersion": "2015-08-01-preview",
             "location": "centralus",
             "tags": {
-                "hidden-title": "[parameters('dashboard-display-name')]"
+                "hidden-title": "[parameters('dashboard-displayName')]"
             }
         }
     ]

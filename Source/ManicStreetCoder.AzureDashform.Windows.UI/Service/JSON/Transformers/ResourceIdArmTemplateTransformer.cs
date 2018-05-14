@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Text;
     using System.Text.RegularExpressions;
+    using Arm;
     using Newtonsoft.Json.Linq;
 
     internal class ResourceIdArmTemplateTransformer : ArmTemplateTransformer
@@ -11,26 +12,28 @@
         {
         }
 
-        protected override ArmTemplate TransformInner(ArmTemplate armTemplate)
+        protected override ArmTemplate TransformInner(ArmTemplate armTemplate, IArmPropertyValueResolver armPropertyValueResolver)
         {
             var resourceIdProperties = armTemplate.Json.GetAllChildProperties("resourceId");
-            var additionalParameters = new HashSet<string>();
+            var additionalResourceNames = new HashSet<string>();
             foreach (var resourceIdProperty in resourceIdProperties)
             {
-                var resourceId = new ResourceId(resourceIdProperty.Value.Value<string>());
+                var resourceId = new ResourceId(resourceIdProperty.Value.Value<string>(), armPropertyValueResolver);
                 resourceIdProperty.Value = resourceId.ToParameterisedString();
-                additionalParameters.Add(resourceId.ResourceParameterName);
+                additionalResourceNames.Add(resourceId.ResourceParameterName);
             }
-            armTemplate.AdditionalParameterNames.AddRange(additionalParameters);
+            armTemplate.AdditionalResourceNames.AddRange(additionalResourceNames);
             return armTemplate;
         }
 
         private class ResourceId
         {
-            private static Regex ResourceIdPattern = new Regex(@"\/subscriptions\/(?<subscription>.+?)\/resourceGroups\/(?<resourceGroup>.+?)\/providers\/(?<provider>.+?)\/(?<providerType>.+?)\/(?<resourceName>.+)");
+            private readonly IArmPropertyValueResolver armPropertyValueResolver;
+            private static readonly Regex ResourceIdPattern = new Regex(@"\/subscriptions\/(?<subscription>.+?)\/resourceGroups\/(?<resourceGroup>.+?)\/providers\/(?<provider>.+?)\/(?<providerType>.+?)\/(?<resourceName>.+)");
 
-            public ResourceId(string resourceIdString)
+            public ResourceId(string resourceIdString, IArmPropertyValueResolver armPropertyValueResolver)
             {
+                this.armPropertyValueResolver = armPropertyValueResolver;
                 Match match = ResourceIdPattern.Match(resourceIdString);
                 this.ResourceIdString = resourceIdString;
                 this.SubscriptionId = match.Groups["subscription"].Value;
@@ -40,35 +43,63 @@
                 this.ResourceName = match.Groups["resourceName"].Value;
             }
 
-            public string ResourceIdString { get; }
+            private string ResourceIdString { get; }
 
-            public string SubscriptionId { get; }
+            private string SubscriptionId { get; }
 
-            public string ResourceGroup { get; }
+            private string ResourceGroup { get; }
 
-            public string Provider { get; }
+            private string Provider { get; }
 
-            public string ProviderType { get; }
+            private string ProviderType { get; }
 
-            public string ResourceName { get; }
+            private string ResourceName { get; }
 
-            public string ResourceParameterName => $"{this.ResourceName}-resource-name";
+            public string ResourceParameterName => $"{this.ResourceName}-resourceName";
 
             public string ToParameterisedString()
             {
+                if (this.armPropertyValueResolver is ArmParameterPropertyValueResolver)
+                {
+                    return this.GetDirectResourceId();
+                }
+
+                return this.GetLookupResourceId();
+            }
+
+            private string GetLookupResourceId()
+            {
+                var builder = new StringBuilder();
+                builder.Append("[resourceId(")
+                    .Append(this.armPropertyValueResolver.GetValue(ArmTemplateDynamicProperty.SubscriptionId))
+                    .Append(", ")
+                    .Append(this.armPropertyValueResolver.GetValue(ArmTemplateDynamicProperty.ResourceGroupName))
+                    .Append(", '")
+                    .Append(this.Provider)
+                    .Append("/")
+                    .Append(this.ProviderType)
+                    .Append("', ")
+                    .Append(this.armPropertyValueResolver.GetValue(this.ResourceParameterName))
+                    .Append(")]");
+
+                return builder.ToString();
+            }
+
+            private string GetDirectResourceId()
+            {
                 var builder = new StringBuilder();
                 builder.Append("[concat('")
-                       .Append("/subscriptions/',")
-                       .Append(ArmParameterProperty.SubscriptionId.ArmParameterSelector())
-                       .Append(",'/resourceGroups/',")
-                       .Append(ArmParameterProperty.ResourceGroupName.ArmParameterSelector())
-                       .Append(",'/providers/")
-                       .Append(this.Provider)
-                       .Append("/")
-                       .Append(this.ProviderType)
-                       .Append("/',")
-                       .Append(ArmJsonExtensions.ArmParameterSelector(this.ResourceParameterName))
-                       .Append(")]");
+                    .Append("/subscriptions/',")
+                    .Append(this.armPropertyValueResolver.GetValue(ArmTemplateDynamicProperty.SubscriptionId))
+                    .Append(",'/resourceGroups/',")
+                    .Append(this.armPropertyValueResolver.GetValue(ArmTemplateDynamicProperty.ResourceGroupName))
+                    .Append(",'/providers/")
+                    .Append(this.Provider)
+                    .Append("/")
+                    .Append(this.ProviderType)
+                    .Append("/',")
+                    .Append(this.armPropertyValueResolver.GetValue(this.ResourceParameterName))
+                    .Append(")]");
 
                 return builder.ToString();
             }

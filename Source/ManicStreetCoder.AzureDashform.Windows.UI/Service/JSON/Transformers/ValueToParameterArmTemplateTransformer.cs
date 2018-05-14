@@ -1,5 +1,6 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service.JSON.Transformers
 {
+    using Arm;
     using Newtonsoft.Json.Linq;
 
     internal class ValueToParameterArmTemplateTransformer : ArmTemplateTransformer
@@ -8,18 +9,18 @@
         {
         }
 
-        protected override ArmTemplate TransformInner(ArmTemplate armTemplate)
+        protected override ArmTemplate TransformInner(ArmTemplate armTemplate, IArmPropertyValueResolver armPropertyValueResolver)
         {
-            JObject resource = armTemplate.Json.GetObject("resources[0]");
-            var parts = resource.SelectToken("properties.lenses.0.parts");
+            var properties = armTemplate.Json.SelectToken("properties");
+            var parts = properties.SelectToken("lenses.0.parts");
 
-            UpdateParts(parts);
-            UpdateTemplateMetadata(resource);
+            UpdateParts(parts, armPropertyValueResolver);
+            UpdateTemplateMetadata(armTemplate.Json, armPropertyValueResolver);
 
             return armTemplate;
         }
 
-        private static void UpdateParts(JToken parts)
+        private static void UpdateParts(JToken parts, IArmPropertyValueResolver armPropertyValueResolver)
         {
             int partNumber = 0;
 
@@ -30,8 +31,8 @@
                 {
                     var inputs = part.SelectToken("metadata.inputs").AsJEnumerable();
 
-                    UpdateComponentIds(inputs);
-                    UpdatePartSubTitle(inputs);
+                    UpdateComponentIds(inputs, armPropertyValueResolver);
+                    UpdatePartSubTitle(inputs, armPropertyValueResolver);
                     RemoveDashboardId(inputs);
                 }
                 else
@@ -43,12 +44,12 @@
             }
         }
 
-        private static void UpdateTemplateMetadata(JObject properties)
+        private static void UpdateTemplateMetadata(JObject properties, IArmPropertyValueResolver armPropertyValueResolver)
         {
             RemoveTemplateId(properties);
-            properties.ReplacePropertyValueWithParameter(ArmParameterProperty.DashboardName);
+            properties.ReplacePropertyValueWith(ArmTemplateDynamicProperty.DashboardName, armPropertyValueResolver);
             AddArmApiVersion(properties);
-            properties.GetObject("tags").ReplacePropertyValueWithParameter(ArmParameterProperty.DashboardDisplayName);
+            properties.GetObject("tags").ReplacePropertyValueWith(ArmTemplateDynamicProperty.DashboardDisplayName, armPropertyValueResolver);
         }
 
         private static void AddArmApiVersion(JObject inputJson)
@@ -66,19 +67,19 @@
             inputs.GetObjectByName("DashboardId")?.Remove();
         }
 
-        private static void UpdatePartSubTitle(IJEnumerable<JToken> inputs)
+        private static void UpdatePartSubTitle(IJEnumerable<JToken> inputs, IArmPropertyValueResolver armPropertyValueResolver)
         {
-            inputs.GetObjectByName("PartSubTitle")?.ReplacePropertyValueWithParameter("value", ArmParameterProperty.AppinsightsName);
+            inputs.GetObjectByName("PartSubTitle")?.ReplacePropertyValueWith("value", ArmTemplateDynamicProperty.AppInsightsName, armPropertyValueResolver);
         }
 
-        private static void UpdateComponentIds(IJEnumerable<JToken> inputs)
+        private static void UpdateComponentIds(IJEnumerable<JToken> inputs, IArmPropertyValueResolver armPropertyValueResolver)
         {
             var componentIdInput = inputs.GetObjectByName("ComponentId")?.GetObject("value");
             if (componentIdInput != null)
             {
-                componentIdInput.ReplacePropertyValueWithParameter(ArmParameterProperty.SubscriptionId);
-                componentIdInput.ReplacePropertyValueWithParameter(ArmParameterProperty.ResourceGroupName);
-                componentIdInput.ReplacePropertyValueWithParameter(ArmParameterProperty.AppinsightsName);
+                componentIdInput.ReplacePropertyValueWith(ArmTemplateDynamicProperty.SubscriptionId, armPropertyValueResolver);
+                componentIdInput.ReplacePropertyValueWith(ArmTemplateDynamicProperty.ResourceGroupName, armPropertyValueResolver);
+                componentIdInput.ReplacePropertyValueWith(ArmTemplateDynamicProperty.AppInsightsName, armPropertyValueResolver);
             }
         }
     }

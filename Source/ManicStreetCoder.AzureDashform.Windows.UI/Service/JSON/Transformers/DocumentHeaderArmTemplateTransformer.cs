@@ -1,5 +1,7 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service.JSON.Transformers
 {
+    using Arm;
+    using Model;
     using Newtonsoft.Json.Linq;
 
     internal class DocumentHeaderArmTemplateTransformer : ArmTemplateTransformer
@@ -8,11 +10,11 @@
         {
         }   
 
-        protected override ArmTemplate TransformInner(ArmTemplate armTemplate)
+        protected override ArmTemplate TransformInner(ArmTemplate armTemplate, IArmPropertyValueResolver armPropertyValueResolver)
         {
-            armTemplate.Json.AddFirst(new JProperty(ArmPropertyNameConstants.Variables, new JObject()));
+            armTemplate.Json.AddFirst(new JProperty(ArmTemplatePropertyNameConstants.Variables, new JObject()));
             armTemplate.Json.AddFirst(BuildTemplateParameters(armTemplate));
-            armTemplate.Json.AddFirst(new JProperty(ArmPropertyNameConstants.ContentVersion, ArmPropertyValueConstants.ContentVersion));
+            armTemplate.Json.AddFirst(new JProperty(ArmTemplatePropertyNameConstants.ContentVersion, ArmPropertyValueConstants.ContentVersion));
             armTemplate.Json.AddFirst(new JProperty("$schema", ArmPropertyValueConstants.TemplateSchema));
 
             return armTemplate;
@@ -21,24 +23,24 @@
         private static JProperty BuildTemplateParameters(ArmTemplate armTemplate)
         {
             var parameters = new JObject(
-                CreateParameterProperty(ArmParameterProperty.AppinsightsName),
-                CreateParameterProperty(ArmParameterProperty.DashboardName),
-                CreateParameterProperty(ArmParameterProperty.DashboardDisplayName),
-                CreateParameterProperty(ArmParameterProperty.ResourceGroupName),
-                CreateParameterProperty(ArmParameterProperty.SubscriptionId)
+                CreateParameterProperty(ArmTemplateDynamicProperty.AppInsightsName),
+                CreateParameterProperty(ArmTemplateDynamicProperty.DashboardName),
+                CreateParameterProperty(ArmTemplateDynamicProperty.DashboardDisplayName),
+                CreateParameterProperty(ArmTemplateDynamicProperty.ResourceGroupName),
+                CreateParameterProperty(ArmTemplateDynamicProperty.SubscriptionId)
             );
 
-            foreach (var additionalParameter in armTemplate.AdditionalParameterNames)
+            foreach (var additionalParameter in armTemplate.AdditionalResourceNames)
             {
                 parameters.Add(CreateParameterProperty(additionalParameter));
             }
 
-            return new JProperty(ArmPropertyNameConstants.Parameters, parameters);
+            return new JProperty(ArmTemplatePropertyNameConstants.Parameters, parameters);
         }
 
-        private static JProperty CreateParameterProperty(ArmParameterProperty parameter)
+        private static JProperty CreateParameterProperty(ArmTemplateDynamicProperty parameter)
         {
-            return new JProperty(parameter.ParameterName, CreateParameter());
+            return new JProperty(parameter.DynamicValue, CreateParameter());
         }
 
         private static JProperty CreateParameterProperty(string parameter)

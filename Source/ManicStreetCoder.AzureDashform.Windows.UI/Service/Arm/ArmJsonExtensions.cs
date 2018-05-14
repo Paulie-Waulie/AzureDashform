@@ -1,7 +1,8 @@
-﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service.JSON
+﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service.Arm
 {
     using System.Collections.Generic;
     using System.Linq;
+    using JSON;
     using Newtonsoft.Json.Linq;
 
     internal static class ArmJsonExtensions
@@ -35,24 +36,14 @@
             }
         }
 
-        public static void ReplacePropertyValueWithParameter(this JObject jObject, ArmParameterProperty armPropertyParameter)
+        public static void ReplacePropertyValueWith(this JObject jObject, ArmTemplateDynamicProperty armPropertyParameter, IArmPropertyValueResolver armPropertyValueResolver)
         {
-            jObject.ReplacePropertyValueWithParameter(armPropertyParameter.ArmTemplatePropertyName, armPropertyParameter);
+            jObject.ReplacePropertyValueWith(armPropertyParameter.ArmTemplatePropertyName, armPropertyParameter, armPropertyValueResolver);
         }
 
-        public static void ReplacePropertyValueWithParameter(this JObject jObject, string propertyName, ArmParameterProperty armPropertyParameter)
+        public static void ReplacePropertyValueWith(this JObject jObject, string propertyName, ArmTemplateDynamicProperty armPropertyParameter, IArmPropertyValueResolver armPropertyValueResolver)
         {
-            jObject.UpdatePropertyValue(propertyName, $"[{ArmParameterSelector(armPropertyParameter.ParameterName)}]");
-        }
-
-        public static string ArmParameterSelector(this ArmParameterProperty armPropertyParameter)
-        {
-            return ArmParameterSelector(armPropertyParameter.ParameterName);
-        }
-
-        public static string ArmParameterSelector(string parameterName)
-        {
-            return $"parameters(\'{parameterName}\')";
+            jObject.UpdatePropertyValue(propertyName, $"[{armPropertyValueResolver.GetValue(armPropertyParameter)}]");
         }
     }
 }

@@ -8,10 +8,10 @@
         "dashboard-name": {
             "type": "string"
         },
-        "dashboard-display-name": {
+        "dashboard-displayName": {
             "type": "string"
         },
-        "name-of-resource-group": {
+        "resourceGroup-name": {
             "type": "string"
         },
         "subscriptionId": {
@@ -39,7 +39,7 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "ResourceGroup": "[parameters('resourceGroup-name')]",
                                                 "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
@@ -83,7 +83,7 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "ResourceGroup": "[parameters('resourceGroup-name')]",
                                                 "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
@@ -160,7 +160,7 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "ResourceGroup": "[parameters('resourceGroup-name')]",
                                                 "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
@@ -208,7 +208,7 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "ResourceGroup": "[parameters('resourceGroup-name')]",
                                                 "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
@@ -280,7 +280,7 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "ResourceGroup": "[parameters('resourceGroup-name')]",
                                                 "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
@@ -352,7 +352,7 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "ResourceGroup": "[parameters('resourceGroup-name')]",
                                                 "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
@@ -407,7 +407,7 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "ResourceGroup": "[parameters('resourceGroup-name')]",
                                                 "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
@@ -484,7 +484,7 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "ResourceGroup": "[parameters('resourceGroup-name')]",
                                                 "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
@@ -564,7 +564,7 @@
                                             "name": "ComponentId",
                                             "value": {
                                                 "SubscriptionId": "[parameters('subscriptionId')]",
-                                                "ResourceGroup": "[parameters('name-of-resource-group')]",
+                                                "ResourceGroup": "[parameters('resourceGroup-name')]",
                                                 "Name": "[parameters('appInsights-name')]"
                                             }
                                         },
@@ -628,7 +628,7 @@
             "apiVersion": "2015-08-01-preview",
             "location": "centralus",
             "tags": {
-                "hidden-title": "[parameters('dashboard-display-name')]"
+                "hidden-title": "[parameters('dashboard-displayName')]"
             }
         }
     ]

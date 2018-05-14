@@ -103,6 +103,16 @@ namespace ManicStreetCoder.AzureDashform.Windows.UI.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] EmptyJson {
+            get {
+                object obj = ResourceManager.GetObject("EmptyJson", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] SimpleGoldenMasterFullTemplateOutput {
             get {
                 object obj = ResourceManager.GetObject("SimpleGoldenMasterFullTemplateOutput", resourceCulture);

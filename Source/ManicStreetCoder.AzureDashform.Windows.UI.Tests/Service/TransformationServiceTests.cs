@@ -45,9 +45,10 @@
         }
 
         [Test]
-        public void ValidJsonReturnsExpectedResult()
+        public void ValidJsonForCompleteTemplateReturnsExpectedResult()
         {
             this.Given(_ => _.ValidJson(Resources.SimpleGoldenMasterTemplateInput), false)
+                .And(_ => _.TheOutputIsToBeCreatedAsACompleteTemplate())
                 .When(_ => _.Transforming())
                 .Then(_ => _.TheOutputTemplateMatchesExpected(Resources.SimpleGoldenMasterFullTemplateOutput), false)
                 .And(_ => _.TheParametersFileMatchesExpected(Resources.SimpleTemplateParametersGoldenMaster), false)
@@ -55,12 +56,24 @@
         }
 
         [Test]
-        public void ValidJsonWithDependantResourcesReturnsExpectedResult()
+        public void ValidJsonWithDependantResourcesForCompleteTemplateReturnsExpectedResult()
         {
             this.Given(_ => _.ValidJson(Resources.DependantResourcesGoldenMasterTemplateInput), "Valid Json With External Resources")
+                .And(_ => _.TheOutputIsToBeCreatedAsACompleteTemplate())
                 .When(_ => _.Transforming())
                 .Then(_ => _.TheOutputTemplateMatchesExpected(Resources.DependantResourcesGoldenMasterFullTemplateOutput), false)
                 .And(_ => _.TheParametersFileMatchesExpected(Resources.DependantResourcesParametersGoldenMaster), false)
+                .BDDfy();
+        }
+
+        [Test]
+        public void ValidJsonWithDependantResourcesForExistingTemplateReturnsExpectedResult()
+        {
+            this.Given(_ => _.ValidJson(Resources.DependantResourcesGoldenMasterTemplateInput), "Valid Json With External Resources")
+                .And(_ => _.TheOutputIsToBeCreatedAsAPartOfAnExistingTemplate())
+                .When(_ => _.Transforming())
+                .Then(_ => _.TheOutputTemplateMatchesExpected(Resources.DependantResourcesGoldenMasterPartialTemplateOutput), false)
+                .And(_ => _.TheParametersFileIsEmpty())
                 .BDDfy();
         }
 
@@ -68,6 +81,16 @@
         {
             var json = this.GetJsonFromResourceFile(jsonFile);
             this.inputDashboardArmTemplate = new InputDashboardArmTemplate(json);
+        }
+
+        private void TheOutputIsToBeCreatedAsACompleteTemplate()
+        {
+            this.transformationDetails.DashboardIsCompleteTemplate = true;
+        }
+
+        private void TheOutputIsToBeCreatedAsAPartOfAnExistingTemplate()
+        {
+            this.transformationDetails.DashboardIsCompleteTemplate = false;
         }
 
         private void InvalidJson(string json)
@@ -108,6 +131,12 @@
         private void TheParametersFileMatchesExpected(byte[] expectedFile)
         {
             var expected = this.GetJsonFromResourceFile(expectedFile);
+            Assert.AreEqual(expected, this.output.ParametersJson);
+        }
+
+        private void TheParametersFileIsEmpty()
+        {
+            var expected = this.GetJsonFromResourceFile(Resources.EmptyJson);
             Assert.AreEqual(expected, this.output.ParametersJson);
         }
 

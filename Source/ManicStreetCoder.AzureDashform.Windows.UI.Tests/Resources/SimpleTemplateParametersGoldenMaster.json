@@ -2,19 +2,19 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "name-of-resource-group": {
+        "resourceGroup-name": {
             "value": "#{ResourceGroup.Name}"
         },
         "subscriptionId": {
-            "value": "#{AzureSubscriptionId}"
+            "value": "#{SubscriptionId}"
         },
         "appInsights-name": {
-            "value": "#{ApplicationInsights.Name}"
+            "value": "#{AppInsights.Name}"
         },
         "dashboard-name": {
             "value": "#{Dashboard.Name}"
         },
-        "dashboard-display-name": {
+        "dashboard-displayName": {
             "value": "#{Dashboard.DisplayName}"
         }
     }

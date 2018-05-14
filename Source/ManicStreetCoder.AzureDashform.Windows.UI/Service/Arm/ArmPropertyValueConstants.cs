@@ -1,4 +1,4 @@
-﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service.JSON
+﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service.Arm
 {
     internal class ArmPropertyValueConstants
     {
