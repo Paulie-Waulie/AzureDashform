@@ -1,7 +1,6 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service.JSON.Transformers
 {
     using Arm;
-    using Model;
     using Newtonsoft.Json.Linq;
 
     internal class DocumentHeaderArmTemplateTransformer : ArmTemplateTransformer

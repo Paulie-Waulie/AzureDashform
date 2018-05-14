@@ -7,7 +7,6 @@ namespace ManicStreetCoder.AzureDashform.ViewModel
     using AzureDashform.Windows.UI.ViewModel.Validation;
     using GalaSoft.MvvmLight;
     using GalaSoft.MvvmLight.Command;
-    using GalaSoft.MvvmLight.Views;
 
     public class MainViewModel : ViewModelBase
     {

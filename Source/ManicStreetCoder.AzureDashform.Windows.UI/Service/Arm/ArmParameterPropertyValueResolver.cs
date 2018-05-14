@@ -1,7 +1,5 @@
 ﻿namespace ManicStreetCoder.AzureDashform.Windows.UI.Service.Arm
 {
-    using JSON;
-
     internal class ArmParameterPropertyValueResolver : IArmPropertyValueResolver
     {
         public string GetValue(ArmTemplateDynamicProperty property)

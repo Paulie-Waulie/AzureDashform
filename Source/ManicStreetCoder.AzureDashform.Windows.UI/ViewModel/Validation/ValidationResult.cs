@@ -7,7 +7,7 @@
     {
         public ValidationResult(IEnumerable<ValidationError> validationErrors)
         {
-            ValidationErrors = validationErrors;
+            this.ValidationErrors = validationErrors;
         }
 
         public IEnumerable<ValidationError> ValidationErrors { get; }

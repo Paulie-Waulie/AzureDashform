@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using Arm;
-    using Model;
     using Newtonsoft.Json.Linq;
 
     internal class ArmTemplate
