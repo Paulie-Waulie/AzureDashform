@@ -17,10 +17,10 @@
         "subscriptionId": {
             "type": "string"
         },
-        "myKeyVault-resourceName": {
+        "myKeyVault-name": {
             "type": "string"
         },
-        "myCosmosDb-resourceName": {
+        "myCosmosDb-name": {
             "type": "string"
         }
     },
@@ -174,7 +174,7 @@
                                                             {
                                                                 "name": "ServiceApiLatency",
                                                                 "resourceMetadata": {
-                                                                    "resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('resourceGroup-name'),'/providers/Microsoft.KeyVault/vaults/',parameters('myKeyVault-resourceName'))]"
+                                                                    "resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('resourceGroup-name'),'/providers/Microsoft.KeyVault/vaults/',parameters('myKeyVault-name'))]"
                                                                 },
                                                                 "aggregationType": 1
                                                             }
@@ -489,7 +489,7 @@
                                                         "metrics": [
                                                             {
                                                                 "resourceMetadata": {
-                                                                    "resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('resourceGroup-name'),'/providers/Microsoft.DocumentDB/databaseAccounts/',parameters('myCosmosDb-resourceName'))]"
+                                                                    "resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('resourceGroup-name'),'/providers/Microsoft.DocumentDB/databaseAccounts/',parameters('myCosmosDb-name'))]"
                                                                 },
                                                                 "aggregationType": 1,
                                                                 "name": "Observed Read Latency",
@@ -497,7 +497,7 @@
                                                             },
                                                             {
                                                                 "resourceMetadata": {
-                                                                    "resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('resourceGroup-name'),'/providers/Microsoft.DocumentDB/databaseAccounts/',parameters('myCosmosDb-resourceName'))]"
+                                                                    "resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('resourceGroup-name'),'/providers/Microsoft.DocumentDB/databaseAccounts/',parameters('myCosmosDb-name'))]"
                                                                 },
                                                                 "aggregationType": 1,
                                                                 "name": "Observed Write Latency",
@@ -543,7 +543,7 @@
                                                         "metrics": [
                                                             {
                                                                 "resourceMetadata": {
-                                                                    "resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('resourceGroup-name'),'/providers/Microsoft.DocumentDB/databaseAccounts/',parameters('myCosmosDb-resourceName'))]"
+                                                                    "resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('resourceGroup-name'),'/providers/Microsoft.DocumentDB/databaseAccounts/',parameters('myCosmosDb-name'))]"
                                                                 },
                                                                 "aggregationType": 3,
                                                                 "name": "Max RUs Per Second",
@@ -551,7 +551,7 @@
                                                             },
                                                             {
                                                                 "resourceMetadata": {
-                                                                    "resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('resourceGroup-name'),'/providers/Microsoft.DocumentDB/databaseAccounts/',parameters('myCosmosDb-resourceName'))]"
+                                                                    "resourceId": "[concat('/subscriptions/',parameters('subscriptionId'),'/resourceGroups/',parameters('resourceGroup-name'),'/providers/Microsoft.DocumentDB/databaseAccounts/',parameters('myCosmosDb-name'))]"
                                                                 },
                                                                 "aggregationType": 4,
                                                                 "name": "Throttled Requests",
