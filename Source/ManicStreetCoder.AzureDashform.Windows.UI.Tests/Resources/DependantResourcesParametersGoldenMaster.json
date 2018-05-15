@@ -17,11 +17,11 @@
         "dashboard-displayName": {
             "value": "#{Dashboard.DisplayName}"
         },
-        "myKeyVault-resourceName": {
-            "value": "#{MyKeyVault.ResourceName}"
+        "myKeyVault-name": {
+            "value": "#{MyKeyVault.Name}"
         },
-        "myCosmosDb-resourceName": {
-            "value": "#{MyCosmosDb.ResourceName}"
+        "myCosmosDb-name": {
+            "value": "#{MyCosmosDb.Name}"
         }
     }
 }
