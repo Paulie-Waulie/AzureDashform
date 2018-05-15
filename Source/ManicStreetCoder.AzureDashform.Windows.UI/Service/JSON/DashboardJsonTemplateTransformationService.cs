@@ -54,7 +54,8 @@
         {
             return new ValueToParameterArmTemplateTransformer(
                 new ResourceIdArmTemplateTransformer(
-                    new VariablesArmTemplateTransformer(null)));
+                    new VariablesArmTemplateTransformer(
+                        new DependsOnArmTemplateTransformer(null))));
         }
     }
 }

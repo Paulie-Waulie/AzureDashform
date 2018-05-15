@@ -108,6 +108,7 @@
     <Compile Include="Service\Exceptions\InvalidInputTemplateException.cs" />
     <Compile Include="Service\ITransformationFileService.cs" />
     <Compile Include="Service\Arm\ArmJsonExtensions.cs" />
+    <Compile Include="Service\JSON\Transformers\DependsOnArmTemplateTransformer.cs" />
     <Compile Include="Service\JSON\Transformers\DocumentHeaderArmTemplateTransformer.cs" />
     <Compile Include="Service\JSON\JsonWriter.cs" />
     <Compile Include="Service\JSON\Transformers\ResourceIdArmTemplateTransformer.cs" />

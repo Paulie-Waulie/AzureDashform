@@ -582,5 +582,10 @@
     "location": "centralus",
     "tags": {
         "hidden-title": "[variables('dashboard-displayName')]"
-    }
+    },
+    "dependsOn": [
+        "[variables('appInsights-name')]",
+        "[variables('myKeyVault-name')]",
+        "[variables('myCosmosDb-name')]"
+    ]
 }
