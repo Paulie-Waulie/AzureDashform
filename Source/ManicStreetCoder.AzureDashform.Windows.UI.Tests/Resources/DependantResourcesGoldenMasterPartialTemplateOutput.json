@@ -3,8 +3,8 @@
         "appInsights-name": "TO_BE_SET",
         "dashboard-name": "TO_BE_SET",
         "dashboard-displayName": "TO_BE_SET",
-        "myKeyVault-resourceName": "TO_BE_SET",
-        "myCosmosDb-resourceName": "TO_BE_SET"
+        "myKeyVault-name": "TO_BE_SET",
+        "myCosmosDb-name": "TO_BE_SET"
     },
     "properties": {
         "lenses": {
@@ -153,7 +153,7 @@
                                                     {
                                                         "name": "ServiceApiLatency",
                                                         "resourceMetadata": {
-                                                            "resourceId": "[resourceId(subscription().subscriptionId, resourceGroup().name, 'Microsoft.KeyVault/vaults', variables('myKeyVault-resourceName'))]"
+                                                            "resourceId": "[resourceId(subscription().subscriptionId, resourceGroup().name, 'Microsoft.KeyVault/vaults', variables('myKeyVault-name'))]"
                                                         },
                                                         "aggregationType": 1
                                                     }
@@ -468,7 +468,7 @@
                                                 "metrics": [
                                                     {
                                                         "resourceMetadata": {
-                                                            "resourceId": "[resourceId(subscription().subscriptionId, resourceGroup().name, 'Microsoft.DocumentDB/databaseAccounts', variables('myCosmosDb-resourceName'))]"
+                                                            "resourceId": "[resourceId(subscription().subscriptionId, resourceGroup().name, 'Microsoft.DocumentDB/databaseAccounts', variables('myCosmosDb-name'))]"
                                                         },
                                                         "aggregationType": 1,
                                                         "name": "Observed Read Latency",
@@ -476,7 +476,7 @@
                                                     },
                                                     {
                                                         "resourceMetadata": {
-                                                            "resourceId": "[resourceId(subscription().subscriptionId, resourceGroup().name, 'Microsoft.DocumentDB/databaseAccounts', variables('myCosmosDb-resourceName'))]"
+                                                            "resourceId": "[resourceId(subscription().subscriptionId, resourceGroup().name, 'Microsoft.DocumentDB/databaseAccounts', variables('myCosmosDb-name'))]"
                                                         },
                                                         "aggregationType": 1,
                                                         "name": "Observed Write Latency",
@@ -522,7 +522,7 @@
                                                 "metrics": [
                                                     {
                                                         "resourceMetadata": {
-                                                            "resourceId": "[resourceId(subscription().subscriptionId, resourceGroup().name, 'Microsoft.DocumentDB/databaseAccounts', variables('myCosmosDb-resourceName'))]"
+                                                            "resourceId": "[resourceId(subscription().subscriptionId, resourceGroup().name, 'Microsoft.DocumentDB/databaseAccounts', variables('myCosmosDb-name'))]"
                                                         },
                                                         "aggregationType": 3,
                                                         "name": "Max RUs Per Second",
@@ -530,7 +530,7 @@
                                                     },
                                                     {
                                                         "resourceMetadata": {
-                                                            "resourceId": "[resourceId(subscription().subscriptionId, resourceGroup().name, 'Microsoft.DocumentDB/databaseAccounts', variables('myCosmosDb-resourceName'))]"
+                                                            "resourceId": "[resourceId(subscription().subscriptionId, resourceGroup().name, 'Microsoft.DocumentDB/databaseAccounts', variables('myCosmosDb-name'))]"
                                                         },
                                                         "aggregationType": 4,
                                                         "name": "Throttled Requests",
